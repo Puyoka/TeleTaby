@@ -62,7 +62,7 @@ namespace testDesign
                     {
                         if (item.gyűjtőnév == gyujtonev)
                         {
-                            tv.Nodes[i].Nodes.Add($"{item.név} - {item.ár}");
+                            tv.Nodes[i].Nodes.Add($"{item.név} ➔ {item.ár}");
                         }
                     }
                 }
@@ -88,7 +88,6 @@ namespace testDesign
 
 
 
-
         private async void BVegrehajt_Click(object sender, EventArgs e)
         {
             switch (rbNum)
@@ -102,14 +101,48 @@ namespace testDesign
                                      where t.név == cbCsopNev.Text
                                      select t.ID;
 
-                        teletabyDB.ExecuteCommand($"INSERT INTO termékTest VALUES ('{tbNev.Text}', '{tbMertekegyseg.Text}', '{Convert.ToInt32(tbAr.Text)}', '{cbGyujtonev.Text}', '{result.FirstOrDefault()}')");//System.Data.SqlClient.SqlException ugyan azt akartam hozzáadni                        
-                        await Visszajelzes();
+                        try
+                        {
+                            teletabyDB.ExecuteCommand($"INSERT INTO termékTest VALUES ('{tbNev.Text}', '{tbMertekegyseg.Text}', '{Convert.ToInt32(tbAr.Text)}', '{cbGyujtonev.Text}', '{result.FirstOrDefault()}')");
+                        }
+                        catch (System.Data.SqlClient.SqlException)
+                        {
+                            MessageBox.Show("kétszer ugyanaz");
+                        }
                         TvFeltoltes();
+                        await Visszajelzes();
                     }
                     break;
                 case 2:
+                    try
+                    {
+                        using (var teletabyDB = new DataContext(belepes.connectionString))
+                        {                            
+                            string termekNev = tv.SelectedNode.Text.Split('➔')[0].Trim();
+                            if (tv.SelectedNode.Parent == null)
+                            {
+                                teletabyDB.ExecuteCommand($"UPDATE termékTest SET gyűjtőnév = '{cbGyujtonev.Text}' WHERE gyűjtőnév = '{termekNev}'");
+                            }
+                            else
+                            {
+                                var table = teletabyDB.GetTable<Felhasználó>();
+                                var result = from t in table
+                                             where t.név == cbCsopNev.Text
+                                             select t.ID;
+
+                                teletabyDB.ExecuteCommand($"UPDATE TOP(1) termékTest SET név = '{tbNev.Text}',  mértékegység = '{tbMertekegyseg.Text}',  ár = '{Convert.ToInt32(tbAr.Text)}',  gyűjtőnév = '{cbGyujtonev.Text}',  csopID = '{result.FirstOrDefault()}' WHERE név = '{termekNev}'");                                
+                            }                            
+                            TvFeltoltes();
+                            await Visszajelzes();
+                        }
+                    }
+                    catch (NullReferenceException)
+                    {
+                        MessageBox.Show($"nincs semmi kiválasztava");
+                    }   
                     break;
                 case 3:
+
                     break;
                 default:
                     break;
@@ -119,11 +152,11 @@ namespace testDesign
         {
             bVegrehajt.BackColor = Color.Green;
             bVegrehajt.Text = "✓";
-            //task.await??? vagy mi?
             await Task.Delay(800);
             bVegrehajt.BackColor = Color.White;
             bVegrehajt.Text = "Végrehajt";
         }
+
 
 
         #region rbNUm
@@ -153,7 +186,6 @@ namespace testDesign
         #endregion
 
 
-
         private void TbAr_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
@@ -161,7 +193,6 @@ namespace testDesign
                 e.Handled = true;
             }
         }
-        //na??
         private void Tv_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (rbNum == 2)
@@ -171,13 +202,17 @@ namespace testDesign
                     var table = teleetabyDB.GetTable<TermékTest>();
 
                     var result = from t in table
-                                 where t.név == tv.SelectedNode.Text.Split('-')[0].Trim()
+                                 where t.név == tv.SelectedNode.Text.Split('➔')[0].Trim()
                                  select new { t.gyűjtőnév, t.név, t.mértékegység, t.ár, t.csopID };
 
                     var so = result.FirstOrDefault();
                     if (so == null)
                     {
                         cbGyujtonev.SelectedItem = tv.SelectedNode.Text;
+                        tbNev.Text = "";
+                        tbMertekegyseg.Text = "";
+                        tbAr.Text = "";
+                        cbCsopNev.Text = "";
                     }
                     else
                     {
@@ -185,7 +220,15 @@ namespace testDesign
                         tbNev.Text = so.név;
                         tbMertekegyseg.Text = so.mértékegység;
                         tbAr.Text = Convert.ToString(so.ár);
-                        cbCsopNev.Text = Convert.ToString(so.csopID);
+                        if (so.csopID != 0)
+                        {
+                            cbCsopNev.SelectedIndex = so.csopID - 1;
+                        }
+                        else
+                        {
+                            cbCsopNev.SelectedIndex = cbCsopNev.Items.Count-1;
+                        }
+                        
                     }
                 }
             }

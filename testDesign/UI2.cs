@@ -197,7 +197,7 @@ namespace testDesign
 
         private void ButtonKilep_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+             Application.Exit();
         }
 
         private void DataGridViewElozmenyek_CellContentClick(object sender, DataGridViewCellEventArgs e)

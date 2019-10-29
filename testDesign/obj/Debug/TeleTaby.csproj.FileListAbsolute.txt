@@ -12,3 +12,17 @@ C:\Programok\testDesign\obj\Debug\testDesign.belepes.resources
 C:\Programok\testDesign\obj\Debug\testDesign.bill.resources
 C:\Programok\testDesign\obj\Debug\testDesign.UI1.resources
 C:\Programok\testDesign\obj\Debug\testDesign.UI2.resources
+C:\Users\puyok\Source\Repos\TeleTaby\testDesign\bin\Debug\testDesign.exe.config
+C:\Users\puyok\Source\Repos\TeleTaby\testDesign\bin\Debug\testDesign.exe
+C:\Users\puyok\Source\Repos\TeleTaby\testDesign\bin\Debug\testDesign.pdb
+C:\Users\puyok\Source\Repos\TeleTaby\testDesign\obj\Debug\TeleTaby.csprojAssemblyReference.cache
+C:\Users\puyok\Source\Repos\TeleTaby\testDesign\obj\Debug\testDesign.belepes.resources
+C:\Users\puyok\Source\Repos\TeleTaby\testDesign\obj\Debug\testDesign.bill.resources
+C:\Users\puyok\Source\Repos\TeleTaby\testDesign\obj\Debug\testDesign.Properties.Resources.resources
+C:\Users\puyok\Source\Repos\TeleTaby\testDesign\obj\Debug\testDesign.UI1.resources
+C:\Users\puyok\Source\Repos\TeleTaby\testDesign\obj\Debug\testDesign.UI2.resources
+C:\Users\puyok\Source\Repos\TeleTaby\testDesign\obj\Debug\testDesign.UI3.resources
+C:\Users\puyok\Source\Repos\TeleTaby\testDesign\obj\Debug\TeleTaby.csproj.GenerateResource.cache
+C:\Users\puyok\Source\Repos\TeleTaby\testDesign\obj\Debug\TeleTaby.csproj.CoreCompileInputs.cache
+C:\Users\puyok\Source\Repos\TeleTaby\testDesign\obj\Debug\testDesign.exe
+C:\Users\puyok\Source\Repos\TeleTaby\testDesign\obj\Debug\testDesign.pdb

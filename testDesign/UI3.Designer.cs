@@ -165,10 +165,6 @@
             // 
             this.cbCsopNev.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCsopNev.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cbCsopNev.Items.AddRange(new object[] {
-            "Felhasználók",
-            "Termékek",
-            "Rendelések"});
             this.cbCsopNev.Location = new System.Drawing.Point(10, 295);
             this.cbCsopNev.Name = "cbCsopNev";
             this.cbCsopNev.Size = new System.Drawing.Size(215, 21);
