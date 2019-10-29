@@ -1,0 +1,14 @@
+C:\Programok\testDesign\bin\Debug\testDesign.exe.config
+C:\Programok\testDesign\bin\Debug\testDesign.exe
+C:\Programok\testDesign\bin\Debug\testDesign.pdb
+C:\Programok\testDesign\obj\Debug\TeleTaby.csprojAssemblyReference.cache
+C:\Programok\testDesign\obj\Debug\testDesign.Properties.Resources.resources
+C:\Programok\testDesign\obj\Debug\TeleTaby.csproj.GenerateResource.cache
+C:\Programok\testDesign\obj\Debug\TeleTaby.csproj.CoreCompileInputs.cache
+C:\Programok\testDesign\obj\Debug\testDesign.exe
+C:\Programok\testDesign\obj\Debug\testDesign.pdb
+C:\Programok\testDesign\obj\Debug\testDesign.UI3.resources
+C:\Programok\testDesign\obj\Debug\testDesign.belepes.resources
+C:\Programok\testDesign\obj\Debug\testDesign.bill.resources
+C:\Programok\testDesign\obj\Debug\testDesign.UI1.resources
+C:\Programok\testDesign\obj\Debug\testDesign.UI2.resources
