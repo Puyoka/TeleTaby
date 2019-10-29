@@ -78,15 +78,15 @@
             this.pTermek.Controls.Add(this.tv);
             this.pTermek.Location = new System.Drawing.Point(2, 39);
             this.pTermek.Name = "pTermek";
-            this.pTermek.Size = new System.Drawing.Size(797, 410);
+            this.pTermek.Size = new System.Drawing.Size(628, 463);
             this.pTermek.TabIndex = 1;
             this.pTermek.Visible = false;
             // 
             // bVegrehajt
             // 
-            this.bVegrehajt.Location = new System.Drawing.Point(636, 185);
+            this.bVegrehajt.Location = new System.Drawing.Point(311, 411);
             this.bVegrehajt.Name = "bVegrehajt";
-            this.bVegrehajt.Size = new System.Drawing.Size(75, 47);
+            this.bVegrehajt.Size = new System.Drawing.Size(305, 41);
             this.bVegrehajt.TabIndex = 12;
             this.bVegrehajt.Text = "Végrehajt";
             this.bVegrehajt.UseVisualStyleBackColor = true;
@@ -106,9 +106,10 @@
             this.gbMuvelet.Controls.Add(this.tbAr);
             this.gbMuvelet.Location = new System.Drawing.Point(311, 73);
             this.gbMuvelet.Name = "gbMuvelet";
-            this.gbMuvelet.Size = new System.Drawing.Size(244, 332);
+            this.gbMuvelet.Size = new System.Drawing.Size(305, 332);
             this.gbMuvelet.TabIndex = 11;
             this.gbMuvelet.TabStop = false;
+            this.gbMuvelet.Text = "Hozzáadás";
             // 
             // label5
             // 
@@ -158,7 +159,7 @@
             // 
             this.tbMertekegyseg.Location = new System.Drawing.Point(10, 175);
             this.tbMertekegyseg.Name = "tbMertekegyseg";
-            this.tbMertekegyseg.Size = new System.Drawing.Size(215, 20);
+            this.tbMertekegyseg.Size = new System.Drawing.Size(273, 20);
             this.tbMertekegyseg.TabIndex = 9;
             // 
             // cbCsopNev
@@ -167,7 +168,7 @@
             this.cbCsopNev.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.cbCsopNev.Location = new System.Drawing.Point(10, 295);
             this.cbCsopNev.Name = "cbCsopNev";
-            this.cbCsopNev.Size = new System.Drawing.Size(215, 21);
+            this.cbCsopNev.Size = new System.Drawing.Size(273, 21);
             this.cbCsopNev.TabIndex = 11;
             // 
             // label1
@@ -186,21 +187,21 @@
             this.cbGyujtonev.FormattingEnabled = true;
             this.cbGyujtonev.Location = new System.Drawing.Point(10, 53);
             this.cbGyujtonev.Name = "cbGyujtonev";
-            this.cbGyujtonev.Size = new System.Drawing.Size(215, 21);
+            this.cbGyujtonev.Size = new System.Drawing.Size(273, 21);
             this.cbGyujtonev.TabIndex = 7;
             // 
             // tbNev
             // 
             this.tbNev.Location = new System.Drawing.Point(10, 114);
             this.tbNev.Name = "tbNev";
-            this.tbNev.Size = new System.Drawing.Size(215, 20);
+            this.tbNev.Size = new System.Drawing.Size(273, 20);
             this.tbNev.TabIndex = 8;
             // 
             // tbAr
             // 
             this.tbAr.Location = new System.Drawing.Point(10, 235);
             this.tbAr.Name = "tbAr";
-            this.tbAr.Size = new System.Drawing.Size(215, 20);
+            this.tbAr.Size = new System.Drawing.Size(273, 20);
             this.tbAr.TabIndex = 10;
             this.tbAr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbAr_KeyPress);
             // 
@@ -211,7 +212,7 @@
             this.gbMuveletek.Controls.Add(this.rbSzerk);
             this.gbMuveletek.Location = new System.Drawing.Point(311, 3);
             this.gbMuveletek.Name = "gbMuveletek";
-            this.gbMuveletek.Size = new System.Drawing.Size(481, 64);
+            this.gbMuveletek.Size = new System.Drawing.Size(305, 64);
             this.gbMuveletek.TabIndex = 6;
             this.gbMuveletek.TabStop = false;
             this.gbMuveletek.Text = "Műveletek";
@@ -219,7 +220,7 @@
             // rbTorol
             // 
             this.rbTorol.AutoSize = true;
-            this.rbTorol.Location = new System.Drawing.Point(313, 29);
+            this.rbTorol.Location = new System.Drawing.Point(234, 28);
             this.rbTorol.Name = "rbTorol";
             this.rbTorol.Size = new System.Drawing.Size(49, 17);
             this.rbTorol.TabIndex = 5;
@@ -231,7 +232,7 @@
             // 
             this.rbUj.AutoSize = true;
             this.rbUj.Checked = true;
-            this.rbUj.Location = new System.Drawing.Point(94, 29);
+            this.rbUj.Location = new System.Drawing.Point(15, 28);
             this.rbUj.Name = "rbUj";
             this.rbUj.Size = new System.Drawing.Size(95, 17);
             this.rbUj.TabIndex = 3;
@@ -243,7 +244,7 @@
             // rbSzerk
             // 
             this.rbSzerk.AutoSize = true;
-            this.rbSzerk.Location = new System.Drawing.Point(210, 29);
+            this.rbSzerk.Location = new System.Drawing.Point(131, 28);
             this.rbSzerk.Name = "rbSzerk";
             this.rbSzerk.Size = new System.Drawing.Size(82, 17);
             this.rbSzerk.TabIndex = 4;
@@ -255,7 +256,7 @@
             // 
             this.tv.Location = new System.Drawing.Point(9, 3);
             this.tv.Name = "tv";
-            this.tv.Size = new System.Drawing.Size(296, 402);
+            this.tv.Size = new System.Drawing.Size(296, 449);
             this.tv.TabIndex = 2;
             this.tv.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.Tv_AfterSelect);
             // 
@@ -263,7 +264,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(631, 503);
             this.Controls.Add(this.pTermek);
             this.Controls.Add(this.cbTabla);
             this.Name = "UI3";

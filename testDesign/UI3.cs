@@ -23,6 +23,21 @@ namespace testDesign
             CsopNevekLekerdezes();
             TvFeltoltes();                        
         }
+
+        private void cbTabla_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            pTermek.Visible = false;
+
+            switch (cbTabla.SelectedIndex)
+            {
+                case 1:
+                    pTermek.Visible = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+        #region case 1:Termékek
         private void CsopNevekLekerdezes()
         {
             using (var teletabyDB = new DataContext(belepes.connectionString))
@@ -71,23 +86,6 @@ namespace testDesign
         }
 
 
-
-        private void cbTabla_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            pTermek.Visible = false;
-
-            switch (cbTabla.SelectedIndex)
-            {
-                case 1:
-                    pTermek.Visible = true;
-                    break;
-                default:
-                    break;
-            }
-        }
-
-
-
         private async void BVegrehajt_Click(object sender, EventArgs e)
         {
             switch (rbNum)
@@ -117,7 +115,7 @@ namespace testDesign
                     try
                     {
                         using (var teletabyDB = new DataContext(belepes.connectionString))
-                        {                            
+                        {
                             string termekNev = tv.SelectedNode.Text.Split('➔')[0].Trim();
                             if (tv.SelectedNode.Parent == null)
                             {
@@ -130,8 +128,8 @@ namespace testDesign
                                              where t.név == cbCsopNev.Text
                                              select t.ID;
 
-                                teletabyDB.ExecuteCommand($"UPDATE TOP(1) termékTest SET név = '{tbNev.Text}',  mértékegység = '{tbMertekegyseg.Text}',  ár = '{Convert.ToInt32(tbAr.Text)}',  gyűjtőnév = '{cbGyujtonev.Text}',  csopID = '{result.FirstOrDefault()}' WHERE név = '{termekNev}'");                                
-                            }                            
+                                teletabyDB.ExecuteCommand($"UPDATE TOP(1) termékTest SET név = '{tbNev.Text}',  mértékegység = '{tbMertekegyseg.Text}',  ár = '{Convert.ToInt32(tbAr.Text)}',  gyűjtőnév = '{cbGyujtonev.Text}',  csopID = '{result.FirstOrDefault()}' WHERE név = '{termekNev}'");
+                            }
                             TvFeltoltes();
                             await Visszajelzes();
                         }
@@ -139,10 +137,34 @@ namespace testDesign
                     catch (NullReferenceException)
                     {
                         MessageBox.Show($"nincs semmi kiválasztava");
-                    }   
+                    }
                     break;
                 case 3:
-
+                    try
+                    {
+                        string termekNev = tv.SelectedNode.Text.Split('➔')[0].Trim();
+                        using (var teletabyDB = new DataContext(belepes.connectionString))
+                        {
+                            if (!(tv.SelectedNode.Parent == null))
+                            {
+                                var respond = MessageBox.Show($"Biztosan tölörlni szeretné a(z) {termekNev} tételt?", "Törlés", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                                if (respond == DialogResult.Yes)
+                                {
+                                    teletabyDB.ExecuteCommand($"DELETE FROM termékTest WHERE név = '{termekNev}'");
+                                    TvFeltoltes();
+                                    await Visszajelzes();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("nem ehet csoportot törölni");
+                            }
+                        }
+                    }
+                    catch (NullReferenceException)
+                    {
+                        MessageBox.Show($"nincs semmi kiválasztava");
+                    }
                     break;
                 default:
                     break;
@@ -152,39 +174,46 @@ namespace testDesign
         {
             bVegrehajt.BackColor = Color.Green;
             bVegrehajt.Text = "✓";
-            await Task.Delay(800);
+            await Task.Delay(400);
             bVegrehajt.BackColor = Color.White;
             bVegrehajt.Text = "Végrehajt";
         }
-
-
-
         #region rbNUm
         private void Rb_CheckedChanged(object sender, EventArgs e)
         {
             rbNum = CurrRadButt(sender as RadioButton);
         }
         int rbNum = 1;
-        static int CurrRadButt(RadioButton rb)
+        private int CurrRadButt(RadioButton rb)
         {
             int num = 1;
             switch (rb.Name)
             {
                 case "rbUj":
                     num = 1;
+                    gbMuvelet.Enabled = true;
+                    gbMuvelet.Text = "Hozzáadás";
                     break;
                 case "rbSzerk":
                     num = 2;
+                    gbMuvelet.Enabled = true;
+                    gbMuvelet.Text = "Szerkesztés";
                     break;
                 case "rbTorol":
                     num = 3;
+                    gbMuvelet.Enabled = false;
+                    gbMuvelet.Text = "";
+                    cbGyujtonev.SelectedItem = "";
+                    tbNev.Text = "";
+                    tbMertekegyseg.Text = "";
+                    tbAr.Text = "";
+                    cbCsopNev.Text = "";
                     break;
             }
             return num;
         }
 
         #endregion
-
 
         private void TbAr_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -226,12 +255,15 @@ namespace testDesign
                         }
                         else
                         {
-                            cbCsopNev.SelectedIndex = cbCsopNev.Items.Count-1;
+                            cbCsopNev.SelectedIndex = cbCsopNev.Items.Count - 1;
                         }
-                        
+
                     }
                 }
             }
-        }
+        } 
+        #endregion
+
+
     }
 }
