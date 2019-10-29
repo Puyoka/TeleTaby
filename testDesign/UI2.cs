@@ -84,7 +84,7 @@ namespace testDesign
                 var result = (from t1 in table1
                               join t2 in table2
                               on t1.termékNév equals t2.név
-                              where (t2.csopID == belepes.felhaszID && t1.státusz == true)
+                              where (t2.felhaszID == belepes.felhaszID && t1.státusz == true)
                               select t1.sorsz).Count();
                 return result;
             }
@@ -151,7 +151,7 @@ namespace testDesign
                               join t2 in table2
                               on t1.termékNév equals t2.név
                               join t3 in table3 on t1.rendelésID equals t3.ID
-                              where belepes.felhaszID == t2.csopID && t1.státusz == false
+                              where belepes.felhaszID == t2.felhaszID && t1.státusz == false
                               select new LekérdezésHelper(t1.rendelésID, t3.idő, t1.termékNév, t1.megjegyzés, t1.felhasználóNév)).ToList<LekérdezésHelper>();
 
                 nemKeszRendelesek = result.ToBindingList<LekérdezésHelper>();
@@ -173,7 +173,7 @@ namespace testDesign
                               join t2 in table2
                               on t1.termékNév equals t2.név
                               join t3 in table3 on t1.rendelésID equals t3.ID
-                              where belepes.felhaszID == t2.csopID && t1.státusz == true
+                              where belepes.felhaszID == t2.felhaszID && t1.státusz == true
                               select new LekérdezésHelper(t1.rendelésID, t3.idő, t1.termékNév, t1.megjegyzés, t1.felhasználóNév)).ToList<LekérdezésHelper>();
 
                 keszRendelesek = result.ToBindingList<LekérdezésHelper>();

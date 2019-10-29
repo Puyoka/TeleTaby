@@ -12,10 +12,15 @@ namespace testDesign
     {
         [Column(IsDbGenerated = false, IsPrimaryKey = true)]
         public string név { get; set; }
-        [Column]
-        public int csopID { get; set; }
+        [Column(IsPrimaryKey = true)]
+        public string mértékegység { get; set; }
         [Column]
         public int ár { get; set; }
+        [Column]
+        public string gyűjtőnév { get; set; }
+        [Column]
+        public int felhaszID { get; set; }
+
 
     }
 }

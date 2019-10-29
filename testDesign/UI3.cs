@@ -55,7 +55,7 @@ namespace testDesign
             using (var teletabyDB = new DataContext(belepes.connectionString))
             {
                 tv.Nodes.Clear();
-                var table = teletabyDB.GetTable<TermékTest>();
+                var table = teletabyDB.GetTable<Termék>();
 
                 var result = (from t in table
                               orderby t.gyűjtőnév ascending
@@ -68,7 +68,7 @@ namespace testDesign
                 }
 
                 var result2 = from t in table
-                              select new { t.gyűjtőnév, t.név, t.ár };
+                              select new { t.gyűjtőnév, t.név, t.ár,t.mértékegység };
 
                 for (int i = 0; i < tv.Nodes.Count; i++)
                 {
@@ -77,7 +77,7 @@ namespace testDesign
                     {
                         if (item.gyűjtőnév == gyujtonev)
                         {
-                            tv.Nodes[i].Nodes.Add($"{item.név} ➔ {item.ár}");
+                            tv.Nodes[i].Nodes.Add($"{item.név}_{item.mértékegység} ➔ {item.ár}");
                         }
                     }
                 }
@@ -101,7 +101,7 @@ namespace testDesign
 
                         try
                         {
-                            teletabyDB.ExecuteCommand($"INSERT INTO termékTest VALUES ('{tbNev.Text}', '{tbMertekegyseg.Text}', '{Convert.ToInt32(tbAr.Text)}', '{cbGyujtonev.Text}', '{result.FirstOrDefault()}')");
+                            teletabyDB.ExecuteCommand($"INSERT INTO termék VALUES ('{tbNev.Text}', '{tbMertekegyseg.Text}', '{Convert.ToInt32(tbAr.Text)}', '{cbGyujtonev.Text}', '{result.FirstOrDefault()}')");
                         }
                         catch (System.Data.SqlClient.SqlException)
                         {
@@ -116,10 +116,11 @@ namespace testDesign
                     {
                         using (var teletabyDB = new DataContext(belepes.connectionString))
                         {
-                            string termekNev = tv.SelectedNode.Text.Split('➔')[0].Trim();
+                            string termekNev = tv.SelectedNode.Text.Split('➔')[0].Trim().Split('_')[0];
+                            string mertekegyseg = tv.SelectedNode.Text.Split('➔')[0].Trim().Split('_')[1];
                             if (tv.SelectedNode.Parent == null)
                             {
-                                teletabyDB.ExecuteCommand($"UPDATE termékTest SET gyűjtőnév = '{cbGyujtonev.Text}' WHERE gyűjtőnév = '{termekNev}'");
+                                teletabyDB.ExecuteCommand($"UPDATE termék SET gyűjtőnév = '{cbGyujtonev.Text}' WHERE gyűjtőnév = '{termekNev}'");
                             }
                             else
                             {
@@ -128,7 +129,7 @@ namespace testDesign
                                              where t.név == cbCsopNev.Text
                                              select t.ID;
 
-                                teletabyDB.ExecuteCommand($"UPDATE TOP(1) termékTest SET név = '{tbNev.Text}',  mértékegység = '{tbMertekegyseg.Text}',  ár = '{Convert.ToInt32(tbAr.Text)}',  gyűjtőnév = '{cbGyujtonev.Text}',  csopID = '{result.FirstOrDefault()}' WHERE név = '{termekNev}'");
+                                teletabyDB.ExecuteCommand($"UPDATE TOP(1) termék SET név = '{tbNev.Text}',  mértékegység = '{tbMertekegyseg.Text}',  ár = '{Convert.ToInt32(tbAr.Text)}',  gyűjtőnév = '{cbGyujtonev.Text}',  felhaszID = '{result.FirstOrDefault()}' WHERE név = '{termekNev}' AND mértékegység = '{mertekegyseg}'");
                             }
                             TvFeltoltes();
                             await Visszajelzes();
@@ -142,7 +143,8 @@ namespace testDesign
                 case 3:
                     try
                     {
-                        string termekNev = tv.SelectedNode.Text.Split('➔')[0].Trim();
+                        string termekNev = tv.SelectedNode.Text.Split('➔')[0].Trim().Split('_')[0];
+                        string mertekegyseg = tv.SelectedNode.Text.Split('➔')[0].Trim().Split('_')[1];
                         using (var teletabyDB = new DataContext(belepes.connectionString))
                         {
                             if (!(tv.SelectedNode.Parent == null))
@@ -150,7 +152,7 @@ namespace testDesign
                                 var respond = MessageBox.Show($"Biztosan tölörlni szeretné a(z) {termekNev} tételt?", "Törlés", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                                 if (respond == DialogResult.Yes)
                                 {
-                                    teletabyDB.ExecuteCommand($"DELETE FROM termékTest WHERE név = '{termekNev}'");
+                                    teletabyDB.ExecuteCommand($"DELETE FROM termék WHERE név = '{termekNev}' AND mértékegység = '{mertekegyseg}'");
                                     TvFeltoltes();
                                     await Visszajelzes();
                                 }
@@ -228,11 +230,13 @@ namespace testDesign
             {
                 using (var teleetabyDB = new DataContext(belepes.connectionString))
                 {
-                    var table = teleetabyDB.GetTable<TermékTest>();
+                    var table = teleetabyDB.GetTable<Termék>();
 
+                    string termekNev = tv.SelectedNode.Text.Split('➔')[0].Trim().Split('_')[0];
+                    string mertekegyseg = tv.SelectedNode.Text.Split('➔')[0].Trim().Split('_')[1];
                     var result = from t in table
-                                 where t.név == tv.SelectedNode.Text.Split('➔')[0].Trim()
-                                 select new { t.gyűjtőnév, t.név, t.mértékegység, t.ár, t.csopID };
+                                 where t.név == termekNev && t.mértékegység == mertekegyseg
+                                 select new { t.gyűjtőnév, t.név, t.mértékegység, t.ár, t.felhaszID };
 
                     var so = result.FirstOrDefault();
                     if (so == null)
@@ -249,9 +253,9 @@ namespace testDesign
                         tbNev.Text = so.név;
                         tbMertekegyseg.Text = so.mértékegység;
                         tbAr.Text = Convert.ToString(so.ár);
-                        if (so.csopID != 0)
+                        if (so.felhaszID != 0)
                         {
-                            cbCsopNev.SelectedIndex = so.csopID - 1;
+                            cbCsopNev.SelectedIndex = so.felhaszID - 1;
                         }
                         else
                         {

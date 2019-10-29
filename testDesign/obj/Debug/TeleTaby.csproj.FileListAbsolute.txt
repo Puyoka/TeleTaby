@@ -26,3 +26,17 @@ C:\Users\puyok\Source\Repos\TeleTaby\testDesign\obj\Debug\TeleTaby.csproj.Genera
 C:\Users\puyok\Source\Repos\TeleTaby\testDesign\obj\Debug\TeleTaby.csproj.CoreCompileInputs.cache
 C:\Users\puyok\Source\Repos\TeleTaby\testDesign\obj\Debug\testDesign.exe
 C:\Users\puyok\Source\Repos\TeleTaby\testDesign\obj\Debug\testDesign.pdb
+C:\Users\user\Source\Repos\TeleTaby\testDesign\obj\Debug\TeleTaby.csprojAssemblyReference.cache
+C:\Users\user\Source\Repos\TeleTaby\testDesign\obj\Debug\testDesign.belepes.resources
+C:\Users\user\Source\Repos\TeleTaby\testDesign\obj\Debug\testDesign.bill.resources
+C:\Users\user\Source\Repos\TeleTaby\testDesign\obj\Debug\testDesign.Properties.Resources.resources
+C:\Users\user\Source\Repos\TeleTaby\testDesign\obj\Debug\testDesign.UI1.resources
+C:\Users\user\Source\Repos\TeleTaby\testDesign\obj\Debug\testDesign.UI2.resources
+C:\Users\user\Source\Repos\TeleTaby\testDesign\obj\Debug\testDesign.UI3.resources
+C:\Users\user\Source\Repos\TeleTaby\testDesign\obj\Debug\TeleTaby.csproj.GenerateResource.cache
+C:\Users\user\Source\Repos\TeleTaby\testDesign\obj\Debug\TeleTaby.csproj.CoreCompileInputs.cache
+C:\Users\user\Source\Repos\TeleTaby\testDesign\obj\Debug\testDesign.exe
+C:\Users\user\Source\Repos\TeleTaby\testDesign\obj\Debug\testDesign.pdb
+C:\Users\user\Source\Repos\TeleTaby\testDesign\bin\Debug\testDesign.exe.config
+C:\Users\user\Source\Repos\TeleTaby\testDesign\bin\Debug\testDesign.exe
+C:\Users\user\Source\Repos\TeleTaby\testDesign\bin\Debug\testDesign.pdb
