@@ -20,23 +20,85 @@ namespace testDesign
 
         private void UI3_Load(object sender, EventArgs e)
         {
-            CsopNevekLekerdezes();
-            TvFeltoltes();                        
+                   
         }
 
         private void cbTabla_SelectedIndexChanged(object sender, EventArgs e)
         {
             pTermek.Visible = false;
+            pFelhasz.Visible = false;
 
             switch (cbTabla.SelectedIndex)
             {
+                case 0:
+                    Méretez(599, 486);
+                    pFelhasz.Visible = true;
+                    DgvFelhaszFeltolt();
+                    break;
                 case 1:
+                    Méretez(542, 643);
                     pTermek.Visible = true;
+                    CsopNevekLekerdezes();
+                    TvFeltoltes();
                     break;
                 default:
                     break;
             }
         }
+
+        private void Méretez(int h, int w)
+        {
+            this.Height = h;
+            this.Width = w;
+        }
+        #region rbNUm
+        private void Rb_CheckedChanged(object sender, EventArgs e)
+        {
+            rbNum = CurrRadButt(sender as RadioButton);
+        }
+        int rbNum = 1;
+        private int CurrRadButt(RadioButton rb)
+        {
+            int num = 1;
+            switch (rb.Text)
+            {
+                case "Új hozzáadása":
+                    num = 1;
+                    gbMuvelet.Enabled = true;
+                    gbMuvelet.Text = "Hozzáadás";
+                    break;
+                case "Szerkesztés":
+                    num = 2;
+                    gbMuvelet.Enabled = true;
+                    gbMuvelet.Text = "Szerkesztés";
+                    break;
+                case "Töröl":
+                    num = 3;
+                    gbMuvelet.Enabled = false;
+                    gbMuvelet.Text = "";
+                    cbGyujtonev.SelectedItem = "";
+                    tbNev.Text = "";
+                    tbMertekegyseg.Text = "";
+                    tbAr.Text = "";
+                    cbCsopNev.Text = "";
+                    tbFelhsznev.Text = "";
+                    tbJelszo.Text = "";
+                    tbUI.Text = "";
+                    break;
+            }
+            return num;
+        }
+        #endregion
+        private async Task Visszajelzes(Button b)
+        {
+            b.BackColor = Color.Green;
+            b.Text = "✓";
+            await Task.Delay(400);
+            b.BackColor = Color.White;
+            b.Text = "Végrehajt";
+        }
+
+
         #region case 1:Termékek
         private void CsopNevekLekerdezes()
         {
@@ -86,7 +148,7 @@ namespace testDesign
         }
 
 
-        private async void BVegrehajt_Click(object sender, EventArgs e)
+        private async void BVegrehajtTermek_Click(object sender, EventArgs e)
         {
             switch (rbNum)
             {
@@ -108,7 +170,7 @@ namespace testDesign
                             MessageBox.Show("kétszer ugyanaz");
                         }
                         TvFeltoltes();
-                        await Visszajelzes();
+                        await Visszajelzes(bVegrehajtTermek);
                     }
                     break;
                 case 2:
@@ -132,7 +194,7 @@ namespace testDesign
                                 teletabyDB.ExecuteCommand($"UPDATE TOP(1) termék SET név = '{tbNev.Text}',  mértékegység = '{tbMertekegyseg.Text}',  ár = '{Convert.ToInt32(tbAr.Text)}',  gyűjtőnév = '{cbGyujtonev.Text}',  felhaszID = '{result.FirstOrDefault()}' WHERE név = '{termekNev}' AND mértékegység = '{mertekegyseg}'");
                             }
                             TvFeltoltes();
-                            await Visszajelzes();
+                            await Visszajelzes(bVegrehajtTermek);
                         }
                     }
                     catch (NullReferenceException)
@@ -154,7 +216,7 @@ namespace testDesign
                                 {
                                     teletabyDB.ExecuteCommand($"DELETE FROM termék WHERE név = '{termekNev}' AND mértékegység = '{mertekegyseg}'");
                                     TvFeltoltes();
-                                    await Visszajelzes();
+                                    await Visszajelzes(bVegrehajtTermek);
                                 }
                             }
                             else
@@ -171,51 +233,8 @@ namespace testDesign
                 default:
                     break;
             }
-        }
-        private async Task Visszajelzes()
-        {
-            bVegrehajt.BackColor = Color.Green;
-            bVegrehajt.Text = "✓";
-            await Task.Delay(400);
-            bVegrehajt.BackColor = Color.White;
-            bVegrehajt.Text = "Végrehajt";
-        }
-        #region rbNUm
-        private void Rb_CheckedChanged(object sender, EventArgs e)
-        {
-            rbNum = CurrRadButt(sender as RadioButton);
-        }
-        int rbNum = 1;
-        private int CurrRadButt(RadioButton rb)
-        {
-            int num = 1;
-            switch (rb.Name)
-            {
-                case "rbUj":
-                    num = 1;
-                    gbMuvelet.Enabled = true;
-                    gbMuvelet.Text = "Hozzáadás";
-                    break;
-                case "rbSzerk":
-                    num = 2;
-                    gbMuvelet.Enabled = true;
-                    gbMuvelet.Text = "Szerkesztés";
-                    break;
-                case "rbTorol":
-                    num = 3;
-                    gbMuvelet.Enabled = false;
-                    gbMuvelet.Text = "";
-                    cbGyujtonev.SelectedItem = "";
-                    tbNev.Text = "";
-                    tbMertekegyseg.Text = "";
-                    tbAr.Text = "";
-                    cbCsopNev.Text = "";
-                    break;
-            }
-            return num;
-        }
-
-        #endregion
+        }      
+        
 
         private void TbAr_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -265,9 +284,42 @@ namespace testDesign
                     }
                 }
             }
-        } 
+        }
         #endregion
 
+        private void DgvFelhaszFeltolt()
+        {
+            using (var teletabyDB = new DataContext(belepes.connectionString))
+            {
+                var table = teletabyDB.GetTable<Felhasználó>();
 
+                var result = from t in table
+                             select new {Felhasználónév = t.név,Jelszó = t.jelszó, t.UI};
+
+                dgvFelhasznalok.DataSource = result;
+            }
+        }
+
+        private void BVegrehajtFelhasz_Click(object sender, EventArgs e)
+        {
+            switch (rbNum)
+            {
+                case 1:
+                    using (var teletabyDB = new DataContext(belepes.connectionString))
+                    {
+                        var table = teletabyDB.GetTable<Felhasználó>();
+
+                    }
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+                    
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

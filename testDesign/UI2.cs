@@ -60,8 +60,8 @@ namespace testDesign
         #region előzmények <-> rendelések
         private void ButtonElozmenyek_Click(object sender, EventArgs e)
         {
-            groupBox1.Visible = false;
-            groupBox2.Visible = true;
+            groupBox1.Visible = !groupBox1.Visible;
+            groupBox2.Visible = !groupBox2.Visible;
             lekerdezKesz();
         }
 
@@ -177,7 +177,7 @@ namespace testDesign
                               select new LekérdezésHelper(t1.rendelésID, t3.idő, t1.termékNév, t1.megjegyzés, t1.felhasználóNév)).ToList<LekérdezésHelper>();
 
                 keszRendelesek = result.ToBindingList<LekérdezésHelper>();
-                dataGridViewElozmenyek.DataSource = keszRendelesek;
+                dataGridViewElozmenyek.DataSource = result.ToList();
             }
             rowColoring(dataGridViewElozmenyek);
         }

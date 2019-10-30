@@ -12,9 +12,9 @@ namespace testDesign
     {
         [Column(IsDbGenerated = true, IsPrimaryKey = true)]
         public int ID { get; set; }
-        [Column]
+        [Column(IsPrimaryKey = true)]
         public string név { get; set; }
-        [Column]
+        [Column(IsPrimaryKey = true)]
         public string jelszó { get; set; }
         [Column]
         public int UI { get; set; }
