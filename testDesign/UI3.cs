@@ -320,8 +320,10 @@ namespace testDesign
 
                     using (var teletabvDB = new DataContext(belepes.connectionString))
                     {
-                        teletabvDB.ExecuteCommand($"UPDATE felhasználó SET név = '{tbFelhsznev.Text}', jelszó ='{tbJelszo.Text}', UI ='{Convert.ToInt32(tbUI.Text)}' WHERE név = '{felhasznev_}, jelszó = '{jelszo_}', ID = '{id_}'");
+                        teletabvDB.ExecuteCommand($"UPDATE felhasználó SET név = '{tbFelhsznev.Text}', jelszó ='{tbJelszo.Text}', UI ='{tbUI.SelectedIndex+1}' WHERE név = '{felhasznev_}' AND jelszó = '{jelszo_}' AND UI = '{id_}'");
                     }
+                    await Visszajelzes(bVegrehajtFelhasz);
+                    DgvFelhaszFeltolt();
                     break;
                 case 3:
                     
@@ -333,10 +335,27 @@ namespace testDesign
 
         private void DgvFelhasznalok_SelectionChanged(object sender, EventArgs e)
         {
-            var row = dgvFelhasznalok.SelectedRows[0].Cells;
-            tbFelhsznev.Text = (string)row[0].Value;
-            tbJelszo.Text = (string)row[1].Value;
-            tbUI.SelectedItem = (string)row[2].Value;
+            if (dgvFelhasznalok.Rows.Count > 0 && dgvFelhasznalok.SelectedRows.Count > 0 && rbNum == 2)
+            {
+                var row = dgvFelhasznalok.SelectedRows[0].Cells;
+                tbFelhsznev.Text = (string)row[0].Value;
+                tbJelszo.Text = (string)row[1].Value;
+                switch (Convert.ToString(row[2].Value))
+                {
+                    case "1":
+                        tbUI.SelectedItem = "Pultos";
+                        break;
+                    case "2":
+                        tbUI.SelectedItem = "Munkás";
+                        break;
+                    case "3":
+                        tbUI.SelectedItem = "Admin";
+                        break;
+                    default:
+                        break;
+                }
+                
+            }
         }
     }
 }

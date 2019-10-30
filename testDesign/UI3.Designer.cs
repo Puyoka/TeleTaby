@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cbTabla = new System.Windows.Forms.ComboBox();
             this.pTermek = new System.Windows.Forms.Panel();
             this.bVegrehajtTermek = new System.Windows.Forms.Button();
@@ -300,9 +300,9 @@
             // 
             this.dgvFelhasznalok.AllowUserToAddRows = false;
             this.dgvFelhasznalok.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            this.dgvFelhasznalok.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            this.dgvFelhasznalok.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvFelhasznalok.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -311,13 +311,14 @@
             this.dgvFelhasznalok.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvFelhasznalok.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFelhasznalok.Location = new System.Drawing.Point(3, 73);
+            this.dgvFelhasznalok.MultiSelect = false;
             this.dgvFelhasznalok.Name = "dgvFelhasznalok";
             this.dgvFelhasznalok.ReadOnly = true;
             this.dgvFelhasznalok.RowHeadersVisible = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            this.dgvFelhasznalok.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            this.dgvFelhasznalok.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvFelhasznalok.RowTemplate.Height = 36;
             this.dgvFelhasznalok.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvFelhasznalok.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -361,7 +362,7 @@
             this.tbUI.Location = new System.Drawing.Point(10, 175);
             this.tbUI.Name = "tbUI";
             this.tbUI.Size = new System.Drawing.Size(273, 21);
-            this.tbUI.TabIndex = 18;
+            this.tbUI.TabIndex = 19;
             // 
             // tbFelhsznev
             // 
@@ -408,7 +409,7 @@
             this.tbJelszo.Location = new System.Drawing.Point(10, 114);
             this.tbJelszo.Name = "tbJelszo";
             this.tbJelszo.Size = new System.Drawing.Size(273, 20);
-            this.tbJelszo.TabIndex = 8;
+            this.tbJelszo.TabIndex = 18;
             // 
             // groupBox2
             // 
@@ -425,7 +426,7 @@
             // rbTorol2
             // 
             this.rbTorol2.AutoSize = true;
-            this.rbTorol2.Location = new System.Drawing.Point(234, 28);
+            this.rbTorol2.Location = new System.Drawing.Point(354, 28);
             this.rbTorol2.Name = "rbTorol2";
             this.rbTorol2.Size = new System.Drawing.Size(49, 17);
             this.rbTorol2.TabIndex = 5;
@@ -437,7 +438,7 @@
             // 
             this.rbUj2.AutoSize = true;
             this.rbUj2.Checked = true;
-            this.rbUj2.Location = new System.Drawing.Point(15, 28);
+            this.rbUj2.Location = new System.Drawing.Point(31, 28);
             this.rbUj2.Name = "rbUj2";
             this.rbUj2.Size = new System.Drawing.Size(95, 17);
             this.rbUj2.TabIndex = 3;
@@ -449,7 +450,7 @@
             // rbSzerk2
             // 
             this.rbSzerk2.AutoSize = true;
-            this.rbSzerk2.Location = new System.Drawing.Point(131, 28);
+            this.rbSzerk2.Location = new System.Drawing.Point(192, 28);
             this.rbSzerk2.Name = "rbSzerk2";
             this.rbSzerk2.Size = new System.Drawing.Size(82, 17);
             this.rbSzerk2.TabIndex = 4;
