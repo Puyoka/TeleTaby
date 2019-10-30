@@ -53,6 +53,7 @@
             this.dgvFelhasznalok = new System.Windows.Forms.DataGridView();
             this.bVegrehajtFelhasz = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tbUI = new System.Windows.Forms.ComboBox();
             this.tbFelhsznev = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -62,7 +63,6 @@
             this.rbTorol2 = new System.Windows.Forms.RadioButton();
             this.rbUj2 = new System.Windows.Forms.RadioButton();
             this.rbSzerk2 = new System.Windows.Forms.RadioButton();
-            this.tbUI = new System.Windows.Forms.ComboBox();
             this.pTermek.SuspendLayout();
             this.gbMuvelet.SuspendLayout();
             this.gbMuveletek.SuspendLayout();
@@ -323,6 +323,7 @@
             this.dgvFelhasznalok.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvFelhasznalok.Size = new System.Drawing.Size(455, 168);
             this.dgvFelhasznalok.TabIndex = 13;
+            this.dgvFelhasznalok.SelectionChanged += new System.EventHandler(this.DgvFelhasznalok_SelectionChanged);
             // 
             // bVegrehajtFelhasz
             // 
@@ -348,6 +349,19 @@
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Hozzáadás";
+            // 
+            // tbUI
+            // 
+            this.tbUI.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.tbUI.FormattingEnabled = true;
+            this.tbUI.Items.AddRange(new object[] {
+            "Pultos",
+            "Munkás",
+            "Admin"});
+            this.tbUI.Location = new System.Drawing.Point(10, 175);
+            this.tbUI.Name = "tbUI";
+            this.tbUI.Size = new System.Drawing.Size(273, 21);
+            this.tbUI.TabIndex = 18;
             // 
             // tbFelhsznev
             // 
@@ -442,19 +456,6 @@
             this.rbSzerk2.Text = "Szerkesztés";
             this.rbSzerk2.UseVisualStyleBackColor = true;
             this.rbSzerk2.CheckedChanged += new System.EventHandler(this.Rb_CheckedChanged);
-            // 
-            // tbUI
-            // 
-            this.tbUI.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.tbUI.FormattingEnabled = true;
-            this.tbUI.Items.AddRange(new object[] {
-            "Pultos",
-            "Munkás",
-            "Admin"});
-            this.tbUI.Location = new System.Drawing.Point(6, 175);
-            this.tbUI.Name = "tbUI";
-            this.tbUI.Size = new System.Drawing.Size(277, 21);
-            this.tbUI.TabIndex = 18;
             // 
             // UI3
             // 

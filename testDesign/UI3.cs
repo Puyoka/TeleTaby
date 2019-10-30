@@ -313,7 +313,15 @@ namespace testDesign
                     await Visszajelzes(bVegrehajtFelhasz);
                     break;
                 case 2:
+                    var row = dgvFelhasznalok.SelectedRows[0];
+                    string felhasznev_ = Convert.ToString(row.Cells[0].Value);
+                    string jelszo_ = Convert.ToString(row.Cells[1].Value);
+                    int id_ = Convert.ToInt32(row.Cells[2].Value);
 
+                    using (var teletabvDB = new DataContext(belepes.connectionString))
+                    {
+                        teletabvDB.ExecuteCommand($"UPDATE felhasználó SET név = '{tbFelhsznev.Text}', jelszó ='{tbJelszo.Text}', UI ='{Convert.ToInt32(tbUI.Text)}' WHERE név = '{felhasznev_}, jelszó = '{jelszo_}', ID = '{id_}'");
+                    }
                     break;
                 case 3:
                     
@@ -321,6 +329,14 @@ namespace testDesign
                 default:
                     break;
             }
+        }
+
+        private void DgvFelhasznalok_SelectionChanged(object sender, EventArgs e)
+        {
+            var row = dgvFelhasznalok.SelectedRows[0].Cells;
+            tbFelhsznev.Text = (string)row[0].Value;
+            tbJelszo.Text = (string)row[1].Value;
+            tbUI.SelectedItem = (string)row[2].Value;
         }
     }
 }
