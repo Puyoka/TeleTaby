@@ -97,6 +97,13 @@ namespace testDesign
             b.BackColor = Color.White;
             b.Text = "Végrehajt";
         }
+        private void OnlyNum_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
+        }
 
 
         #region case 1:Termékek
@@ -234,15 +241,7 @@ namespace testDesign
                     break;
             }
         }      
-        
 
-        private void TbAr_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
-            {
-                e.Handled = true;
-            }
-        }
         private void Tv_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (rbNum == 2)
@@ -287,6 +286,8 @@ namespace testDesign
         }
         #endregion
 
+
+
         private void DgvFelhaszFeltolt()
         {
             using (var teletabyDB = new DataContext(belepes.connectionString))
@@ -300,16 +301,16 @@ namespace testDesign
             }
         }
 
-        private void BVegrehajtFelhasz_Click(object sender, EventArgs e)
+        private async void BVegrehajtFelhasz_Click(object sender, EventArgs e)
         {
             switch (rbNum)
             {
                 case 1:
                     using (var teletabyDB = new DataContext(belepes.connectionString))
                     {
-                        var table = teletabyDB.GetTable<Felhasználó>();
-
+                        teletabyDB.ExecuteCommand($"INSERT INTO felhasználó VALUES('{tbFelhsznev.Text}','{tbJelszo.Text}','{tbUI.SelectedIndex+1}')");
                     }
+                    await Visszajelzes(bVegrehajtFelhasz);
                     break;
                 case 2:
 

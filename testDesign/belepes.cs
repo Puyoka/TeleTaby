@@ -63,7 +63,7 @@ namespace testDesign
 
                     var result = from t in table
                                  where t.név == felhaszNev
-                                 select new { t.jelszó, t.UI, t.ID };
+                                 select new { t.ID, t.név, t.jelszó, t.UI,  };
 
                     helyesJelszo = Convert.ToInt32(result.First().jelszó);
                     UI_ID = result.First().UI;

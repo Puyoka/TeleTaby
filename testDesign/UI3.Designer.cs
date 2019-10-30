@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cbTabla = new System.Windows.Forms.ComboBox();
             this.pTermek = new System.Windows.Forms.Panel();
             this.bVegrehajtTermek = new System.Windows.Forms.Button();
@@ -56,13 +56,13 @@
             this.tbFelhsznev = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.tbUI = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.tbJelszo = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.rbTorol2 = new System.Windows.Forms.RadioButton();
             this.rbUj2 = new System.Windows.Forms.RadioButton();
             this.rbSzerk2 = new System.Windows.Forms.RadioButton();
+            this.tbUI = new System.Windows.Forms.ComboBox();
             this.pTermek.SuspendLayout();
             this.gbMuvelet.SuspendLayout();
             this.gbMuveletek.SuspendLayout();
@@ -223,7 +223,7 @@
             this.tbAr.Name = "tbAr";
             this.tbAr.Size = new System.Drawing.Size(273, 20);
             this.tbAr.TabIndex = 10;
-            this.tbAr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbAr_KeyPress);
+            this.tbAr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyNum_KeyPress);
             // 
             // gbMuveletek
             // 
@@ -300,9 +300,9 @@
             // 
             this.dgvFelhasznalok.AllowUserToAddRows = false;
             this.dgvFelhasznalok.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            this.dgvFelhasznalok.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            this.dgvFelhasznalok.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvFelhasznalok.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -314,10 +314,10 @@
             this.dgvFelhasznalok.Name = "dgvFelhasznalok";
             this.dgvFelhasznalok.ReadOnly = true;
             this.dgvFelhasznalok.RowHeadersVisible = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            this.dgvFelhasznalok.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            this.dgvFelhasznalok.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvFelhasznalok.RowTemplate.Height = 36;
             this.dgvFelhasznalok.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvFelhasznalok.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -336,10 +336,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.tbUI);
             this.groupBox1.Controls.Add(this.tbFelhsznev);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.tbUI);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.tbJelszo);
             this.groupBox1.Location = new System.Drawing.Point(3, 251);
@@ -377,13 +377,6 @@
             this.label8.Size = new System.Drawing.Size(135, 24);
             this.label8.TabIndex = 14;
             this.label8.Text = "Felhasználónév";
-            // 
-            // tbUI
-            // 
-            this.tbUI.Location = new System.Drawing.Point(10, 175);
-            this.tbUI.Name = "tbUI";
-            this.tbUI.Size = new System.Drawing.Size(273, 20);
-            this.tbUI.TabIndex = 9;
             // 
             // label10
             // 
@@ -450,6 +443,19 @@
             this.rbSzerk2.UseVisualStyleBackColor = true;
             this.rbSzerk2.CheckedChanged += new System.EventHandler(this.Rb_CheckedChanged);
             // 
+            // tbUI
+            // 
+            this.tbUI.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.tbUI.FormattingEnabled = true;
+            this.tbUI.Items.AddRange(new object[] {
+            "Pultos",
+            "Munkás",
+            "Admin"});
+            this.tbUI.Location = new System.Drawing.Point(6, 175);
+            this.tbUI.Name = "tbUI";
+            this.tbUI.Size = new System.Drawing.Size(277, 21);
+            this.tbUI.TabIndex = 18;
+            // 
             // UI3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -502,7 +508,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox tbUI;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox tbJelszo;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -511,5 +516,6 @@
         private System.Windows.Forms.RadioButton rbSzerk2;
         private System.Windows.Forms.TextBox tbFelhsznev;
         private System.Windows.Forms.DataGridView dgvFelhasznalok;
+        private System.Windows.Forms.ComboBox tbUI;
     }
 }
