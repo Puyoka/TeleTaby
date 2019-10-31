@@ -246,43 +246,50 @@ namespace testDesign
         {
             if (rbNum == 2)
             {
-                using (var teleetabyDB = new DataContext(belepes.connectionString))
+                if (tv.SelectedNode.Parent != null)
                 {
-                    var table = teleetabyDB.GetTable<Termék>();
-
-                    string termekNev = tv.SelectedNode.Text.Split('➔')[0].Trim().Split('_')[0];
-                    string mertekegyseg = tv.SelectedNode.Text.Split('➔')[0].Trim().Split('_')[1];
-                    var result = from t in table
-                                 where t.név == termekNev && t.mértékegység == mertekegyseg
-                                 select new { t.gyűjtőnév, t.név, t.mértékegység, t.ár, t.felhaszID };
-
-                    var so = result.FirstOrDefault();
-                    if (so == null)
+                    using (var teleetabyDB = new DataContext(belepes.connectionString))
                     {
-                        cbGyujtonev.SelectedItem = tv.SelectedNode.Text;
-                        tbNev.Text = "";
-                        tbMertekegyseg.Text = "";
-                        tbAr.Text = "";
-                        cbCsopNev.Text = "";
-                    }
-                    else
-                    {
+                        var table1 = teleetabyDB.GetTable<Termék>();
+                        var table2 = teleetabyDB.GetTable<Felhasználó>();
+
+                        string termekNev = tv.SelectedNode.Text.Split('➔')[0].Trim().Split('_')[0].Trim();
+                        string mertekegyseg = tv.SelectedNode.Text.Split('➔')[0].Trim().Split('_')[1].Trim();
+                        var result = from t1 in table1
+                                     where t1.név == termekNev && t1.mértékegység == mertekegyseg
+                                     select new { t1.gyűjtőnév, t1.név, t1.mértékegység, t1.ár,t1.felhaszID};
+
+                        var so = result.FirstOrDefault();
+
                         cbGyujtonev.Text = so.gyűjtőnév;
                         tbNev.Text = so.név;
                         tbMertekegyseg.Text = so.mértékegység;
                         tbAr.Text = Convert.ToString(so.ár);
-                        if (so.felhaszID != 0)
+
+                        
+                        if (so.felhaszID == 0)
                         {
-                            cbCsopNev.SelectedIndex = so.felhaszID - 1;
+                            cbCsopNev.Text = "";
                         }
                         else
                         {
-                            cbCsopNev.SelectedIndex = cbCsopNev.Items.Count - 1;
+                            var ressult2 = from t2 in table2
+                                           where t2.ID == so.felhaszID
+                                           select t2.név;
+                            cbCsopNev.Text = ressult2.First().ToString();
                         }
-
-                    }
+                        
+                    } 
                 }
-            }
+                else
+                {
+                    cbGyujtonev.SelectedItem = tv.SelectedNode.Text;
+                    tbNev.Text = "";
+                    tbMertekegyseg.Text = "";
+                    tbAr.Text = "";
+                    cbCsopNev.Text = "";
+                }
+            }            
         }
         #endregion
 
@@ -311,6 +318,7 @@ namespace testDesign
                         teletabyDB.ExecuteCommand($"INSERT INTO felhasználó VALUES('{tbFelhsznev.Text}','{tbJelszo.Text}','{tbUI.SelectedIndex+1}')");
                     }
                     await Visszajelzes(bVegrehajtFelhasz);
+                    DgvFelhaszFeltolt();
                     break;
                 case 2:
                     var row = dgvFelhasznalok.SelectedRows[0];
