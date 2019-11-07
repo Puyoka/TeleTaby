@@ -219,6 +219,7 @@
             // 
             // dataGridViewElozmenyek
             // 
+            this.dataGridViewElozmenyek.AccessibleName = "";
             this.dataGridViewElozmenyek.AllowUserToAddRows = false;
             this.dataGridViewElozmenyek.AllowUserToDeleteRows = false;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));

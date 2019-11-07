@@ -21,120 +21,107 @@ namespace testDesign
             InitializeComponent();
         }
 
+        //BELÉPÉSKOR
         int osszeg = 0;
         int currRendelesID;
-        TreeView tv = new TreeView();
         private void UI1_Load(object sender, EventArgs e)
         {
             CultureInfo ci = new CultureInfo("hu-HU");
             labelDatum.Text = DateTime.Now.ToString("yyyy-MM-dd")+ Environment.NewLine + DateTime.Now.ToString("dddd", ci).ToUpper();
-            tIdo.Enabled = true;
-            
-            string file = @"C:\Users\user\Desktop\winform13_tree\winform13_tree\bin\Debug\test";
-            LoadTree(tv,file);
-            foreach (var item in tv.Nodes)
-            {
-                dgvCsoportok.Rows.Add(Convert.ToString(item).Split(' ')[1]);
-            }
+            tIdo.Enabled = true;            
 
+
+            CsoportokFeltoltes();
             LeadottRendelesekBeolvasasa();
+        }
+        private void CsoportokFeltoltes()
+        {
+            using (var teletabyDB = new DataContext(belepes.connectionString))
+            {
+                var table = teletabyDB.GetTable<Termék>();
+
+                var result = (from t in table
+                              orderby t.gyűjtőnév ascending
+                              select t.gyűjtőnév).ToHashSet();
+
+                foreach (var item in result)
+                {
+                    dgvCsoportok.Rows.Add(item);
+                }                
+            }
         }
         private void DgvCsoportok_SelectionChanged(object sender, EventArgs e)
         {
             dgvTermékek.Rows.Clear();
-            int index = dgvCsoportok.CurrentCell.RowIndex;
-            foreach (var item in tv.Nodes[index].Nodes)
+            using (var teletabyDB = new DataContext(belepes.connectionString))
             {
-                var temp = Convert.ToString(item).Split(' ')[1];
-                var termAr = temp.Split('/');
-                dgvTermékek.Rows.Add(termAr[0],termAr[1]);
+                var table = teletabyDB.GetTable<Termék>();
+
+                string gyujtonev = Convert.ToString(dgvCsoportok.SelectedRows[0].Cells[0].Value);
+                var result = from t in table
+                              where t.gyűjtőnév == gyujtonev
+                              select new { t.név, t.mértékegység, t.ár };
+
+                dgvTermékek.DataSource = result;                
             }
+
         }
-        
 
-        
 
-        private void BPlus_Click(object sender, EventArgs e)
+        //+ & -
+        public string megjegyzes { get; set; }
+        private void BMegjegyzes_Click(object sender, EventArgs e)
         {
-            var termek = dgvTermékek.SelectedCells[0].Value;
-            int ar = Convert.ToInt32(dgvTermékek.SelectedCells[1].Value);
-
-            var strg = String.Format("{0,-20}\t{1,36}",termek,ar);
-            lbRendelesLista.Items.Add(strg);
-
-            OsszegUpdate('+', ar);
+            //int index = dgvRendelesLista.SelectedIndex;
+            //kell a bill
+        }
+        private void BPlus_Click(object sender, EventArgs e)
+        {            
+            if (megjegyzes == null)
+            {
+                megjegyzes = "";
+            }
+            dgvRendelesLista.Rows.Add(dgvTermékek.SelectedCells[0].Value, megjegyzes ,dgvTermékek.SelectedCells[2].Value);
+            OsszegUpdate();
         }
         private void BMinus_Click(object sender, EventArgs e)
         {
-            if (lbRendelesLista.SelectedIndex > -1)
+            if (dgvRendelesLista.Rows.Count > 0)
             {
-                string row = lbRendelesLista.SelectedItem.ToString();
-                var temp = row.Split(' ');
-                int ar = Convert.ToInt32(temp[temp.Length-1]);
-
-                OsszegUpdate('-', ar);
-
-                lbRendelesLista.Items.RemoveAt(lbRendelesLista.SelectedIndex);
+                dgvRendelesLista.Rows.RemoveAt(dgvRendelesLista.SelectedRows[0].Index);
+                OsszegUpdate();                
             }            
         }
 
-
-
         
-
-        private void BMegjegyzes_Click(object sender, EventArgs e)
-        {
-            int index = lbRendelesLista.SelectedIndex;
-            //kell a bill :/
-        }
-
-
+        //LEAD
         private void BLead_Click(object sender, EventArgs e)//ha lesz megjegyzés, igazítani kell
         {
             RendelesFeltolt();
             RendelesTetelekFeltolt();
 
-            OsszegUpdate(' ', 0);
-            lbRendelesLista.Items.Clear();
+            dgvRendelesLista.Rows.Clear();
+            OsszegUpdate();            
 
             LeadottRendelesekBeolvasasa();
         }        
 
+        //SELECTION CHANGE
         private void DgvRendelesek_SelectionChanged(object sender, EventArgs e)
         {
             LeadottRendelesTetelekBeolvasas();
         }
 
 
-
-        public static void LoadTree(TreeView tree, string filename)
+        //LEKÉRDEZÉSEK
+        public void OsszegUpdate()
         {
-            using (Stream file = File.Open(filename, FileMode.Open))
+            osszeg = 0;
+            for (int i = 0; i < dgvRendelesLista.Rows.Count; i++)
             {
-                BinaryFormatter bf = new BinaryFormatter();
-                object obj = bf.Deserialize(file);
-
-                TreeNode[] nodeList = (obj as IEnumerable<TreeNode>).ToArray();
-                tree.Nodes.AddRange(nodeList);
+                osszeg += Convert.ToInt32(dgvRendelesLista.Rows[i].Cells[2].Value);
             }
-        }
-        public void OsszegUpdate(char jel, int ar)
-        {
-            if (jel == '-')
-            {
-                osszeg -= ar;
-                labelOsszeg.Text = String.Format($"{osszeg}Ft");
-            }
-            if (jel == '+')
-            {
-                osszeg += ar;
-                labelOsszeg.Text = String.Format($"{osszeg}Ft");
-            }
-            if (ar == 0)
-            {
-                osszeg = 0;
-                labelOsszeg.Text = String.Format($"{osszeg}Ft");
-            }
+            labelOsszeg.Text = osszeg.ToString();
         }
         public void RendelesFeltolt()
         {
@@ -155,15 +142,11 @@ namespace testDesign
         {
             using (var teletabyDB = new DataContext(belepes.connectionString))
             {
-                foreach (var item in lbRendelesLista.Items)
+                for (int i = 0; i < dgvRendelesLista.Rows.Count; i++)
                 {
-                    string megjegy = "";
-                    var termekMegjegyAr = item.ToString().Split(' ');
-                    if (!(termekMegjegyAr.Length == 2))
-                    {
-                        megjegy = termekMegjegyAr[1];
-                    }
-                    teletabyDB.ExecuteCommand($"INSERT INTO rendelés_tételek VALUES ('{currRendelesID}','{termekMegjegyAr[0]}','{megjegy}','{belepes.felhaszNev}','false')");
+                    string termek = dgvRendelesLista.Rows[i].Cells[0].Value.ToString();
+                    string megjegy = dgvRendelesLista.Rows[i].Cells[1].Value.ToString();
+                    teletabyDB.ExecuteCommand($"INSERT INTO rendelés_tételek VALUES ('{currRendelesID}','{termek}','{megjegy}','{belepes.felhaszNev}','false')");
                 }
             }
         }        
@@ -187,7 +170,7 @@ namespace testDesign
             {
                 selectedRendelID = (int)dgvRendelesek.SelectedRows[0].Cells[0].Value;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
             if (dgvRendelesek.Rows.Count > 0)
@@ -230,7 +213,7 @@ namespace testDesign
             }
         }
 
-
+        //TIMER & BEZÁR GOMB
         private void TIdo_Tick(object sender, EventArgs e)
         {
             labelIdo.Text = DateTime.Now.ToString("HH:mm:ss");
@@ -240,6 +223,7 @@ namespace testDesign
             Application.Exit();
         }
 
+        //RENDELÉS LEZÁRÁSA
         private void BLezar_Click(object sender, EventArgs e)
         {
             using (var teletabyDB = new DataContext(belepes.connectionString))
@@ -270,6 +254,7 @@ namespace testDesign
             LeadottRendelesTetelekBeolvasas();
         }
 
+        //SAJÁT MAGA KÉSZ
         private void BKesz_Click(object sender, EventArgs e)
         {
             if (dgvTetelek.Rows.Count > 0)
@@ -280,7 +265,7 @@ namespace testDesign
                     var Rrow = dgvRendelesek.Rows[dgvRendelesek.SelectedRows[0].Index];
                     teletabyDB.ExecuteCommand($"UPDATE TOP(1) rendelés_tételek " +
                         $"SET státusz='true' " +
-                        $"WHERE rendelésID = '{Rrow.Cells[0].Value}' " +
+                        $"WHERE rendelésID = '{Rrow.Cells[0].Value}' AND (SELECT felhaszID FROM termék WHERE név = '{Trow.Cells[0].Value}') = '0'" +
                         $"AND termékNév = '{Trow.Cells[0].Value}' AND megjegyzés ='{Trow.Cells[1].Value}' AND felhasználóNév = '{belepes.felhaszNev}' AND státusz = '0'");//!!termék id == pultos id
                 }
                 LeadottRendelesTetelekBeolvasas();
