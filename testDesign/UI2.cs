@@ -28,10 +28,12 @@ namespace testDesign
             labelNap.Text = DateTime.Now.ToString("dddd", ci).ToUpper();
             labelIdo.Text = DateTime.Now.ToString("HH:mm:ss");
 
-            lekerdezNemKesz();
-            lekerdezKesz();
+            lekerdezRendelesek(mitKerdezLe);
             keszCount = keszCounter();
             labelCounter.Text = $"{keszCount}";
+            label3.Width = this.Width;
+
+            
 
             timerIdo.Start();
             timerLekerdez.Start();
@@ -46,7 +48,7 @@ namespace testDesign
                 using (var teletabyDB = new DataContext(belepes.connectionString))
                 {
                     var row = dataGridViewRendelesek.Rows[dataGridViewRendelesek.SelectedRows[0].Index];
-                    teletabyDB.ExecuteCommand($"UPDATE TOP(1) rendelés_tételek SET státusz='true' WHERE rendelésID = '{row.Cells[0].Value}' AND termékNév = '{row.Cells[2].Value}' AND megjegyzés ='{row.Cells[3].Value}' AND felhasználóNév = '{row.Cells[4].Value}' AND státusz = '0'");
+                    teletabyDB.ExecuteCommand($"UPDATE TOP(1) rendelés_tételek SET státusz='true' WHERE rendelésID = '{row.Cells[0].Value}' AND termékID = (SELECT ID FROM termék WHERE név = '{row.Cells[2].Value}') AND megjegyzés ='{row.Cells[3].Value}'   AND státusz = '0'");
                 }
                 dataGridViewRendelesek.Rows.RemoveAt(dataGridViewRendelesek.SelectedRows[0].Index);
                 //colors.RemoveAt(dataGridViewRendelesek.SelectedRows[0].Index);
@@ -54,23 +56,27 @@ namespace testDesign
                 keszCount++;
                 labelCounter.Text = $"{keszCount}";
                 rowColoring(dataGridViewRendelesek);
+                rowSelect();
             }
         }
 
-        #region előzmények <-> rendelések
-        private void ButtonElozmenyek_Click(object sender, EventArgs e)
+       
+        bool mitKerdezLe = true;
+        private void ButtonElozmeny_rendeles_Click(object sender, EventArgs e)
         {
-            groupBox1.Visible = !groupBox1.Visible;
-            groupBox2.Visible = !groupBox2.Visible;
-            lekerdezKesz();
-        }
-
-        private void ButtonVissza_Click(object sender, EventArgs e)
-        {
-            groupBox1.Visible = !groupBox1.Visible;
-            groupBox2.Visible = !groupBox2.Visible;
-        }
-        #endregion
+            mitKerdezLe = !mitKerdezLe;
+            if (mitKerdezLe == true)
+            {
+                label3.Text = "Rendelések";
+            }
+            else
+            {
+                label3.Text = "Előzmények";
+            }
+            lekerdezRendelesek(mitKerdezLe);
+            buttonKesz.Visible = !buttonKesz.Visible;
+        }       
+        
 
 
 
@@ -83,7 +89,7 @@ namespace testDesign
 
                 var result = (from t1 in table1
                               join t2 in table2
-                              on t1.termékNév equals t2.név
+                              on t1.termékID equals t2.ID
                               where (t2.felhaszID == belepes.felhaszID && t1.státusz == true)
                               select t1.sorsz).Count();
                 return result;
@@ -134,13 +140,11 @@ namespace testDesign
         }
         #endregion
 
-        #region lekerdezesek
-        BindingList<LekérdezésHelper> keszRendelesek = new BindingList<LekérdezésHelper>();
-        BindingList<LekérdezésHelper> nemKeszRendelesek = new BindingList<LekérdezésHelper>();
-
-        private void lekerdezNemKesz()
+        
+        BindingList<LekérdezésHelper> rendelesek = new BindingList<LekérdezésHelper>();        
+        private void lekerdezRendelesek(bool b)
         {
-            nemKeszRendelesek.Clear();
+            rendelesek.Clear();
             using (var teletabyDB = new DataContext(belepes.connectionString))
             {
                 var table1 = teletabyDB.GetTable<Rendelés_tételek>();
@@ -149,45 +153,43 @@ namespace testDesign
 
                 var result = (from t1 in table1
                               join t2 in table2
-                              on t1.termékNév equals t2.név
+                              on t1.termékID equals t2.ID
                               join t3 in table3 on t1.rendelésID equals t3.ID
-                              where belepes.felhaszID == t2.felhaszID && t1.státusz == false
-                              select new LekérdezésHelper(t1.rendelésID, t3.idő, t1.termékNév, t1.megjegyzés, t1.felhasználóNév)).ToList<LekérdezésHelper>();
+                              where belepes.felhaszID == t2.felhaszID && t1.státusz == !b
+                              select new LekérdezésHelper(t1.rendelésID, t3.idő, t2.név, t1.megjegyzés)).ToList<LekérdezésHelper>();
 
-                nemKeszRendelesek = result.ToBindingList<LekérdezésHelper>();
-                dataGridViewRendelesek.DataSource = nemKeszRendelesek;
+                rendelesek = result.ToBindingList<LekérdezésHelper>();
+                dataGridViewRendelesek.DataSource = rendelesek;
             }
             rowColoring(dataGridViewRendelesek);
-        }
 
-        private void lekerdezKesz()
+            rowSelect();
+        }
+        
+
+        private void rowSelect()
         {
-            keszRendelesek.Clear();
-            using (var teletabyDB = new DataContext(belepes.connectionString))
+            if (lastSelectedRowIndex+1 > dataGridViewRendelesek.Rows.Count)
             {
-                var table1 = teletabyDB.GetTable<Rendelés_tételek>();
-                var table2 = teletabyDB.GetTable<Termék>();
-                var table3 = teletabyDB.GetTable<Rendelés>();
-
-                var result = (from t1 in table1
-                              join t2 in table2
-                              on t1.termékNév equals t2.név
-                              join t3 in table3 on t1.rendelésID equals t3.ID
-                              where belepes.felhaszID == t2.felhaszID && t1.státusz == true
-                              select new LekérdezésHelper(t1.rendelésID, t3.idő, t1.termékNév, t1.megjegyzés, t1.felhasználóNév)).ToList<LekérdezésHelper>();
-
-                keszRendelesek = result.ToBindingList<LekérdezésHelper>();
-                dataGridViewElozmenyek.DataSource = result.ToList();
+                lastSelectedRowIndex = dataGridViewRendelesek.Rows.Count-1;
             }
-            rowColoring(dataGridViewElozmenyek);
+            try
+            {
+                dataGridViewRendelesek.Rows[0].Selected = false;
+                dataGridViewRendelesek.Rows[lastSelectedRowIndex].Selected = true;
+            }
+            catch (Exception)
+            {
+            }
+
+            
         }
-        #endregion
 
 
 
         private void TimerLekerdez_Tick(object sender, EventArgs e)
         {
-            lekerdezNemKesz();
+            lekerdezRendelesek(mitKerdezLe);
         }
         private void TimerIdo_Tick(object sender, EventArgs e)
         {
@@ -200,10 +202,46 @@ namespace testDesign
              Application.Exit();
         }
 
-        private void DataGridViewElozmenyek_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        int lastSelectedRowIndex = 0;
+        private void DataGridViewRendelesek_SelectionChanged(object sender, EventArgs e)
         {
 
+            if (dataGridViewRendelesek.Rows.Count>1 && dataGridViewRendelesek.SelectedCells.Count != 0)
+            {
+                lastSelectedRowIndex = dataGridViewRendelesek.SelectedRows[0].Index;
+
+                if (dataGridViewRendelesek.SelectedRows[0].DefaultCellStyle.BackColor.Name == "Yellow")
+                {
+                    dataGridViewRendelesek.DefaultCellStyle.SelectionBackColor = Color.Yellow;
+                }
+                else
+                {
+                    dataGridViewRendelesek.DefaultCellStyle.SelectionBackColor = Color.White;
+                }
+                dataGridViewRendelesek.DefaultCellStyle.SelectionForeColor = Color.Black;                
+            }
+            
         }
+        
+        //sor keret szin
+        private void DataGridViewRendelesek_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            if (dataGridViewRendelesek.SelectedCells.Count > 0)
+            {
+                if (e.RowIndex == dataGridViewRendelesek.SelectedCells[0].RowIndex)
+                {
+                    e.PaintCells(e.RowBounds, DataGridViewPaintParts.Border);
+                    using (Pen p = new Pen(Color.Blue, 3))
+                    {
+                        Rectangle rect = e.RowBounds;
+
+                        rect.Height -= 2;
+
+                        e.Graphics.DrawRectangle(p, rect);
+                    }               
+                }
+            }
+        }        
     }
 
 

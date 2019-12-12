@@ -30,6 +30,7 @@ namespace testDesign
             labelDatum.Text = DateTime.Now.ToString("yyyy-MM-dd")+ Environment.NewLine + DateTime.Now.ToString("dddd", ci).ToUpper();
             tIdo.Enabled = true;            
 
+            
 
             CsoportokFeltoltes();
             LeadottRendelesekBeolvasasa();
@@ -81,7 +82,8 @@ namespace testDesign
             {
                 megjegyzes = "";
             }
-            dgvRendelesLista.Rows.Add(dgvTermékek.SelectedCells[0].Value, megjegyzes ,dgvTermékek.SelectedCells[2].Value);
+            //\\{dgvTermékek.SelectedCells[1].Value} !!!!!!!!!
+            dgvRendelesLista.Rows.Add($"{dgvTermékek.SelectedCells[0].Value}\\{dgvTermékek.SelectedCells[1].Value}" , megjegyzes ,dgvTermékek.SelectedCells[2].Value);
             OsszegUpdate();
         }
         private void BMinus_Click(object sender, EventArgs e)
@@ -144,9 +146,11 @@ namespace testDesign
             {
                 for (int i = 0; i < dgvRendelesLista.Rows.Count; i++)
                 {
-                    string termek = dgvRendelesLista.Rows[i].Cells[0].Value.ToString();
+                    var temp = dgvRendelesLista.Rows[i].Cells[0].Value.ToString().Split('\\');
+                    string termek = temp[0];
+                    string mertekegyseg = temp[1];
                     string megjegy = dgvRendelesLista.Rows[i].Cells[1].Value.ToString();
-                    teletabyDB.ExecuteCommand($"INSERT INTO rendelés_tételek VALUES ('{currRendelesID}','{termek}','{megjegy}','{belepes.felhaszNev}','false')");
+                    teletabyDB.ExecuteCommand($"INSERT INTO rendelés_tételek VALUES ('{currRendelesID}',(SELECT ID FROM termék WHERE név = '{termek}' AND mértékegység = '{mertekegyseg}'),'{megjegy}','false')");
                 }
             }
         }        
@@ -178,12 +182,14 @@ namespace testDesign
                 using (var teletabyDB = new DataContext(belepes.connectionString))
                 {
                     var table1 = teletabyDB.GetTable<Rendelés_tételek>();
+                    var table2 = teletabyDB.GetTable<Termék>();
                     var table3 = teletabyDB.GetTable<Rendelés>();
 
                     var result = from t1 in table1
                                  join t3 in table3 on t1.rendelésID equals t3.ID
+                                 join t2 in table2 on t1.termékID equals t2.ID
                                  where t3.ID == selectedRendelID
-                                 select new { t1.termékNév, t1.megjegyzés };
+                                 select new { t2.név, t2.mértékegység, t1.megjegyzés };
 
                     dgvTetelek.DataSource = result;
 
@@ -263,13 +269,24 @@ namespace testDesign
                 {
                     var Trow = dgvTetelek.Rows[dgvTetelek.SelectedRows[0].Index];
                     var Rrow = dgvRendelesek.Rows[dgvRendelesek.SelectedRows[0].Index];
+                    var nev = Trow.Cells[0].Value.ToString();
+                    var mertekegyseg = Trow.Cells[1].Value.ToString();
                     teletabyDB.ExecuteCommand($"UPDATE TOP(1) rendelés_tételek " +
                         $"SET státusz='true' " +
-                        $"WHERE rendelésID = '{Rrow.Cells[0].Value}' AND (SELECT felhaszID FROM termék WHERE név = '{Trow.Cells[0].Value}') = '0'" +
-                        $"AND termékNév = '{Trow.Cells[0].Value}' AND megjegyzés ='{Trow.Cells[1].Value}' AND felhasználóNév = '{belepes.felhaszNev}' AND státusz = '0'");//!!termék id == pultos id
+                        $"WHERE rendelésID = '{Rrow.Cells[0].Value}' AND " +
+                        $"(SELECT felhaszID FROM termék WHERE név = '{nev}' AND mértékegység = '{mertekegyseg}') = '0'" +
+                        $"AND termékID = (SELECT ID FROM termék WHERE név = '{nev}' AND mértékegység = '{mertekegyseg}') " +
+                        $"AND megjegyzés ='{Trow.Cells[1].Value}' AND státusz = '0'");
+
                 }
                 LeadottRendelesTetelekBeolvasas();
             }
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+                            LeadottRendelesTetelekBeolvasas();
+
         }
     }
 }

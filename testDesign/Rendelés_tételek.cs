@@ -15,11 +15,9 @@ namespace testDesign
         [Column]
         public int rendelésID { get; set; }
         [Column]
-        public string termékNév { get; set; }
+        public int termékID { get; set; }
         [Column]
         public string megjegyzés { get; set; }
-        [Column]
-        public string felhasználóNév { get; set; }
         [Column]
         public bool státusz { get; set; }
 

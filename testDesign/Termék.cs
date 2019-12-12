@@ -10,9 +10,11 @@ namespace testDesign
     [Table(Name = "termék")]
     class Termék
     {
-        [Column(IsDbGenerated = false, IsPrimaryKey = true)]
+        [Column(IsDbGenerated = true, IsPrimaryKey = true)]
+        public int ID { get; set; }
+        [Column]
         public string név { get; set; }
-        [Column(IsPrimaryKey = true)]
+        [Column]
         public string mértékegység { get; set; }
         [Column]
         public int ár { get; set; }
