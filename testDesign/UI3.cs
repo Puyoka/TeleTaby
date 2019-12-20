@@ -18,11 +18,6 @@ namespace testDesign
             InitializeComponent();
         }
 
-        private void UI3_Load(object sender, EventArgs e)
-        {
-                   
-        }
-
         private void cbTabla_SelectedIndexChanged(object sender, EventArgs e)
         {
             pTermek.Visible = false;
@@ -37,13 +32,14 @@ namespace testDesign
                     break;
                 case 1:
                     Méretez(542, 643);
-                    pTermek.Visible = true;
+                    pTermek.Visible = true;                    
                     CsopNevekLekerdezes();
                     TvFeltoltes();
                     break;
                 default:
                     break;
             }
+            CurrRadButt();
         }
 
         private void Méretez(int h, int w)
@@ -65,14 +61,22 @@ namespace testDesign
                 case "Új hozzáadása":
                     num = 1;
                     gbMuvelet.Enabled = true;
-                    gbMuvelet.Text = "Hozzáadás";
+                    gbFelhaszMuveletek.Enabled = true;
+                    gbMuvelet.Text = "Hozzáadás";                    
+                    tbFelhsznev.Text = "";
+                    tbJelszo.Text = "";
+                    tbUI.Text = "";
                     break;
                 case "Szerkesztés":
                     num = 2;
                     gbMuvelet.Enabled = true;
+                    gbFelhaszMuveletek.Enabled = true;
                     gbMuvelet.Text = "Szerkesztés";
+                    tbFelhsznev.Text = "";
+                    tbJelszo.Text = "";
+                    tbUI.Text = "";                    
                     break;
-                case "Töröl":
+                case "Törlés":
                     num = 3;
                     gbMuvelet.Enabled = false;
                     gbMuvelet.Text = "";
@@ -84,6 +88,7 @@ namespace testDesign
                     tbFelhsznev.Text = "";
                     tbJelszo.Text = "";
                     tbUI.Text = "";
+                    gbFelhaszMuveletek.Enabled = false;                    
                     break;
             }
             return num;
@@ -308,33 +313,90 @@ namespace testDesign
             }
         }
 
+
+        private bool ErrorSearch(List<Control> controlsToTest)
+        {
+            bool b = true;
+            foreach (var item in controlsToTest)
+            {
+                if (item.Text == "")
+                {
+                    errorProvider.SetError(item, "Töltse ki a mezőt!");
+                    b = false;
+                }
+            }
+            return b;
+        }
+
+        private bool Foglalte()
+        {
+            for (int i = 0; i < dgvFelhasznalok.Rows.Count; i++)
+            {
+                if (rbNum == 2)
+                {
+                    var count = 0;
+                    if (dgvFelhasznalok.Rows[i].Cells[0].Value.ToString() == tbFelhsznev.Text)
+                    {
+                        count++;
+                    }
+                    if (count < 2)
+                    {
+                        return false;
+                    }
+                }
+                if (dgvFelhasznalok.Rows[i].Cells[0].Value.ToString() == tbFelhsznev.Text)
+                {
+                    errorProvider.SetError(tbFelhsznev, "Ez a felhasználónév már foglalt.");
+                    return true;
+                }
+            }
+            return false;
+        }
         private async void BVegrehajtFelhasz_Click(object sender, EventArgs e)
         {
+            errorProvider.Clear();
+
+            var row = dgvFelhasznalok.SelectedRows[0];
+            string felhasznev_ = Convert.ToString(row.Cells[0].Value);
+            string jelszo_ = Convert.ToString(row.Cells[1].Value);
+            int id_ = Convert.ToInt32(row.Cells[2].Value);
+            List<Control> controlsToTest;
             switch (rbNum)
             {
                 case 1:
-                    using (var teletabyDB = new DataContext(belepes.connectionString))
-                    {
-                        teletabyDB.ExecuteCommand($"INSERT INTO felhasználó VALUES('{tbFelhsznev.Text}','{tbJelszo.Text}','{tbUI.SelectedIndex+1}')");
-                    }
-                    await Visszajelzes(bVegrehajtFelhasz);
-                    DgvFelhaszFeltolt();
+                    controlsToTest = new List<Control>() { tbFelhsznev, tbJelszo, tbUI };
+                    if (ErrorSearch(controlsToTest) && !Foglalte())
+                    {                                                
+                        using (var teletabyDB = new DataContext(belepes.connectionString))
+                        {
+                            teletabyDB.ExecuteCommand($"INSERT INTO felhasználó VALUES('{tbFelhsznev.Text}','{tbJelszo.Text}','{tbUI.SelectedIndex + 1}')");
+                        }
+                        await Visszajelzes(bVegrehajtFelhasz);
+                        DgvFelhaszFeltolt();                         
+                    }                                        
                     break;
                 case 2:
-                    var row = dgvFelhasznalok.SelectedRows[0];
-                    string felhasznev_ = Convert.ToString(row.Cells[0].Value);
-                    string jelszo_ = Convert.ToString(row.Cells[1].Value);
-                    int id_ = Convert.ToInt32(row.Cells[2].Value);
-
-                    using (var teletabvDB = new DataContext(belepes.connectionString))
+                    controlsToTest = new List<Control>() { tbFelhsznev, tbJelszo, tbUI };
+                    if (ErrorSearch(controlsToTest))
                     {
-                        teletabvDB.ExecuteCommand($"UPDATE felhasználó SET név = '{tbFelhsznev.Text}', jelszó ='{tbJelszo.Text}', UI ='{tbUI.SelectedIndex+1}' WHERE név = '{felhasznev_}' AND jelszó = '{jelszo_}' AND UI = '{id_}'");
+                        if (!Foglalte())
+                        {
+                            using (var teletabvDB = new DataContext(belepes.connectionString))
+                            {
+                                teletabvDB.ExecuteCommand($"UPDATE felhasználó SET név = '{tbFelhsznev.Text}', jelszó ='{tbJelszo.Text}', UI ='{tbUI.SelectedIndex + 1}' WHERE név = '{felhasznev_}' AND jelszó = '{jelszo_}' AND UI = '{id_}'");
+                            }
+                            await Visszajelzes(bVegrehajtFelhasz);
+                            DgvFelhaszFeltolt(); 
+                        } 
+                    }
+                    break;
+                case 3:
+                    using (var teletabyDB = new DataContext(belepes.connectionString))
+                    {
+                        teletabyDB.ExecuteCommand($"DELETE FROM felhasználó WHERE név = '{felhasznev_}' AND jelszó = '{jelszo_}' AND UI = '{id_}'");
                     }
                     await Visszajelzes(bVegrehajtFelhasz);
                     DgvFelhaszFeltolt();
-                    break;
-                case 3:
-                    
                     break;
                 default:
                     break;
@@ -364,6 +426,11 @@ namespace testDesign
                 }
                 
             }
+        }
+
+        private void UI3_Load(object sender, EventArgs e)
+        {
+            cbTabla.SelectedIndex = 0;
         }
     }
 }
