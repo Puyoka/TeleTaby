@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cbTabla = new System.Windows.Forms.ComboBox();
             this.pTermek = new System.Windows.Forms.Panel();
             this.bVegrehajtTermek = new System.Windows.Forms.Button();
-            this.gbMuvelet = new System.Windows.Forms.GroupBox();
+            this.gbMezokTermek = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -45,7 +45,7 @@
             this.cbGyujtonev = new System.Windows.Forms.ComboBox();
             this.tbNev = new System.Windows.Forms.TextBox();
             this.tbAr = new System.Windows.Forms.TextBox();
-            this.gbMuveletek = new System.Windows.Forms.GroupBox();
+            this.gbMuvTermek = new System.Windows.Forms.GroupBox();
             this.rbTorol1 = new System.Windows.Forms.RadioButton();
             this.rbUj1 = new System.Windows.Forms.RadioButton();
             this.rbSzerk1 = new System.Windows.Forms.RadioButton();
@@ -53,25 +53,25 @@
             this.pFelhasz = new System.Windows.Forms.Panel();
             this.dgvFelhasznalok = new System.Windows.Forms.DataGridView();
             this.bVegrehajtFelhasz = new System.Windows.Forms.Button();
-            this.gbFelhaszMuveletek = new System.Windows.Forms.GroupBox();
+            this.gbMezokFelhasz = new System.Windows.Forms.GroupBox();
             this.tbUI = new System.Windows.Forms.ComboBox();
             this.tbFelhsznev = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.tbJelszo = new System.Windows.Forms.TextBox();
-            this.gb2 = new System.Windows.Forms.GroupBox();
+            this.gbMuvFelhasz = new System.Windows.Forms.GroupBox();
             this.rbTorol2 = new System.Windows.Forms.RadioButton();
             this.rbUj2 = new System.Windows.Forms.RadioButton();
             this.rbSzerk2 = new System.Windows.Forms.RadioButton();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.pTermek.SuspendLayout();
-            this.gbMuvelet.SuspendLayout();
-            this.gbMuveletek.SuspendLayout();
+            this.gbMezokTermek.SuspendLayout();
+            this.gbMuvTermek.SuspendLayout();
             this.pFelhasz.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFelhasznalok)).BeginInit();
-            this.gbFelhaszMuveletek.SuspendLayout();
-            this.gb2.SuspendLayout();
+            this.gbMezokFelhasz.SuspendLayout();
+            this.gbMuvFelhasz.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,8 +96,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pTermek.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pTermek.Controls.Add(this.bVegrehajtTermek);
-            this.pTermek.Controls.Add(this.gbMuvelet);
-            this.pTermek.Controls.Add(this.gbMuveletek);
+            this.pTermek.Controls.Add(this.gbMezokTermek);
+            this.pTermek.Controls.Add(this.gbMuvTermek);
             this.pTermek.Controls.Add(this.tv);
             this.pTermek.Location = new System.Drawing.Point(2, 39);
             this.pTermek.Name = "pTermek";
@@ -115,24 +115,24 @@
             this.bVegrehajtTermek.UseVisualStyleBackColor = true;
             this.bVegrehajtTermek.Click += new System.EventHandler(this.BVegrehajtTermek_Click);
             // 
-            // gbMuvelet
+            // gbMezokTermek
             // 
-            this.gbMuvelet.Controls.Add(this.label5);
-            this.gbMuvelet.Controls.Add(this.label2);
-            this.gbMuvelet.Controls.Add(this.label4);
-            this.gbMuvelet.Controls.Add(this.label3);
-            this.gbMuvelet.Controls.Add(this.tbMertekegyseg);
-            this.gbMuvelet.Controls.Add(this.cbCsopNev);
-            this.gbMuvelet.Controls.Add(this.label1);
-            this.gbMuvelet.Controls.Add(this.cbGyujtonev);
-            this.gbMuvelet.Controls.Add(this.tbNev);
-            this.gbMuvelet.Controls.Add(this.tbAr);
-            this.gbMuvelet.Location = new System.Drawing.Point(311, 73);
-            this.gbMuvelet.Name = "gbMuvelet";
-            this.gbMuvelet.Size = new System.Drawing.Size(305, 332);
-            this.gbMuvelet.TabIndex = 11;
-            this.gbMuvelet.TabStop = false;
-            this.gbMuvelet.Text = "Hozzáadás";
+            this.gbMezokTermek.Controls.Add(this.label5);
+            this.gbMezokTermek.Controls.Add(this.label2);
+            this.gbMezokTermek.Controls.Add(this.label4);
+            this.gbMezokTermek.Controls.Add(this.label3);
+            this.gbMezokTermek.Controls.Add(this.tbMertekegyseg);
+            this.gbMezokTermek.Controls.Add(this.cbCsopNev);
+            this.gbMezokTermek.Controls.Add(this.label1);
+            this.gbMezokTermek.Controls.Add(this.cbGyujtonev);
+            this.gbMezokTermek.Controls.Add(this.tbNev);
+            this.gbMezokTermek.Controls.Add(this.tbAr);
+            this.gbMezokTermek.Location = new System.Drawing.Point(311, 73);
+            this.gbMezokTermek.Name = "gbMezokTermek";
+            this.gbMezokTermek.Size = new System.Drawing.Size(305, 332);
+            this.gbMezokTermek.TabIndex = 11;
+            this.gbMezokTermek.TabStop = false;
+            this.gbMezokTermek.Text = "Hozzáadás";
             // 
             // label5
             // 
@@ -228,17 +228,17 @@
             this.tbAr.TabIndex = 10;
             this.tbAr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyNum_KeyPress);
             // 
-            // gbMuveletek
+            // gbMuvTermek
             // 
-            this.gbMuveletek.Controls.Add(this.rbTorol1);
-            this.gbMuveletek.Controls.Add(this.rbUj1);
-            this.gbMuveletek.Controls.Add(this.rbSzerk1);
-            this.gbMuveletek.Location = new System.Drawing.Point(311, 3);
-            this.gbMuveletek.Name = "gbMuveletek";
-            this.gbMuveletek.Size = new System.Drawing.Size(305, 64);
-            this.gbMuveletek.TabIndex = 6;
-            this.gbMuveletek.TabStop = false;
-            this.gbMuveletek.Text = "Műveletek";
+            this.gbMuvTermek.Controls.Add(this.rbTorol1);
+            this.gbMuvTermek.Controls.Add(this.rbUj1);
+            this.gbMuvTermek.Controls.Add(this.rbSzerk1);
+            this.gbMuvTermek.Location = new System.Drawing.Point(311, 3);
+            this.gbMuvTermek.Name = "gbMuvTermek";
+            this.gbMuvTermek.Size = new System.Drawing.Size(305, 64);
+            this.gbMuvTermek.TabIndex = 6;
+            this.gbMuvTermek.TabStop = false;
+            this.gbMuvTermek.Text = "Műveletek";
             // 
             // rbTorol1
             // 
@@ -291,8 +291,8 @@
             this.pFelhasz.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pFelhasz.Controls.Add(this.dgvFelhasznalok);
             this.pFelhasz.Controls.Add(this.bVegrehajtFelhasz);
-            this.pFelhasz.Controls.Add(this.gbFelhaszMuveletek);
-            this.pFelhasz.Controls.Add(this.gb2);
+            this.pFelhasz.Controls.Add(this.gbMezokFelhasz);
+            this.pFelhasz.Controls.Add(this.gbMuvFelhasz);
             this.pFelhasz.Location = new System.Drawing.Point(2, 39);
             this.pFelhasz.Name = "pFelhasz";
             this.pFelhasz.Size = new System.Drawing.Size(467, 520);
@@ -303,9 +303,9 @@
             // 
             this.dgvFelhasznalok.AllowUserToAddRows = false;
             this.dgvFelhasznalok.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            this.dgvFelhasznalok.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            this.dgvFelhasznalok.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvFelhasznalok.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -318,10 +318,10 @@
             this.dgvFelhasznalok.Name = "dgvFelhasznalok";
             this.dgvFelhasznalok.ReadOnly = true;
             this.dgvFelhasznalok.RowHeadersVisible = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            this.dgvFelhasznalok.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            this.dgvFelhasznalok.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvFelhasznalok.RowTemplate.Height = 36;
             this.dgvFelhasznalok.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvFelhasznalok.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -339,20 +339,20 @@
             this.bVegrehajtFelhasz.UseVisualStyleBackColor = true;
             this.bVegrehajtFelhasz.Click += new System.EventHandler(this.BVegrehajtFelhasz_Click);
             // 
-            // gbFelhaszMuveletek
+            // gbMezokFelhasz
             // 
-            this.gbFelhaszMuveletek.Controls.Add(this.tbUI);
-            this.gbFelhaszMuveletek.Controls.Add(this.tbFelhsznev);
-            this.gbFelhaszMuveletek.Controls.Add(this.label6);
-            this.gbFelhaszMuveletek.Controls.Add(this.label8);
-            this.gbFelhaszMuveletek.Controls.Add(this.label10);
-            this.gbFelhaszMuveletek.Controls.Add(this.tbJelszo);
-            this.gbFelhaszMuveletek.Location = new System.Drawing.Point(3, 251);
-            this.gbFelhaszMuveletek.Name = "gbFelhaszMuveletek";
-            this.gbFelhaszMuveletek.Size = new System.Drawing.Size(302, 214);
-            this.gbFelhaszMuveletek.TabIndex = 11;
-            this.gbFelhaszMuveletek.TabStop = false;
-            this.gbFelhaszMuveletek.Text = "Hozzáadás";
+            this.gbMezokFelhasz.Controls.Add(this.tbUI);
+            this.gbMezokFelhasz.Controls.Add(this.tbFelhsznev);
+            this.gbMezokFelhasz.Controls.Add(this.label6);
+            this.gbMezokFelhasz.Controls.Add(this.label8);
+            this.gbMezokFelhasz.Controls.Add(this.label10);
+            this.gbMezokFelhasz.Controls.Add(this.tbJelszo);
+            this.gbMezokFelhasz.Location = new System.Drawing.Point(3, 251);
+            this.gbMezokFelhasz.Name = "gbMezokFelhasz";
+            this.gbMezokFelhasz.Size = new System.Drawing.Size(302, 214);
+            this.gbMezokFelhasz.TabIndex = 11;
+            this.gbMezokFelhasz.TabStop = false;
+            this.gbMezokFelhasz.Text = "Hozzáadás";
             // 
             // tbUI
             // 
@@ -414,17 +414,17 @@
             this.tbJelszo.Size = new System.Drawing.Size(273, 20);
             this.tbJelszo.TabIndex = 18;
             // 
-            // gb2
+            // gbMuvFelhasz
             // 
-            this.gb2.Controls.Add(this.rbTorol2);
-            this.gb2.Controls.Add(this.rbUj2);
-            this.gb2.Controls.Add(this.rbSzerk2);
-            this.gb2.Location = new System.Drawing.Point(3, 3);
-            this.gb2.Name = "gb2";
-            this.gb2.Size = new System.Drawing.Size(455, 64);
-            this.gb2.TabIndex = 6;
-            this.gb2.TabStop = false;
-            this.gb2.Text = "Műveletek";
+            this.gbMuvFelhasz.Controls.Add(this.rbTorol2);
+            this.gbMuvFelhasz.Controls.Add(this.rbUj2);
+            this.gbMuvFelhasz.Controls.Add(this.rbSzerk2);
+            this.gbMuvFelhasz.Location = new System.Drawing.Point(3, 3);
+            this.gbMuvFelhasz.Name = "gbMuvFelhasz";
+            this.gbMuvFelhasz.Size = new System.Drawing.Size(455, 64);
+            this.gbMuvFelhasz.TabIndex = 6;
+            this.gbMuvFelhasz.TabStop = false;
+            this.gbMuvFelhasz.Text = "Műveletek";
             // 
             // rbTorol2
             // 
@@ -477,16 +477,16 @@
             this.Text = "UI3";
             this.Load += new System.EventHandler(this.UI3_Load);
             this.pTermek.ResumeLayout(false);
-            this.gbMuvelet.ResumeLayout(false);
-            this.gbMuvelet.PerformLayout();
-            this.gbMuveletek.ResumeLayout(false);
-            this.gbMuveletek.PerformLayout();
+            this.gbMezokTermek.ResumeLayout(false);
+            this.gbMezokTermek.PerformLayout();
+            this.gbMuvTermek.ResumeLayout(false);
+            this.gbMuvTermek.PerformLayout();
             this.pFelhasz.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFelhasznalok)).EndInit();
-            this.gbFelhaszMuveletek.ResumeLayout(false);
-            this.gbFelhaszMuveletek.PerformLayout();
-            this.gb2.ResumeLayout(false);
-            this.gb2.PerformLayout();
+            this.gbMezokFelhasz.ResumeLayout(false);
+            this.gbMezokFelhasz.PerformLayout();
+            this.gbMuvFelhasz.ResumeLayout(false);
+            this.gbMuvFelhasz.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
@@ -496,12 +496,12 @@
 
         private System.Windows.Forms.ComboBox cbTabla;
         private System.Windows.Forms.Panel pTermek;
-        private System.Windows.Forms.GroupBox gbMuveletek;
+        private System.Windows.Forms.GroupBox gbMuvTermek;
         private System.Windows.Forms.RadioButton rbTorol1;
         private System.Windows.Forms.RadioButton rbUj1;
         private System.Windows.Forms.RadioButton rbSzerk1;
         private System.Windows.Forms.TreeView tv;
-        private System.Windows.Forms.GroupBox gbMuvelet;
+        private System.Windows.Forms.GroupBox gbMezokTermek;
         private System.Windows.Forms.ComboBox cbGyujtonev;
         private System.Windows.Forms.TextBox tbNev;
         private System.Windows.Forms.TextBox tbAr;
@@ -515,12 +515,12 @@
         private System.Windows.Forms.TextBox tbMertekegyseg;
         private System.Windows.Forms.Panel pFelhasz;
         private System.Windows.Forms.Button bVegrehajtFelhasz;
-        private System.Windows.Forms.GroupBox gbFelhaszMuveletek;
+        private System.Windows.Forms.GroupBox gbMezokFelhasz;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox tbJelszo;
-        private System.Windows.Forms.GroupBox gb2;
+        private System.Windows.Forms.GroupBox gbMuvFelhasz;
         private System.Windows.Forms.RadioButton rbTorol2;
         private System.Windows.Forms.RadioButton rbUj2;
         private System.Windows.Forms.RadioButton rbSzerk2;

@@ -11,6 +11,13 @@ using System.Windows.Forms;
 
 namespace testDesign
 {
+
+    //ha ki lett törölve a felhasználó amihez tartozik a termék, legyen piros
+    //lángos miért kék a kijelölés
+    //0 val NEM kezdődhet jelszó mert egyszerűen leszarja a llétezését
+
+
+
     public partial class UI3 : Form
     {
         public UI3()
@@ -28,18 +35,24 @@ namespace testDesign
                 case 0:
                     Méretez(599, 486);
                     pFelhasz.Visible = true;
+                    CurrRadButt(SelectedRadianbutton(gbMuvFelhasz));
                     DgvFelhaszFeltolt();
                     break;
                 case 1:
                     Méretez(542, 643);
-                    pTermek.Visible = true;                    
+                    pTermek.Visible = true;
+                    CurrRadButt(SelectedRadianbutton(gbMuvTermek));
                     CsopNevekLekerdezes();
                     TvFeltoltes();
                     break;
                 default:
                     break;
             }
-            CurrRadButt();
+        }
+
+        private RadioButton SelectedRadianbutton(GroupBox gb)
+        {
+            return gb.Controls.OfType<RadioButton>().FirstOrDefault(rb => rb.Checked == true);
         }
 
         private void Méretez(int h, int w)
@@ -60,26 +73,26 @@ namespace testDesign
             {
                 case "Új hozzáadása":
                     num = 1;
-                    gbMuvelet.Enabled = true;
-                    gbFelhaszMuveletek.Enabled = true;
-                    gbMuvelet.Text = "Hozzáadás";                    
+                    gbMezokTermek.Enabled = true;
+                    gbMezokFelhasz.Enabled = true;
+                    gbMezokTermek.Text = "Hozzáadás";                    
                     tbFelhsznev.Text = "";
                     tbJelszo.Text = "";
                     tbUI.Text = "";
                     break;
                 case "Szerkesztés":
                     num = 2;
-                    gbMuvelet.Enabled = true;
-                    gbFelhaszMuveletek.Enabled = true;
-                    gbMuvelet.Text = "Szerkesztés";
+                    gbMezokTermek.Enabled = true;
+                    gbMezokFelhasz.Enabled = true;
+                    gbMezokTermek.Text = "Szerkesztés";
                     tbFelhsznev.Text = "";
                     tbJelszo.Text = "";
                     tbUI.Text = "";                    
                     break;
                 case "Törlés":
                     num = 3;
-                    gbMuvelet.Enabled = false;
-                    gbMuvelet.Text = "";
+                    gbMezokTermek.Enabled = false;
+                    gbMezokTermek.Text = "";
                     cbGyujtonev.SelectedItem = "";
                     tbNev.Text = "";
                     tbMertekegyseg.Text = "";
@@ -88,7 +101,7 @@ namespace testDesign
                     tbFelhsznev.Text = "";
                     tbJelszo.Text = "";
                     tbUI.Text = "";
-                    gbFelhaszMuveletek.Enabled = false;                    
+                    gbMezokFelhasz.Enabled = false;                    
                     break;
             }
             return num;
@@ -281,7 +294,11 @@ namespace testDesign
                             var ressult2 = from t2 in table2
                                            where t2.ID == so.felhaszID
                                            select t2.név;
-                            cbCsopNev.Text = ressult2.First().ToString();
+                            if (ressult2.FirstOrDefault() != null)
+                            {
+                                cbCsopNev.Text = ressult2.FirstOrDefault().ToString();
+                            }
+                            cbCsopNev.Text = "---";
                         }
                         
                     } 
@@ -356,10 +373,20 @@ namespace testDesign
         {
             errorProvider.Clear();
 
-            var row = dgvFelhasznalok.SelectedRows[0];
-            string felhasznev_ = Convert.ToString(row.Cells[0].Value);
-            string jelszo_ = Convert.ToString(row.Cells[1].Value);
-            int id_ = Convert.ToInt32(row.Cells[2].Value);
+            DataGridViewRow row = null;
+            string felhasznev_ = "";
+            string jelszo_ = "";
+            int id_ = 0;
+
+            if (rbNum != 1)
+            {
+                row = dgvFelhasznalok.SelectedRows[0];
+                felhasznev_ = Convert.ToString(row.Cells[0].Value);
+                jelszo_ = Convert.ToString(row.Cells[1].Value);
+                id_ = Convert.ToInt32(row.Cells[2].Value); 
+            }
+
+
             List<Control> controlsToTest;
             switch (rbNum)
             {
