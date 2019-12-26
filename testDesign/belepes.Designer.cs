@@ -285,7 +285,7 @@
             this.bDel.Name = "bDel";
             this.bDel.Size = new System.Drawing.Size(55, 55);
             this.bDel.TabIndex = 21;
-            this.bDel.Text = "<";
+            this.bDel.Text = "←";
             this.bDel.UseVisualStyleBackColor = true;
             this.bDel.Click += new System.EventHandler(this.NumButton_Click);
             // 

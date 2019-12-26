@@ -45,14 +45,16 @@ namespace testDesign
             if (comboBoxFelhaszn.Text == "1")
             {
                 this.Hide();
-                UI3 ui = new UI3();
-                ui.Show();                
+                //UI3 ui = new UI3();
+                //ui.Show();
+                bill ui = new bill();
+                ui.Show();
             }
 
             errorProvider1.Clear();
             if (comboBoxFelhaszn.Text != "" && textBoxJelszo.Text != "")
             {
-                felhaszNev = comboBoxFelhaszn.SelectedItem.ToString();
+                felhaszNev = comboBoxFelhaszn.Text;
                 string megadottJelszo = textBoxJelszo.Text;
                 int helyesJelszo;
 
@@ -122,7 +124,7 @@ namespace testDesign
 
         public void NumButtonCall(string text)
         {
-            if (text == "<" && textBoxJelszo.Text.Length > 0)
+            if (text == "←" && textBoxJelszo.Text.Length > 0)
             {
                 textBoxJelszo.Text = textBoxJelszo.Text.Remove(textBoxJelszo.Text.Length - 1, 1);
             }
@@ -130,7 +132,7 @@ namespace testDesign
             {
                 this.Width = 334;
             }
-            else if (text != "ENT" && text != "<")
+            else if (text != "ENT" && text != "←")
             {
                 textBoxJelszo.Text += text;
             }

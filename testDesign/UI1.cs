@@ -28,9 +28,8 @@ namespace testDesign
         {
             CultureInfo ci = new CultureInfo("hu-HU");
             labelDatum.Text = DateTime.Now.ToString("yyyy-MM-dd")+ Environment.NewLine + DateTime.Now.ToString("dddd", ci).ToUpper();
-            tIdo.Enabled = true;            
+            tIdo.Enabled = true;
 
-            
 
             CsoportokFeltoltes();
             LeadottRendelesekBeolvasasa();
@@ -68,22 +67,45 @@ namespace testDesign
 
         }
 
+        bill bill = new bill();
+        public static string megjegyzes { get; set; }
+        public int termekSorIndex { get; set; }
 
-        //+ & -
-        public string megjegyzes { get; set; }
-        private void BMegjegyzes_Click(object sender, EventArgs e)
+        private async void BMegjegyzes_Click(object sender, EventArgs e)
         {
-            //int index = dgvRendelesLista.SelectedIndex;
-            //kell a bill
+            termekSorIndex = dgvTermékek.SelectedRows[0].Index;
+            bill.Show();
+            while (bill.Visible == true)
+            {
+                await wait();
+            }
+            if (megjegyzes != "")
+            {
+                BPlus_Click(new object(), new EventArgs()); 
+            }
         }
-        private void BPlus_Click(object sender, EventArgs e)
+        static async Task wait()
+        {
+            await Task.Delay(500);
+        }
+
+        public void BPlus_Click(object sender, EventArgs e)
         {            
             if (megjegyzes == null)
             {
                 megjegyzes = "";
             }
             //\\{dgvTermékek.SelectedCells[1].Value} !!!!!!!!!
-            dgvRendelesLista.Rows.Add($"{dgvTermékek.SelectedCells[0].Value}\\{dgvTermékek.SelectedCells[1].Value}" , megjegyzes ,dgvTermékek.SelectedCells[2].Value);
+            if (dgvTermékek.Rows[termekSorIndex].Cells[1].Value.ToString() != "")
+            {
+                dgvRendelesLista.Rows.Add($"{dgvTermékek.SelectedCells[0].Value}\\{dgvTermékek.SelectedCells[1].Value}", megjegyzes, dgvTermékek.SelectedCells[2].Value);
+            }
+            else
+            {
+                dgvRendelesLista.Rows.Add($"{dgvTermékek.SelectedCells[0].Value}", megjegyzes, dgvTermékek.SelectedCells[2].Value);
+            }
+            megjegyzes = "";
+
             OsszegUpdate();
         }
         private void BMinus_Click(object sender, EventArgs e)
@@ -146,9 +168,21 @@ namespace testDesign
             {
                 for (int i = 0; i < dgvRendelesLista.Rows.Count; i++)
                 {
-                    var temp = dgvRendelesLista.Rows[i].Cells[0].Value.ToString().Split('\\');
-                    string termek = temp[0];
-                    string mertekegyseg = temp[1];
+                    var termekMertekegyseg = dgvRendelesLista.Rows[i].Cells[0].Value.ToString();
+                    string termek = "";
+                    string mertekegyseg = "";
+                    if (termekMertekegyseg.Contains('\\'))
+                    {
+                        var temp = dgvRendelesLista.Rows[i].Cells[0].Value.ToString().Split('\\');
+                        termek = temp[0];
+                        mertekegyseg = temp[1];
+                    }
+                    else
+                    {
+                        termek = termekMertekegyseg;
+                        mertekegyseg = "";
+                    }
+                                        
                     string megjegy = dgvRendelesLista.Rows[i].Cells[1].Value.ToString();
                     teletabyDB.ExecuteCommand($"INSERT INTO rendelés_tételek VALUES ('{currRendelesID}',(SELECT ID FROM termék WHERE név = '{termek}' AND mértékegység = '{mertekegyseg}'),'{megjegy}','false')");
                 }
@@ -285,8 +319,7 @@ namespace testDesign
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-                            LeadottRendelesTetelekBeolvasas();
-
+            LeadottRendelesTetelekBeolvasas();
         }
     }
 }

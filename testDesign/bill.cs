@@ -17,14 +17,36 @@ namespace testDesign
             InitializeComponent();
         }
 
-        private void Button8_Click(object sender, EventArgs e)
+        public string megjegyzes { get; set; }
+        private void Button_Click(object sender, EventArgs e)
         {
+            var text = (sender as Button).Text;
 
+            if (text == "SPACE")
+            {
+                text = " ";
+            }
+            else if (text == "←")
+            {
+                text = "";
+                if (tbMegjegyzes.Text != "")
+                {
+                    tbMegjegyzes.Text = tbMegjegyzes.Text.Remove(tbMegjegyzes.Text.Length - 1, 1);
+                }
+            }
+            else if (text.Contains("ENT"))
+            {
+                text = "";
+                UI1.megjegyzes = tbMegjegyzes.Text.Trim();                
+                this.Hide();                
+                tbMegjegyzes.Clear();
+            }
+            tbMegjegyzes.AppendText(text);
         }
 
-        private void Button6_Click(object sender, EventArgs e)
+        private void bKilep_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
         }
     }
 }

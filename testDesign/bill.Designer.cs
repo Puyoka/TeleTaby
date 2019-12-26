@@ -42,531 +42,795 @@
             this.bü = new System.Windows.Forms.Button();
             this.bó = new System.Windows.Forms.Button();
             this.bNoFunc0 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
+            this.bNoFunc1 = new System.Windows.Forms.Button();
+            this.bú = new System.Windows.Forms.Button();
+            this.bő = new System.Windows.Forms.Button();
+            this.bp = new System.Windows.Forms.Button();
+            this.bo = new System.Windows.Forms.Button();
+            this.bi = new System.Windows.Forms.Button();
+            this.bu = new System.Windows.Forms.Button();
+            this.bz = new System.Windows.Forms.Button();
+            this.bt = new System.Windows.Forms.Button();
+            this.br = new System.Windows.Forms.Button();
+            this.be = new System.Windows.Forms.Button();
             this.bw = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
-            this.button19 = new System.Windows.Forms.Button();
-            this.button20 = new System.Windows.Forms.Button();
-            this.button21 = new System.Windows.Forms.Button();
-            this.button22 = new System.Windows.Forms.Button();
-            this.button23 = new System.Windows.Forms.Button();
-            this.button24 = new System.Windows.Forms.Button();
-            this.button25 = new System.Windows.Forms.Button();
-            this.button26 = new System.Windows.Forms.Button();
-            this.button27 = new System.Windows.Forms.Button();
+            this.bq = new System.Windows.Forms.Button();
+            this.bű = new System.Windows.Forms.Button();
+            this.bá = new System.Windows.Forms.Button();
+            this.bé = new System.Windows.Forms.Button();
+            this.bl = new System.Windows.Forms.Button();
+            this.bk = new System.Windows.Forms.Button();
+            this.bj = new System.Windows.Forms.Button();
+            this.bh = new System.Windows.Forms.Button();
+            this.bg = new System.Windows.Forms.Button();
+            this.bf = new System.Windows.Forms.Button();
+            this.bd = new System.Windows.Forms.Button();
+            this.bs = new System.Windows.Forms.Button();
+            this.ba = new System.Windows.Forms.Button();
+            this.bBackspace = new System.Windows.Forms.Button();
+            this.bEnter = new System.Windows.Forms.Button();
+            this.bNoFunc2 = new System.Windows.Forms.Button();
+            this.bPlus = new System.Windows.Forms.Button();
+            this.bMinus = new System.Windows.Forms.Button();
+            this.bPont = new System.Windows.Forms.Button();
+            this.bVesszo = new System.Windows.Forms.Button();
+            this.bm = new System.Windows.Forms.Button();
+            this.bn = new System.Windows.Forms.Button();
+            this.bb = new System.Windows.Forms.Button();
+            this.bv = new System.Windows.Forms.Button();
+            this.bc = new System.Windows.Forms.Button();
+            this.bx = new System.Windows.Forms.Button();
+            this.by = new System.Windows.Forms.Button();
+            this.bí = new System.Windows.Forms.Button();
+            this.bFelkialt = new System.Windows.Forms.Button();
+            this.bSpace = new System.Windows.Forms.Button();
+            this.tbMegjegyzes = new System.Windows.Forms.TextBox();
+            this.bKilep = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // b0
             // 
             this.b0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.b0.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.b0.Location = new System.Drawing.Point(12, 12);
+            this.b0.Location = new System.Drawing.Point(3, 51);
             this.b0.Name = "b0";
             this.b0.Size = new System.Drawing.Size(45, 45);
             this.b0.TabIndex = 0;
             this.b0.Text = "0";
             this.b0.UseVisualStyleBackColor = true;
+            this.b0.Click += new System.EventHandler(this.Button_Click);
             // 
             // b1
             // 
             this.b1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.b1.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.b1.Location = new System.Drawing.Point(63, 12);
+            this.b1.Location = new System.Drawing.Point(54, 51);
             this.b1.Name = "b1";
             this.b1.Size = new System.Drawing.Size(45, 45);
             this.b1.TabIndex = 1;
             this.b1.Text = "1";
             this.b1.UseVisualStyleBackColor = true;
+            this.b1.Click += new System.EventHandler(this.Button_Click);
             // 
             // b2
             // 
             this.b2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.b2.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.b2.Location = new System.Drawing.Point(114, 12);
+            this.b2.Location = new System.Drawing.Point(105, 51);
             this.b2.Name = "b2";
             this.b2.Size = new System.Drawing.Size(45, 45);
             this.b2.TabIndex = 2;
             this.b2.Text = "2";
             this.b2.UseVisualStyleBackColor = true;
+            this.b2.Click += new System.EventHandler(this.Button_Click);
             // 
             // b3
             // 
             this.b3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.b3.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.b3.Location = new System.Drawing.Point(165, 12);
+            this.b3.Location = new System.Drawing.Point(156, 51);
             this.b3.Name = "b3";
             this.b3.Size = new System.Drawing.Size(45, 45);
             this.b3.TabIndex = 3;
             this.b3.Text = "3";
             this.b3.UseVisualStyleBackColor = true;
+            this.b3.Click += new System.EventHandler(this.Button_Click);
             // 
             // b4
             // 
             this.b4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.b4.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.b4.Location = new System.Drawing.Point(216, 12);
+            this.b4.Location = new System.Drawing.Point(207, 51);
             this.b4.Name = "b4";
             this.b4.Size = new System.Drawing.Size(45, 45);
             this.b4.TabIndex = 4;
             this.b4.Text = "4";
             this.b4.UseVisualStyleBackColor = true;
+            this.b4.Click += new System.EventHandler(this.Button_Click);
             // 
             // b5
             // 
             this.b5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.b5.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.b5.Location = new System.Drawing.Point(267, 12);
+            this.b5.Location = new System.Drawing.Point(258, 51);
             this.b5.Name = "b5";
             this.b5.Size = new System.Drawing.Size(45, 45);
             this.b5.TabIndex = 5;
             this.b5.Text = "5";
             this.b5.UseVisualStyleBackColor = true;
+            this.b5.Click += new System.EventHandler(this.Button_Click);
             // 
             // b6
             // 
             this.b6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.b6.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.b6.Location = new System.Drawing.Point(318, 12);
+            this.b6.Location = new System.Drawing.Point(309, 51);
             this.b6.Name = "b6";
             this.b6.Size = new System.Drawing.Size(45, 45);
             this.b6.TabIndex = 6;
             this.b6.Text = "6";
             this.b6.UseVisualStyleBackColor = true;
+            this.b6.Click += new System.EventHandler(this.Button_Click);
             // 
             // b7
             // 
             this.b7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.b7.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.b7.Location = new System.Drawing.Point(369, 12);
+            this.b7.Location = new System.Drawing.Point(360, 51);
             this.b7.Name = "b7";
             this.b7.Size = new System.Drawing.Size(45, 45);
             this.b7.TabIndex = 7;
             this.b7.Text = "7";
             this.b7.UseVisualStyleBackColor = true;
+            this.b7.Click += new System.EventHandler(this.Button_Click);
             // 
             // b8
             // 
             this.b8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.b8.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.b8.Location = new System.Drawing.Point(420, 12);
+            this.b8.Location = new System.Drawing.Point(411, 51);
             this.b8.Name = "b8";
             this.b8.Size = new System.Drawing.Size(45, 45);
             this.b8.TabIndex = 8;
             this.b8.Text = "8";
             this.b8.UseVisualStyleBackColor = true;
+            this.b8.Click += new System.EventHandler(this.Button_Click);
             // 
             // b9
             // 
             this.b9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.b9.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.b9.Location = new System.Drawing.Point(471, 12);
+            this.b9.Location = new System.Drawing.Point(462, 51);
             this.b9.Name = "b9";
             this.b9.Size = new System.Drawing.Size(45, 45);
             this.b9.TabIndex = 9;
             this.b9.Text = "9";
             this.b9.UseVisualStyleBackColor = true;
+            this.b9.Click += new System.EventHandler(this.Button_Click);
             // 
             // bö
             // 
             this.bö.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bö.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bö.Location = new System.Drawing.Point(522, 12);
+            this.bö.Location = new System.Drawing.Point(513, 51);
             this.bö.Name = "bö";
             this.bö.Size = new System.Drawing.Size(45, 45);
             this.bö.TabIndex = 10;
             this.bö.Text = "Ö";
             this.bö.UseVisualStyleBackColor = true;
+            this.bö.Click += new System.EventHandler(this.Button_Click);
             // 
             // bü
             // 
             this.bü.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bü.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bü.Location = new System.Drawing.Point(573, 12);
+            this.bü.Location = new System.Drawing.Point(564, 51);
             this.bü.Name = "bü";
             this.bü.Size = new System.Drawing.Size(45, 45);
             this.bü.TabIndex = 11;
             this.bü.Text = "Ü";
             this.bü.UseVisualStyleBackColor = true;
+            this.bü.Click += new System.EventHandler(this.Button_Click);
             // 
             // bó
             // 
             this.bó.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bó.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bó.Location = new System.Drawing.Point(624, 12);
+            this.bó.Location = new System.Drawing.Point(615, 51);
             this.bó.Name = "bó";
             this.bó.Size = new System.Drawing.Size(45, 45);
             this.bó.TabIndex = 12;
             this.bó.Text = "Ó";
             this.bó.UseVisualStyleBackColor = true;
+            this.bó.Click += new System.EventHandler(this.Button_Click);
             // 
             // bNoFunc0
             // 
             this.bNoFunc0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bNoFunc0.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bNoFunc0.Location = new System.Drawing.Point(12, 63);
+            this.bNoFunc0.Location = new System.Drawing.Point(3, 102);
             this.bNoFunc0.Name = "bNoFunc0";
             this.bNoFunc0.Size = new System.Drawing.Size(64, 45);
             this.bNoFunc0.TabIndex = 13;
             this.bNoFunc0.UseVisualStyleBackColor = true;
+            this.bNoFunc0.Click += new System.EventHandler(this.Button_Click);
             // 
-            // button1
+            // bNoFunc1
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.Location = new System.Drawing.Point(12, 114);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(76, 45);
-            this.button1.TabIndex = 14;
-            this.button1.UseVisualStyleBackColor = true;
+            this.bNoFunc1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bNoFunc1.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bNoFunc1.Location = new System.Drawing.Point(3, 153);
+            this.bNoFunc1.Name = "bNoFunc1";
+            this.bNoFunc1.Size = new System.Drawing.Size(76, 45);
+            this.bNoFunc1.TabIndex = 14;
+            this.bNoFunc1.UseVisualStyleBackColor = true;
+            this.bNoFunc1.Click += new System.EventHandler(this.Button_Click);
             // 
-            // button3
+            // bú
             // 
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button3.Location = new System.Drawing.Point(643, 63);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(57, 45);
-            this.button3.TabIndex = 26;
-            this.button3.Text = "Ú";
-            this.button3.UseVisualStyleBackColor = true;
+            this.bú.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bú.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bú.Location = new System.Drawing.Point(634, 102);
+            this.bú.Name = "bú";
+            this.bú.Size = new System.Drawing.Size(57, 45);
+            this.bú.TabIndex = 26;
+            this.bú.Text = "Ú";
+            this.bú.UseVisualStyleBackColor = true;
+            this.bú.Click += new System.EventHandler(this.Button_Click);
             // 
-            // button4
+            // bő
             // 
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button4.Location = new System.Drawing.Point(592, 63);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(45, 45);
-            this.button4.TabIndex = 25;
-            this.button4.Text = "Ő";
-            this.button4.UseVisualStyleBackColor = true;
+            this.bő.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bő.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bő.Location = new System.Drawing.Point(583, 102);
+            this.bő.Name = "bő";
+            this.bő.Size = new System.Drawing.Size(45, 45);
+            this.bő.TabIndex = 25;
+            this.bő.Text = "Ő";
+            this.bő.UseVisualStyleBackColor = true;
+            this.bő.Click += new System.EventHandler(this.Button_Click);
             // 
-            // button5
+            // bp
             // 
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button5.Location = new System.Drawing.Point(541, 63);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(45, 45);
-            this.button5.TabIndex = 24;
-            this.button5.Text = "P";
-            this.button5.UseVisualStyleBackColor = true;
+            this.bp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bp.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bp.Location = new System.Drawing.Point(532, 102);
+            this.bp.Name = "bp";
+            this.bp.Size = new System.Drawing.Size(45, 45);
+            this.bp.TabIndex = 24;
+            this.bp.Text = "P";
+            this.bp.UseVisualStyleBackColor = true;
+            this.bp.Click += new System.EventHandler(this.Button_Click);
             // 
-            // button6
+            // bo
             // 
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button6.Location = new System.Drawing.Point(490, 63);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(45, 45);
-            this.button6.TabIndex = 23;
-            this.button6.Text = "O";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.Button6_Click);
+            this.bo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bo.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bo.Location = new System.Drawing.Point(481, 102);
+            this.bo.Name = "bo";
+            this.bo.Size = new System.Drawing.Size(45, 45);
+            this.bo.TabIndex = 23;
+            this.bo.Text = "O";
+            this.bo.UseVisualStyleBackColor = true;
+            this.bo.Click += new System.EventHandler(this.Button_Click);
             // 
-            // button7
+            // bi
             // 
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button7.Location = new System.Drawing.Point(439, 63);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(45, 45);
-            this.button7.TabIndex = 22;
-            this.button7.Text = "I";
-            this.button7.UseVisualStyleBackColor = true;
+            this.bi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bi.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bi.Location = new System.Drawing.Point(430, 102);
+            this.bi.Name = "bi";
+            this.bi.Size = new System.Drawing.Size(45, 45);
+            this.bi.TabIndex = 22;
+            this.bi.Text = "I";
+            this.bi.UseVisualStyleBackColor = true;
+            this.bi.Click += new System.EventHandler(this.Button_Click);
             // 
-            // button8
+            // bu
             // 
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button8.Location = new System.Drawing.Point(388, 63);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(45, 45);
-            this.button8.TabIndex = 21;
-            this.button8.Text = "U";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.Button8_Click);
+            this.bu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bu.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bu.Location = new System.Drawing.Point(379, 102);
+            this.bu.Name = "bu";
+            this.bu.Size = new System.Drawing.Size(45, 45);
+            this.bu.TabIndex = 21;
+            this.bu.Text = "U";
+            this.bu.UseVisualStyleBackColor = true;
+            this.bu.Click += new System.EventHandler(this.Button_Click);
             // 
-            // button9
+            // bz
             // 
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button9.Location = new System.Drawing.Point(337, 63);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(45, 45);
-            this.button9.TabIndex = 20;
-            this.button9.Text = "Z";
-            this.button9.UseVisualStyleBackColor = true;
+            this.bz.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bz.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bz.Location = new System.Drawing.Point(328, 102);
+            this.bz.Name = "bz";
+            this.bz.Size = new System.Drawing.Size(45, 45);
+            this.bz.TabIndex = 20;
+            this.bz.Text = "Z";
+            this.bz.UseVisualStyleBackColor = true;
+            this.bz.Click += new System.EventHandler(this.Button_Click);
             // 
-            // button10
+            // bt
             // 
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button10.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button10.Location = new System.Drawing.Point(286, 63);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(45, 45);
-            this.button10.TabIndex = 19;
-            this.button10.Text = "T";
-            this.button10.UseVisualStyleBackColor = true;
+            this.bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bt.Location = new System.Drawing.Point(277, 102);
+            this.bt.Name = "bt";
+            this.bt.Size = new System.Drawing.Size(45, 45);
+            this.bt.TabIndex = 19;
+            this.bt.Text = "T";
+            this.bt.UseVisualStyleBackColor = true;
+            this.bt.Click += new System.EventHandler(this.Button_Click);
             // 
-            // button11
+            // br
             // 
-            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button11.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button11.Location = new System.Drawing.Point(235, 63);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(45, 45);
-            this.button11.TabIndex = 18;
-            this.button11.Text = "R";
-            this.button11.UseVisualStyleBackColor = true;
+            this.br.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.br.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.br.Location = new System.Drawing.Point(226, 102);
+            this.br.Name = "br";
+            this.br.Size = new System.Drawing.Size(45, 45);
+            this.br.TabIndex = 18;
+            this.br.Text = "R";
+            this.br.UseVisualStyleBackColor = true;
+            this.br.Click += new System.EventHandler(this.Button_Click);
             // 
-            // button12
+            // be
             // 
-            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button12.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button12.Location = new System.Drawing.Point(184, 63);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(45, 45);
-            this.button12.TabIndex = 17;
-            this.button12.Text = "E";
-            this.button12.UseVisualStyleBackColor = true;
-            // 
-            // button13
-            // 
-            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button13.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button13.Location = new System.Drawing.Point(133, 63);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(45, 45);
-            this.button13.TabIndex = 16;
-            this.button13.Text = "W";
-            this.button13.UseVisualStyleBackColor = true;
+            this.be.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.be.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.be.Location = new System.Drawing.Point(175, 102);
+            this.be.Name = "be";
+            this.be.Size = new System.Drawing.Size(45, 45);
+            this.be.TabIndex = 17;
+            this.be.Text = "E";
+            this.be.UseVisualStyleBackColor = true;
+            this.be.Click += new System.EventHandler(this.Button_Click);
             // 
             // bw
             // 
             this.bw.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bw.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bw.Location = new System.Drawing.Point(82, 63);
+            this.bw.Location = new System.Drawing.Point(124, 102);
             this.bw.Name = "bw";
             this.bw.Size = new System.Drawing.Size(45, 45);
-            this.bw.TabIndex = 15;
-            this.bw.Text = "Q";
+            this.bw.TabIndex = 16;
+            this.bw.Text = "W";
             this.bw.UseVisualStyleBackColor = true;
+            this.bw.Click += new System.EventHandler(this.Button_Click);
             // 
-            // button2
+            // bq
             // 
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button2.Location = new System.Drawing.Point(655, 114);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(45, 45);
-            this.button2.TabIndex = 38;
-            this.button2.Text = "Ű";
-            this.button2.UseVisualStyleBackColor = true;
+            this.bq.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bq.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bq.Location = new System.Drawing.Point(73, 102);
+            this.bq.Name = "bq";
+            this.bq.Size = new System.Drawing.Size(45, 45);
+            this.bq.TabIndex = 15;
+            this.bq.Text = "Q";
+            this.bq.UseVisualStyleBackColor = true;
+            this.bq.Click += new System.EventHandler(this.Button_Click);
             // 
-            // button14
+            // bű
             // 
-            this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button14.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button14.Location = new System.Drawing.Point(604, 114);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(45, 45);
-            this.button14.TabIndex = 37;
-            this.button14.Text = "Á";
-            this.button14.UseVisualStyleBackColor = true;
+            this.bű.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bű.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bű.Location = new System.Drawing.Point(646, 153);
+            this.bű.Name = "bű";
+            this.bű.Size = new System.Drawing.Size(45, 45);
+            this.bű.TabIndex = 38;
+            this.bű.Text = "Ű";
+            this.bű.UseVisualStyleBackColor = true;
+            this.bű.Click += new System.EventHandler(this.Button_Click);
             // 
-            // button15
+            // bá
             // 
-            this.button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button15.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button15.Location = new System.Drawing.Point(553, 114);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(45, 45);
-            this.button15.TabIndex = 36;
-            this.button15.Text = "É";
-            this.button15.UseVisualStyleBackColor = true;
+            this.bá.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bá.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bá.Location = new System.Drawing.Point(595, 153);
+            this.bá.Name = "bá";
+            this.bá.Size = new System.Drawing.Size(45, 45);
+            this.bá.TabIndex = 37;
+            this.bá.Text = "Á";
+            this.bá.UseVisualStyleBackColor = true;
+            this.bá.Click += new System.EventHandler(this.Button_Click);
             // 
-            // button16
+            // bé
             // 
-            this.button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button16.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button16.Location = new System.Drawing.Point(502, 114);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(45, 45);
-            this.button16.TabIndex = 35;
-            this.button16.Text = "L";
-            this.button16.UseVisualStyleBackColor = true;
+            this.bé.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bé.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bé.Location = new System.Drawing.Point(544, 153);
+            this.bé.Name = "bé";
+            this.bé.Size = new System.Drawing.Size(45, 45);
+            this.bé.TabIndex = 36;
+            this.bé.Text = "É";
+            this.bé.UseVisualStyleBackColor = true;
+            this.bé.Click += new System.EventHandler(this.Button_Click);
             // 
-            // button17
+            // bl
             // 
-            this.button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button17.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button17.Location = new System.Drawing.Point(451, 114);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(45, 45);
-            this.button17.TabIndex = 34;
-            this.button17.Text = "K";
-            this.button17.UseVisualStyleBackColor = true;
+            this.bl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bl.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bl.Location = new System.Drawing.Point(493, 153);
+            this.bl.Name = "bl";
+            this.bl.Size = new System.Drawing.Size(45, 45);
+            this.bl.TabIndex = 35;
+            this.bl.Text = "L";
+            this.bl.UseVisualStyleBackColor = true;
+            this.bl.Click += new System.EventHandler(this.Button_Click);
             // 
-            // button18
+            // bk
             // 
-            this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button18.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button18.Location = new System.Drawing.Point(400, 114);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(45, 45);
-            this.button18.TabIndex = 33;
-            this.button18.Text = "J";
-            this.button18.UseVisualStyleBackColor = true;
+            this.bk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bk.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bk.Location = new System.Drawing.Point(442, 153);
+            this.bk.Name = "bk";
+            this.bk.Size = new System.Drawing.Size(45, 45);
+            this.bk.TabIndex = 34;
+            this.bk.Text = "K";
+            this.bk.UseVisualStyleBackColor = true;
+            this.bk.Click += new System.EventHandler(this.Button_Click);
             // 
-            // button19
+            // bj
             // 
-            this.button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button19.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button19.Location = new System.Drawing.Point(349, 114);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(45, 45);
-            this.button19.TabIndex = 32;
-            this.button19.Text = "H";
-            this.button19.UseVisualStyleBackColor = true;
+            this.bj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bj.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bj.Location = new System.Drawing.Point(391, 153);
+            this.bj.Name = "bj";
+            this.bj.Size = new System.Drawing.Size(45, 45);
+            this.bj.TabIndex = 33;
+            this.bj.Text = "J";
+            this.bj.UseVisualStyleBackColor = true;
+            this.bj.Click += new System.EventHandler(this.Button_Click);
             // 
-            // button20
+            // bh
             // 
-            this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button20.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button20.Location = new System.Drawing.Point(298, 114);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(45, 45);
-            this.button20.TabIndex = 31;
-            this.button20.Text = "G";
-            this.button20.UseVisualStyleBackColor = true;
+            this.bh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bh.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bh.Location = new System.Drawing.Point(340, 153);
+            this.bh.Name = "bh";
+            this.bh.Size = new System.Drawing.Size(45, 45);
+            this.bh.TabIndex = 32;
+            this.bh.Text = "H";
+            this.bh.UseVisualStyleBackColor = true;
+            this.bh.Click += new System.EventHandler(this.Button_Click);
             // 
-            // button21
+            // bg
             // 
-            this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button21.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button21.Location = new System.Drawing.Point(247, 114);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(45, 45);
-            this.button21.TabIndex = 30;
-            this.button21.Text = "F";
-            this.button21.UseVisualStyleBackColor = true;
+            this.bg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bg.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bg.Location = new System.Drawing.Point(289, 153);
+            this.bg.Name = "bg";
+            this.bg.Size = new System.Drawing.Size(45, 45);
+            this.bg.TabIndex = 31;
+            this.bg.Text = "G";
+            this.bg.UseVisualStyleBackColor = true;
+            this.bg.Click += new System.EventHandler(this.Button_Click);
             // 
-            // button22
+            // bf
             // 
-            this.button22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button22.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button22.Location = new System.Drawing.Point(196, 114);
-            this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(45, 45);
-            this.button22.TabIndex = 29;
-            this.button22.Text = "D";
-            this.button22.UseVisualStyleBackColor = true;
+            this.bf.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bf.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bf.Location = new System.Drawing.Point(238, 153);
+            this.bf.Name = "bf";
+            this.bf.Size = new System.Drawing.Size(45, 45);
+            this.bf.TabIndex = 30;
+            this.bf.Text = "F";
+            this.bf.UseVisualStyleBackColor = true;
+            this.bf.Click += new System.EventHandler(this.Button_Click);
             // 
-            // button23
+            // bd
             // 
-            this.button23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button23.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button23.Location = new System.Drawing.Point(145, 114);
-            this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(45, 45);
-            this.button23.TabIndex = 28;
-            this.button23.Text = "S";
-            this.button23.UseVisualStyleBackColor = true;
+            this.bd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bd.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bd.Location = new System.Drawing.Point(187, 153);
+            this.bd.Name = "bd";
+            this.bd.Size = new System.Drawing.Size(45, 45);
+            this.bd.TabIndex = 29;
+            this.bd.Text = "D";
+            this.bd.UseVisualStyleBackColor = true;
+            this.bd.Click += new System.EventHandler(this.Button_Click);
             // 
-            // button24
+            // bs
             // 
-            this.button24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button24.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button24.Location = new System.Drawing.Point(94, 114);
-            this.button24.Name = "button24";
-            this.button24.Size = new System.Drawing.Size(45, 45);
-            this.button24.TabIndex = 27;
-            this.button24.Text = "A";
-            this.button24.UseVisualStyleBackColor = true;
+            this.bs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bs.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bs.Location = new System.Drawing.Point(136, 153);
+            this.bs.Name = "bs";
+            this.bs.Size = new System.Drawing.Size(45, 45);
+            this.bs.TabIndex = 28;
+            this.bs.Text = "S";
+            this.bs.UseVisualStyleBackColor = true;
+            this.bs.Click += new System.EventHandler(this.Button_Click);
             // 
-            // button25
+            // ba
             // 
-            this.button25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button25.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button25.Location = new System.Drawing.Point(675, 12);
-            this.button25.Name = "button25";
-            this.button25.Size = new System.Drawing.Size(95, 45);
-            this.button25.TabIndex = 39;
-            this.button25.Text = "←";
-            this.button25.UseVisualStyleBackColor = true;
+            this.ba.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ba.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.ba.Location = new System.Drawing.Point(85, 153);
+            this.ba.Name = "ba";
+            this.ba.Size = new System.Drawing.Size(45, 45);
+            this.ba.TabIndex = 27;
+            this.ba.Text = "A";
+            this.ba.UseVisualStyleBackColor = true;
+            this.ba.Click += new System.EventHandler(this.Button_Click);
             // 
-            // button26
+            // bBackspace
             // 
-            this.button26.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button26.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button26.Location = new System.Drawing.Point(706, 63);
-            this.button26.Name = "button26";
-            this.button26.Size = new System.Drawing.Size(64, 96);
-            this.button26.TabIndex = 40;
-            this.button26.Text = "ENT";
-            this.button26.UseVisualStyleBackColor = true;
+            this.bBackspace.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bBackspace.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bBackspace.Location = new System.Drawing.Point(666, 51);
+            this.bBackspace.Name = "bBackspace";
+            this.bBackspace.Size = new System.Drawing.Size(95, 45);
+            this.bBackspace.TabIndex = 39;
+            this.bBackspace.Text = "←";
+            this.bBackspace.UseVisualStyleBackColor = true;
+            this.bBackspace.Click += new System.EventHandler(this.Button_Click);
             // 
-            // button27
+            // bEnter
             // 
-            this.button27.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button27.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button27.Location = new System.Drawing.Point(12, 165);
-            this.button27.Name = "button27";
-            this.button27.Size = new System.Drawing.Size(64, 45);
-            this.button27.TabIndex = 41;
-            this.button27.UseVisualStyleBackColor = true;
+            this.bEnter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bEnter.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bEnter.Location = new System.Drawing.Point(697, 102);
+            this.bEnter.Name = "bEnter";
+            this.bEnter.Size = new System.Drawing.Size(64, 96);
+            this.bEnter.TabIndex = 40;
+            this.bEnter.Text = "ENT\r\n↵";
+            this.bEnter.UseVisualStyleBackColor = true;
+            this.bEnter.Click += new System.EventHandler(this.Button_Click);
+            // 
+            // bNoFunc2
+            // 
+            this.bNoFunc2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bNoFunc2.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bNoFunc2.Location = new System.Drawing.Point(3, 204);
+            this.bNoFunc2.Name = "bNoFunc2";
+            this.bNoFunc2.Size = new System.Drawing.Size(59, 45);
+            this.bNoFunc2.TabIndex = 41;
+            this.bNoFunc2.UseVisualStyleBackColor = true;
+            this.bNoFunc2.Click += new System.EventHandler(this.Button_Click);
+            // 
+            // bPlus
+            // 
+            this.bPlus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bPlus.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bPlus.Location = new System.Drawing.Point(629, 204);
+            this.bPlus.Name = "bPlus";
+            this.bPlus.Size = new System.Drawing.Size(45, 45);
+            this.bPlus.TabIndex = 53;
+            this.bPlus.Text = "+";
+            this.bPlus.UseVisualStyleBackColor = true;
+            this.bPlus.Click += new System.EventHandler(this.Button_Click);
+            // 
+            // bMinus
+            // 
+            this.bMinus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bMinus.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bMinus.Location = new System.Drawing.Point(578, 204);
+            this.bMinus.Name = "bMinus";
+            this.bMinus.Size = new System.Drawing.Size(45, 45);
+            this.bMinus.TabIndex = 52;
+            this.bMinus.Text = "-";
+            this.bMinus.UseVisualStyleBackColor = true;
+            this.bMinus.Click += new System.EventHandler(this.Button_Click);
+            // 
+            // bPont
+            // 
+            this.bPont.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bPont.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bPont.Location = new System.Drawing.Point(527, 204);
+            this.bPont.Name = "bPont";
+            this.bPont.Size = new System.Drawing.Size(45, 45);
+            this.bPont.TabIndex = 51;
+            this.bPont.Text = ".";
+            this.bPont.UseVisualStyleBackColor = true;
+            this.bPont.Click += new System.EventHandler(this.Button_Click);
+            // 
+            // bVesszo
+            // 
+            this.bVesszo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bVesszo.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bVesszo.Location = new System.Drawing.Point(476, 204);
+            this.bVesszo.Name = "bVesszo";
+            this.bVesszo.Size = new System.Drawing.Size(45, 45);
+            this.bVesszo.TabIndex = 50;
+            this.bVesszo.Text = ",";
+            this.bVesszo.UseVisualStyleBackColor = true;
+            this.bVesszo.Click += new System.EventHandler(this.Button_Click);
+            // 
+            // bm
+            // 
+            this.bm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bm.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bm.Location = new System.Drawing.Point(425, 204);
+            this.bm.Name = "bm";
+            this.bm.Size = new System.Drawing.Size(45, 45);
+            this.bm.TabIndex = 49;
+            this.bm.Text = "M";
+            this.bm.UseVisualStyleBackColor = true;
+            this.bm.Click += new System.EventHandler(this.Button_Click);
+            // 
+            // bn
+            // 
+            this.bn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bn.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bn.Location = new System.Drawing.Point(374, 204);
+            this.bn.Name = "bn";
+            this.bn.Size = new System.Drawing.Size(45, 45);
+            this.bn.TabIndex = 48;
+            this.bn.Text = "N";
+            this.bn.UseVisualStyleBackColor = true;
+            this.bn.Click += new System.EventHandler(this.Button_Click);
+            // 
+            // bb
+            // 
+            this.bb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bb.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bb.Location = new System.Drawing.Point(323, 204);
+            this.bb.Name = "bb";
+            this.bb.Size = new System.Drawing.Size(45, 45);
+            this.bb.TabIndex = 47;
+            this.bb.Text = "B";
+            this.bb.UseVisualStyleBackColor = true;
+            this.bb.Click += new System.EventHandler(this.Button_Click);
+            // 
+            // bv
+            // 
+            this.bv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bv.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bv.Location = new System.Drawing.Point(272, 204);
+            this.bv.Name = "bv";
+            this.bv.Size = new System.Drawing.Size(45, 45);
+            this.bv.TabIndex = 46;
+            this.bv.Text = "V";
+            this.bv.UseVisualStyleBackColor = true;
+            this.bv.Click += new System.EventHandler(this.Button_Click);
+            // 
+            // bc
+            // 
+            this.bc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bc.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bc.Location = new System.Drawing.Point(221, 204);
+            this.bc.Name = "bc";
+            this.bc.Size = new System.Drawing.Size(45, 45);
+            this.bc.TabIndex = 45;
+            this.bc.Text = "C";
+            this.bc.UseVisualStyleBackColor = true;
+            this.bc.Click += new System.EventHandler(this.Button_Click);
+            // 
+            // bx
+            // 
+            this.bx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bx.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bx.Location = new System.Drawing.Point(170, 204);
+            this.bx.Name = "bx";
+            this.bx.Size = new System.Drawing.Size(45, 45);
+            this.bx.TabIndex = 44;
+            this.bx.Text = "X";
+            this.bx.UseVisualStyleBackColor = true;
+            this.bx.Click += new System.EventHandler(this.Button_Click);
+            // 
+            // by
+            // 
+            this.by.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.by.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.by.Location = new System.Drawing.Point(119, 204);
+            this.by.Name = "by";
+            this.by.Size = new System.Drawing.Size(45, 45);
+            this.by.TabIndex = 43;
+            this.by.Text = "Y";
+            this.by.UseVisualStyleBackColor = true;
+            this.by.Click += new System.EventHandler(this.Button_Click);
+            // 
+            // bí
+            // 
+            this.bí.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bí.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bí.Location = new System.Drawing.Point(68, 204);
+            this.bí.Name = "bí";
+            this.bí.Size = new System.Drawing.Size(45, 45);
+            this.bí.TabIndex = 42;
+            this.bí.Text = "Í";
+            this.bí.UseVisualStyleBackColor = true;
+            this.bí.Click += new System.EventHandler(this.Button_Click);
+            // 
+            // bFelkialt
+            // 
+            this.bFelkialt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bFelkialt.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bFelkialt.Location = new System.Drawing.Point(680, 204);
+            this.bFelkialt.Name = "bFelkialt";
+            this.bFelkialt.Size = new System.Drawing.Size(81, 45);
+            this.bFelkialt.TabIndex = 54;
+            this.bFelkialt.Text = "!";
+            this.bFelkialt.UseVisualStyleBackColor = true;
+            this.bFelkialt.Click += new System.EventHandler(this.Button_Click);
+            // 
+            // bSpace
+            // 
+            this.bSpace.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bSpace.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bSpace.Location = new System.Drawing.Point(3, 255);
+            this.bSpace.Name = "bSpace";
+            this.bSpace.Size = new System.Drawing.Size(758, 45);
+            this.bSpace.TabIndex = 55;
+            this.bSpace.Text = "SPACE";
+            this.bSpace.UseVisualStyleBackColor = true;
+            this.bSpace.Click += new System.EventHandler(this.Button_Click);
+            // 
+            // tbMegjegyzes
+            // 
+            this.tbMegjegyzes.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tbMegjegyzes.Font = new System.Drawing.Font("Franklin Gothic Heavy", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.tbMegjegyzes.Location = new System.Drawing.Point(-1, 0);
+            this.tbMegjegyzes.Multiline = true;
+            this.tbMegjegyzes.Name = "tbMegjegyzes";
+            this.tbMegjegyzes.Size = new System.Drawing.Size(711, 45);
+            this.tbMegjegyzes.TabIndex = 60;
+            // 
+            // bKilep
+            // 
+            this.bKilep.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bKilep.BackColor = System.Drawing.Color.Red;
+            this.bKilep.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bKilep.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bKilep.Location = new System.Drawing.Point(716, 0);
+            this.bKilep.Name = "bKilep";
+            this.bKilep.Size = new System.Drawing.Size(45, 45);
+            this.bKilep.TabIndex = 61;
+            this.bKilep.Text = "X";
+            this.bKilep.UseVisualStyleBackColor = false;
+            this.bKilep.Click += new System.EventHandler(this.bKilep_Click);
             // 
             // bill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(772, 320);
-            this.Controls.Add(this.button27);
-            this.Controls.Add(this.button26);
-            this.Controls.Add(this.button25);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button14);
-            this.Controls.Add(this.button15);
-            this.Controls.Add(this.button16);
-            this.Controls.Add(this.button17);
-            this.Controls.Add(this.button18);
-            this.Controls.Add(this.button19);
-            this.Controls.Add(this.button20);
-            this.Controls.Add(this.button21);
-            this.Controls.Add(this.button22);
-            this.Controls.Add(this.button23);
-            this.Controls.Add(this.button24);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button9);
-            this.Controls.Add(this.button10);
-            this.Controls.Add(this.button11);
-            this.Controls.Add(this.button12);
-            this.Controls.Add(this.button13);
+            this.ClientSize = new System.Drawing.Size(767, 308);
+            this.Controls.Add(this.bKilep);
+            this.Controls.Add(this.tbMegjegyzes);
+            this.Controls.Add(this.bSpace);
+            this.Controls.Add(this.bFelkialt);
+            this.Controls.Add(this.bPlus);
+            this.Controls.Add(this.bMinus);
+            this.Controls.Add(this.bPont);
+            this.Controls.Add(this.bVesszo);
+            this.Controls.Add(this.bm);
+            this.Controls.Add(this.bn);
+            this.Controls.Add(this.bb);
+            this.Controls.Add(this.bv);
+            this.Controls.Add(this.bc);
+            this.Controls.Add(this.bx);
+            this.Controls.Add(this.by);
+            this.Controls.Add(this.bí);
+            this.Controls.Add(this.bNoFunc2);
+            this.Controls.Add(this.bEnter);
+            this.Controls.Add(this.bBackspace);
+            this.Controls.Add(this.bű);
+            this.Controls.Add(this.bá);
+            this.Controls.Add(this.bé);
+            this.Controls.Add(this.bl);
+            this.Controls.Add(this.bk);
+            this.Controls.Add(this.bj);
+            this.Controls.Add(this.bh);
+            this.Controls.Add(this.bg);
+            this.Controls.Add(this.bf);
+            this.Controls.Add(this.bd);
+            this.Controls.Add(this.bs);
+            this.Controls.Add(this.ba);
+            this.Controls.Add(this.bú);
+            this.Controls.Add(this.bő);
+            this.Controls.Add(this.bp);
+            this.Controls.Add(this.bo);
+            this.Controls.Add(this.bi);
+            this.Controls.Add(this.bu);
+            this.Controls.Add(this.bz);
+            this.Controls.Add(this.bt);
+            this.Controls.Add(this.br);
+            this.Controls.Add(this.be);
             this.Controls.Add(this.bw);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.bq);
+            this.Controls.Add(this.bNoFunc1);
             this.Controls.Add(this.bNoFunc0);
             this.Controls.Add(this.bó);
             this.Controls.Add(this.bü);
@@ -584,7 +848,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "bill";
             this.Text = "bill";
+            this.TopMost = true;
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -604,33 +870,49 @@
         private System.Windows.Forms.Button bü;
         private System.Windows.Forms.Button bó;
         private System.Windows.Forms.Button bNoFunc0;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button bNoFunc1;
+        private System.Windows.Forms.Button bú;
+        private System.Windows.Forms.Button bő;
+        private System.Windows.Forms.Button bp;
+        private System.Windows.Forms.Button bo;
+        private System.Windows.Forms.Button bi;
+        private System.Windows.Forms.Button bu;
+        private System.Windows.Forms.Button bz;
+        private System.Windows.Forms.Button bt;
+        private System.Windows.Forms.Button br;
+        private System.Windows.Forms.Button be;
         private System.Windows.Forms.Button bw;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.Button button19;
-        private System.Windows.Forms.Button button20;
-        private System.Windows.Forms.Button button21;
-        private System.Windows.Forms.Button button22;
-        private System.Windows.Forms.Button button23;
-        private System.Windows.Forms.Button button24;
-        private System.Windows.Forms.Button button25;
-        private System.Windows.Forms.Button button26;
-        private System.Windows.Forms.Button button27;
+        private System.Windows.Forms.Button bq;
+        private System.Windows.Forms.Button bű;
+        private System.Windows.Forms.Button bá;
+        private System.Windows.Forms.Button bé;
+        private System.Windows.Forms.Button bl;
+        private System.Windows.Forms.Button bk;
+        private System.Windows.Forms.Button bj;
+        private System.Windows.Forms.Button bh;
+        private System.Windows.Forms.Button bg;
+        private System.Windows.Forms.Button bf;
+        private System.Windows.Forms.Button bd;
+        private System.Windows.Forms.Button bs;
+        private System.Windows.Forms.Button ba;
+        private System.Windows.Forms.Button bBackspace;
+        private System.Windows.Forms.Button bEnter;
+        private System.Windows.Forms.Button bNoFunc2;
+        private System.Windows.Forms.Button bPlus;
+        private System.Windows.Forms.Button bMinus;
+        private System.Windows.Forms.Button bPont;
+        private System.Windows.Forms.Button bVesszo;
+        private System.Windows.Forms.Button bm;
+        private System.Windows.Forms.Button bn;
+        private System.Windows.Forms.Button bb;
+        private System.Windows.Forms.Button bv;
+        private System.Windows.Forms.Button bc;
+        private System.Windows.Forms.Button bx;
+        private System.Windows.Forms.Button by;
+        private System.Windows.Forms.Button bí;
+        private System.Windows.Forms.Button bFelkialt;
+        private System.Windows.Forms.Button bSpace;
+        private System.Windows.Forms.TextBox tbMegjegyzes;
+        private System.Windows.Forms.Button bKilep;
     }
 }
