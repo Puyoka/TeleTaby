@@ -45,10 +45,8 @@ namespace testDesign
             if (comboBoxFelhaszn.Text == "1")
             {
                 this.Hide();
-                //UI3 ui = new UI3();
-                //ui.Show();
-                bill ui = new bill();
-                ui.Show();
+                UI3 ui = new UI3();
+                ui.Show();                
             }
 
             errorProvider1.Clear();
@@ -56,7 +54,7 @@ namespace testDesign
             {
                 felhaszNev = comboBoxFelhaszn.Text;
                 string megadottJelszo = textBoxJelszo.Text;
-                int helyesJelszo;
+                string helyesJelszo = megadottJelszo + "sad";
 
 
                 using (var teletabyDB = new DataContext(connectionString))
@@ -66,10 +64,12 @@ namespace testDesign
                     var result = from t in table
                                  where t.név == felhaszNev
                                  select new { t.ID, t.név, t.jelszó, t.UI,  };
-
-                    helyesJelszo = Convert.ToInt32(result.First().jelszó);
-                    UI_ID = result.First().UI;
-                    felhaszID = result.First().ID;
+                    if (result.FirstOrDefault() != null)
+                    {
+                        helyesJelszo = result.FirstOrDefault().jelszó;
+                        UI_ID = result.FirstOrDefault().UI;
+                        felhaszID = result.FirstOrDefault().ID; 
+                    }                    
                 }
 
 
@@ -79,13 +79,18 @@ namespace testDesign
                     {
                         case 1:
                             this.Hide();
-                            UI1 ui = new UI1();
-                            ui.Show();
+                            UI1 ui1 = new UI1();
+                            ui1.Show();
                             break;
                         case 2:
                             this.Hide();
-                            UI2 ui_ = new UI2();
-                            ui_.Show();
+                            UI2 ui2 = new UI2();
+                            ui2.Show();
+                            break;
+                        case 3:
+                            this.Hide();
+                            UI3 ui3 = new UI3();
+                            ui3.Show();
                             break;
                     }
                 }

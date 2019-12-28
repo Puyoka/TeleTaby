@@ -141,7 +141,7 @@ namespace testDesign
         #endregion
 
         
-        BindingList<LekérdezésHelper> rendelesek = new BindingList<LekérdezésHelper>();        
+        BindingList<Lekérdezés> rendelesek = new BindingList<Lekérdezés>();        
         private void lekerdezRendelesek(bool b)
         {
             rendelesek.Clear();
@@ -156,9 +156,9 @@ namespace testDesign
                               on t1.termékID equals t2.ID
                               join t3 in table3 on t1.rendelésID equals t3.ID
                               where belepes.felhaszID == t2.felhaszID && t1.státusz == !b
-                              select new LekérdezésHelper(t1.rendelésID, t3.idő, t2.név, t1.megjegyzés)).ToList<LekérdezésHelper>();
+                              select new Lekérdezés(t1.rendelésID, t3.idő, t2.név, t1.megjegyzés)).ToList<Lekérdezés>();
 
-                rendelesek = result.ToBindingList<LekérdezésHelper>();
+                rendelesek = result.ToBindingList<Lekérdezés>();
                 dataGridViewRendelesek.DataSource = rendelesek;
             }
             rowColoring(dataGridViewRendelesek);

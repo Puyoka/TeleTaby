@@ -60,13 +60,13 @@
       <DependentUpon>bill.cs</DependentUpon>
     </Compile>
     <Compile Include="Felhasználó.cs" />
-    <Compile Include="LekérdezésHelper.cs" />
+    <Compile Include="Lekérdezés.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rendelés.cs" />
     <Compile Include="Rendelés_tételek.cs" />
+    <Compile Include="Statisztika.cs" />
     <Compile Include="Termék.cs" />
-    <Compile Include="TermékTest.cs" />
     <Compile Include="UI1.cs">
       <SubType>Form</SubType>
     </Compile>

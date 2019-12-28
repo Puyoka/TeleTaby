@@ -65,6 +65,26 @@
             this.rbUj2 = new System.Windows.Forms.RadioButton();
             this.rbSzerk2 = new System.Windows.Forms.RadioButton();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.bBezár = new System.Windows.Forms.Button();
+            this.pStat = new System.Windows.Forms.Panel();
+            this.gb2 = new System.Windows.Forms.GroupBox();
+            this.rbFoly = new System.Windows.Forms.RadioButton();
+            this.rbKesz = new System.Windows.Forms.RadioButton();
+            this.gb1 = new System.Windows.Forms.GroupBox();
+            this.rbRend = new System.Windows.Forms.RadioButton();
+            this.rbTerm = new System.Windows.Forms.RadioButton();
+            this.lBevetel = new System.Windows.Forms.Label();
+            this.lOsszesTetel = new System.Windows.Forms.Label();
+            this.lOsszesRendeles = new System.Windows.Forms.Label();
+            this.bFrissit = new System.Windows.Forms.Button();
+            this.dgvStat = new System.Windows.Forms.DataGridView();
+            this.bLeft = new System.Windows.Forms.Button();
+            this.bRight = new System.Windows.Forms.Button();
+            this.lTest = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.labelDatum = new System.Windows.Forms.Label();
+            this.tIdo = new System.Windows.Forms.Timer(this.components);
+            this.lIdo = new System.Windows.Forms.Label();
             this.pTermek.SuspendLayout();
             this.gbMezokTermek.SuspendLayout();
             this.gbMuvTermek.SuspendLayout();
@@ -73,6 +93,11 @@
             this.gbMezokFelhasz.SuspendLayout();
             this.gbMuvFelhasz.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            this.pStat.SuspendLayout();
+            this.gb2.SuspendLayout();
+            this.gb1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStat)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbTabla
@@ -83,7 +108,7 @@
             "Felhasználók",
             "Termékek",
             "Rendelések"});
-            this.cbTabla.Location = new System.Drawing.Point(12, 12);
+            this.cbTabla.Location = new System.Drawing.Point(11, 12);
             this.cbTabla.Name = "cbTabla";
             this.cbTabla.Size = new System.Drawing.Size(121, 21);
             this.cbTabla.TabIndex = 0;
@@ -99,15 +124,16 @@
             this.pTermek.Controls.Add(this.gbMezokTermek);
             this.pTermek.Controls.Add(this.gbMuvTermek);
             this.pTermek.Controls.Add(this.tv);
-            this.pTermek.Location = new System.Drawing.Point(2, 39);
+            this.pTermek.Location = new System.Drawing.Point(2, 44);
             this.pTermek.Name = "pTermek";
-            this.pTermek.Size = new System.Drawing.Size(467, 520);
+            this.pTermek.Size = new System.Drawing.Size(581, 462);
             this.pTermek.TabIndex = 1;
             this.pTermek.Visible = false;
             // 
             // bVegrehajtTermek
             // 
-            this.bVegrehajtTermek.Location = new System.Drawing.Point(311, 411);
+            this.bVegrehajtTermek.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bVegrehajtTermek.Location = new System.Drawing.Point(267, 412);
             this.bVegrehajtTermek.Name = "bVegrehajtTermek";
             this.bVegrehajtTermek.Size = new System.Drawing.Size(305, 41);
             this.bVegrehajtTermek.TabIndex = 12;
@@ -117,6 +143,8 @@
             // 
             // gbMezokTermek
             // 
+            this.gbMezokTermek.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gbMezokTermek.Controls.Add(this.label5);
             this.gbMezokTermek.Controls.Add(this.label2);
             this.gbMezokTermek.Controls.Add(this.label4);
@@ -127,19 +155,20 @@
             this.gbMezokTermek.Controls.Add(this.cbGyujtonev);
             this.gbMezokTermek.Controls.Add(this.tbNev);
             this.gbMezokTermek.Controls.Add(this.tbAr);
-            this.gbMezokTermek.Location = new System.Drawing.Point(311, 73);
+            this.gbMezokTermek.Location = new System.Drawing.Point(267, 73);
             this.gbMezokTermek.Name = "gbMezokTermek";
-            this.gbMezokTermek.Size = new System.Drawing.Size(305, 332);
+            this.gbMezokTermek.Size = new System.Drawing.Size(305, 333);
             this.gbMezokTermek.TabIndex = 11;
             this.gbMezokTermek.TabStop = false;
             this.gbMezokTermek.Text = "Hozzáadás";
             // 
             // label5
             // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Franklin Gothic Medium", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label5.Location = new System.Drawing.Point(6, 148);
+            this.label5.Location = new System.Drawing.Point(6, 151);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(124, 24);
             this.label5.TabIndex = 16;
@@ -147,10 +176,11 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Franklin Gothic Medium", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label2.Location = new System.Drawing.Point(6, 268);
+            this.label2.Location = new System.Drawing.Point(6, 271);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(78, 24);
             this.label2.TabIndex = 12;
@@ -158,10 +188,11 @@
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Franklin Gothic Medium", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label4.Location = new System.Drawing.Point(6, 26);
+            this.label4.Location = new System.Drawing.Point(6, 29);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(89, 24);
             this.label4.TabIndex = 14;
@@ -169,10 +200,11 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Franklin Gothic Medium", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label3.Location = new System.Drawing.Point(6, 208);
+            this.label3.Location = new System.Drawing.Point(6, 211);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(27, 24);
             this.label3.TabIndex = 13;
@@ -180,26 +212,29 @@
             // 
             // tbMertekegyseg
             // 
-            this.tbMertekegyseg.Location = new System.Drawing.Point(10, 175);
+            this.tbMertekegyseg.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbMertekegyseg.Location = new System.Drawing.Point(10, 178);
             this.tbMertekegyseg.Name = "tbMertekegyseg";
             this.tbMertekegyseg.Size = new System.Drawing.Size(273, 20);
             this.tbMertekegyseg.TabIndex = 9;
             // 
             // cbCsopNev
             // 
+            this.cbCsopNev.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cbCsopNev.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCsopNev.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cbCsopNev.Location = new System.Drawing.Point(10, 295);
+            this.cbCsopNev.Location = new System.Drawing.Point(10, 298);
             this.cbCsopNev.Name = "cbCsopNev";
             this.cbCsopNev.Size = new System.Drawing.Size(273, 21);
             this.cbCsopNev.TabIndex = 11;
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Franklin Gothic Medium", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label1.Location = new System.Drawing.Point(6, 87);
+            this.label1.Location = new System.Drawing.Point(6, 90);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 24);
             this.label1.TabIndex = 11;
@@ -207,22 +242,25 @@
             // 
             // cbGyujtonev
             // 
+            this.cbGyujtonev.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cbGyujtonev.FormattingEnabled = true;
-            this.cbGyujtonev.Location = new System.Drawing.Point(10, 53);
+            this.cbGyujtonev.Location = new System.Drawing.Point(10, 56);
             this.cbGyujtonev.Name = "cbGyujtonev";
             this.cbGyujtonev.Size = new System.Drawing.Size(273, 21);
             this.cbGyujtonev.TabIndex = 7;
             // 
             // tbNev
             // 
-            this.tbNev.Location = new System.Drawing.Point(10, 114);
+            this.tbNev.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbNev.Location = new System.Drawing.Point(10, 117);
             this.tbNev.Name = "tbNev";
             this.tbNev.Size = new System.Drawing.Size(273, 20);
             this.tbNev.TabIndex = 8;
             // 
             // tbAr
             // 
-            this.tbAr.Location = new System.Drawing.Point(10, 235);
+            this.tbAr.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbAr.Location = new System.Drawing.Point(10, 238);
             this.tbAr.Name = "tbAr";
             this.tbAr.Size = new System.Drawing.Size(273, 20);
             this.tbAr.TabIndex = 10;
@@ -230,10 +268,11 @@
             // 
             // gbMuvTermek
             // 
+            this.gbMuvTermek.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.gbMuvTermek.Controls.Add(this.rbTorol1);
             this.gbMuvTermek.Controls.Add(this.rbUj1);
             this.gbMuvTermek.Controls.Add(this.rbSzerk1);
-            this.gbMuvTermek.Location = new System.Drawing.Point(311, 3);
+            this.gbMuvTermek.Location = new System.Drawing.Point(267, 3);
             this.gbMuvTermek.Name = "gbMuvTermek";
             this.gbMuvTermek.Size = new System.Drawing.Size(305, 64);
             this.gbMuvTermek.TabIndex = 6;
@@ -277,9 +316,12 @@
             // 
             // tv
             // 
+            this.tv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tv.Location = new System.Drawing.Point(9, 3);
             this.tv.Name = "tv";
-            this.tv.Size = new System.Drawing.Size(296, 449);
+            this.tv.Size = new System.Drawing.Size(252, 450);
             this.tv.TabIndex = 2;
             this.tv.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.Tv_AfterSelect);
             // 
@@ -293,9 +335,9 @@
             this.pFelhasz.Controls.Add(this.bVegrehajtFelhasz);
             this.pFelhasz.Controls.Add(this.gbMezokFelhasz);
             this.pFelhasz.Controls.Add(this.gbMuvFelhasz);
-            this.pFelhasz.Location = new System.Drawing.Point(2, 39);
+            this.pFelhasz.Location = new System.Drawing.Point(2, 59);
             this.pFelhasz.Name = "pFelhasz";
-            this.pFelhasz.Size = new System.Drawing.Size(467, 520);
+            this.pFelhasz.Size = new System.Drawing.Size(581, 462);
             this.pFelhasz.TabIndex = 13;
             this.pFelhasz.Visible = false;
             // 
@@ -325,13 +367,14 @@
             this.dgvFelhasznalok.RowTemplate.Height = 36;
             this.dgvFelhasznalok.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvFelhasznalok.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvFelhasznalok.Size = new System.Drawing.Size(455, 168);
+            this.dgvFelhasznalok.Size = new System.Drawing.Size(569, 166);
             this.dgvFelhasznalok.TabIndex = 13;
             this.dgvFelhasznalok.SelectionChanged += new System.EventHandler(this.DgvFelhasznalok_SelectionChanged);
             // 
             // bVegrehajtFelhasz
             // 
-            this.bVegrehajtFelhasz.Location = new System.Drawing.Point(323, 415);
+            this.bVegrehajtFelhasz.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bVegrehajtFelhasz.Location = new System.Drawing.Point(442, 413);
             this.bVegrehajtFelhasz.Name = "bVegrehajtFelhasz";
             this.bVegrehajtFelhasz.Size = new System.Drawing.Size(132, 41);
             this.bVegrehajtFelhasz.TabIndex = 12;
@@ -341,21 +384,26 @@
             // 
             // gbMezokFelhasz
             // 
+            this.gbMezokFelhasz.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gbMezokFelhasz.Controls.Add(this.tbUI);
             this.gbMezokFelhasz.Controls.Add(this.tbFelhsznev);
             this.gbMezokFelhasz.Controls.Add(this.label6);
             this.gbMezokFelhasz.Controls.Add(this.label8);
             this.gbMezokFelhasz.Controls.Add(this.label10);
             this.gbMezokFelhasz.Controls.Add(this.tbJelszo);
-            this.gbMezokFelhasz.Location = new System.Drawing.Point(3, 251);
+            this.gbMezokFelhasz.Location = new System.Drawing.Point(3, 242);
             this.gbMezokFelhasz.Name = "gbMezokFelhasz";
-            this.gbMezokFelhasz.Size = new System.Drawing.Size(302, 214);
+            this.gbMezokFelhasz.Size = new System.Drawing.Size(433, 214);
             this.gbMezokFelhasz.TabIndex = 11;
             this.gbMezokFelhasz.TabStop = false;
             this.gbMezokFelhasz.Text = "Hozzáadás";
             // 
             // tbUI
             // 
+            this.tbUI.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbUI.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.tbUI.FormattingEnabled = true;
             this.tbUI.Items.AddRange(new object[] {
@@ -364,18 +412,24 @@
             "Admin"});
             this.tbUI.Location = new System.Drawing.Point(10, 175);
             this.tbUI.Name = "tbUI";
-            this.tbUI.Size = new System.Drawing.Size(273, 21);
+            this.tbUI.Size = new System.Drawing.Size(392, 21);
             this.tbUI.TabIndex = 19;
             // 
             // tbFelhsznev
             // 
+            this.tbFelhsznev.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbFelhsznev.Location = new System.Drawing.Point(10, 50);
             this.tbFelhsznev.Name = "tbFelhsznev";
-            this.tbFelhsznev.Size = new System.Drawing.Size(273, 20);
+            this.tbFelhsznev.Size = new System.Drawing.Size(392, 20);
             this.tbFelhsznev.TabIndex = 17;
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Franklin Gothic Medium", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label6.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
@@ -387,6 +441,9 @@
             // 
             // label8
             // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Franklin Gothic Medium", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label8.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
@@ -398,6 +455,9 @@
             // 
             // label10
             // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Franklin Gothic Medium", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label10.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
@@ -409,27 +469,33 @@
             // 
             // tbJelszo
             // 
+            this.tbJelszo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbJelszo.Location = new System.Drawing.Point(10, 114);
             this.tbJelszo.Name = "tbJelszo";
-            this.tbJelszo.Size = new System.Drawing.Size(273, 20);
+            this.tbJelszo.Size = new System.Drawing.Size(392, 20);
             this.tbJelszo.TabIndex = 18;
             // 
             // gbMuvFelhasz
             // 
+            this.gbMuvFelhasz.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gbMuvFelhasz.Controls.Add(this.rbTorol2);
             this.gbMuvFelhasz.Controls.Add(this.rbUj2);
             this.gbMuvFelhasz.Controls.Add(this.rbSzerk2);
             this.gbMuvFelhasz.Location = new System.Drawing.Point(3, 3);
             this.gbMuvFelhasz.Name = "gbMuvFelhasz";
-            this.gbMuvFelhasz.Size = new System.Drawing.Size(455, 64);
+            this.gbMuvFelhasz.Size = new System.Drawing.Size(569, 64);
             this.gbMuvFelhasz.TabIndex = 6;
             this.gbMuvFelhasz.TabStop = false;
             this.gbMuvFelhasz.Text = "Műveletek";
             // 
             // rbTorol2
             // 
+            this.rbTorol2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rbTorol2.AutoSize = true;
-            this.rbTorol2.Location = new System.Drawing.Point(354, 28);
+            this.rbTorol2.Location = new System.Drawing.Point(499, 28);
             this.rbTorol2.Name = "rbTorol2";
             this.rbTorol2.Size = new System.Drawing.Size(54, 17);
             this.rbTorol2.TabIndex = 5;
@@ -452,8 +518,9 @@
             // 
             // rbSzerk2
             // 
+            this.rbSzerk2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.rbSzerk2.AutoSize = true;
-            this.rbSzerk2.Location = new System.Drawing.Point(192, 28);
+            this.rbSzerk2.Location = new System.Drawing.Point(256, 28);
             this.rbSzerk2.Name = "rbSzerk2";
             this.rbSzerk2.Size = new System.Drawing.Size(82, 17);
             this.rbSzerk2.TabIndex = 4;
@@ -465,14 +532,246 @@
             // 
             this.errorProvider.ContainerControl = this;
             // 
+            // bBezár
+            // 
+            this.bBezár.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bBezár.Location = new System.Drawing.Point(508, 8);
+            this.bBezár.Name = "bBezár";
+            this.bBezár.Size = new System.Drawing.Size(75, 23);
+            this.bBezár.TabIndex = 14;
+            this.bBezár.Text = "Bezár";
+            this.bBezár.UseVisualStyleBackColor = true;
+            this.bBezár.Click += new System.EventHandler(this.bBezár_Click);
+            // 
+            // pStat
+            // 
+            this.pStat.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pStat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pStat.Controls.Add(this.groupBox1);
+            this.pStat.Controls.Add(this.gb2);
+            this.pStat.Controls.Add(this.gb1);
+            this.pStat.Controls.Add(this.bFrissit);
+            this.pStat.Controls.Add(this.dgvStat);
+            this.pStat.Controls.Add(this.bLeft);
+            this.pStat.Controls.Add(this.bRight);
+            this.pStat.Controls.Add(this.lTest);
+            this.pStat.Location = new System.Drawing.Point(2, 50);
+            this.pStat.Name = "pStat";
+            this.pStat.Size = new System.Drawing.Size(581, 462);
+            this.pStat.TabIndex = 15;
+            this.pStat.Visible = false;
+            // 
+            // gb2
+            // 
+            this.gb2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.gb2.Controls.Add(this.rbFoly);
+            this.gb2.Controls.Add(this.rbKesz);
+            this.gb2.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.gb2.Location = new System.Drawing.Point(373, 367);
+            this.gb2.Name = "gb2";
+            this.gb2.Size = new System.Drawing.Size(120, 81);
+            this.gb2.TabIndex = 5;
+            this.gb2.TabStop = false;
+            this.gb2.Text = "Kész/Folyamatban";
+            // 
+            // rbFoly
+            // 
+            this.rbFoly.AutoSize = true;
+            this.rbFoly.Location = new System.Drawing.Point(7, 48);
+            this.rbFoly.Name = "rbFoly";
+            this.rbFoly.Size = new System.Drawing.Size(110, 21);
+            this.rbFoly.TabIndex = 3;
+            this.rbFoly.Text = "Folyamatban";
+            this.rbFoly.UseVisualStyleBackColor = true;
+            // 
+            // rbKesz
+            // 
+            this.rbKesz.AutoSize = true;
+            this.rbKesz.Checked = true;
+            this.rbKesz.Location = new System.Drawing.Point(7, 21);
+            this.rbKesz.Name = "rbKesz";
+            this.rbKesz.Size = new System.Drawing.Size(60, 21);
+            this.rbKesz.TabIndex = 2;
+            this.rbKesz.TabStop = true;
+            this.rbKesz.Text = "Kész";
+            this.rbKesz.UseVisualStyleBackColor = true;
+            // 
+            // gb1
+            // 
+            this.gb1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.gb1.Controls.Add(this.rbRend);
+            this.gb1.Controls.Add(this.rbTerm);
+            this.gb1.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.gb1.Location = new System.Drawing.Point(247, 367);
+            this.gb1.Name = "gb1";
+            this.gb1.Size = new System.Drawing.Size(120, 81);
+            this.gb1.TabIndex = 4;
+            this.gb1.TabStop = false;
+            this.gb1.Text = "Termék/Rendelés";
+            // 
+            // rbRend
+            // 
+            this.rbRend.AutoSize = true;
+            this.rbRend.Location = new System.Drawing.Point(6, 48);
+            this.rbRend.Name = "rbRend";
+            this.rbRend.Size = new System.Drawing.Size(88, 21);
+            this.rbRend.TabIndex = 1;
+            this.rbRend.Text = "Rendelés";
+            this.rbRend.UseVisualStyleBackColor = true;
+            // 
+            // rbTerm
+            // 
+            this.rbTerm.AutoSize = true;
+            this.rbTerm.Checked = true;
+            this.rbTerm.Location = new System.Drawing.Point(6, 21);
+            this.rbTerm.Name = "rbTerm";
+            this.rbTerm.Size = new System.Drawing.Size(74, 21);
+            this.rbTerm.TabIndex = 0;
+            this.rbTerm.TabStop = true;
+            this.rbTerm.Text = "Termék";
+            this.rbTerm.UseVisualStyleBackColor = true;
+            // 
+            // lBevetel
+            // 
+            this.lBevetel.AutoSize = true;
+            this.lBevetel.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lBevetel.Location = new System.Drawing.Point(6, 68);
+            this.lBevetel.Name = "lBevetel";
+            this.lBevetel.Size = new System.Drawing.Size(60, 17);
+            this.lBevetel.TabIndex = 19;
+            this.lBevetel.Text = "Bevétel:";
+            // 
+            // lOsszesTetel
+            // 
+            this.lOsszesTetel.AutoSize = true;
+            this.lOsszesTetel.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lOsszesTetel.Location = new System.Drawing.Point(6, 44);
+            this.lOsszesTetel.Name = "lOsszesTetel";
+            this.lOsszesTetel.Size = new System.Drawing.Size(44, 17);
+            this.lOsszesTetel.TabIndex = 18;
+            this.lOsszesTetel.Text = "Tétel:";
+            // 
+            // lOsszesRendeles
+            // 
+            this.lOsszesRendeles.AutoSize = true;
+            this.lOsszesRendeles.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lOsszesRendeles.Location = new System.Drawing.Point(6, 21);
+            this.lOsszesRendeles.Name = "lOsszesRendeles";
+            this.lOsszesRendeles.Size = new System.Drawing.Size(78, 17);
+            this.lOsszesRendeles.TabIndex = 17;
+            this.lOsszesRendeles.Text = "Rendelés: ";
+            // 
+            // bFrissit
+            // 
+            this.bFrissit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bFrissit.Location = new System.Drawing.Point(499, 367);
+            this.bFrissit.Name = "bFrissit";
+            this.bFrissit.Size = new System.Drawing.Size(75, 23);
+            this.bFrissit.TabIndex = 3;
+            this.bFrissit.Text = "Frissítés";
+            this.bFrissit.UseVisualStyleBackColor = true;
+            this.bFrissit.Click += new System.EventHandler(this.bFrissit_Click);
+            // 
+            // dgvStat
+            // 
+            this.dgvStat.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvStat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStat.Location = new System.Drawing.Point(40, 3);
+            this.dgvStat.Name = "dgvStat";
+            this.dgvStat.Size = new System.Drawing.Size(497, 358);
+            this.dgvStat.TabIndex = 0;
+            // 
+            // bLeft
+            // 
+            this.bLeft.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.bLeft.Location = new System.Drawing.Point(-1, 3);
+            this.bLeft.Name = "bLeft";
+            this.bLeft.Size = new System.Drawing.Size(40, 358);
+            this.bLeft.TabIndex = 1;
+            this.bLeft.Text = "<";
+            this.bLeft.UseVisualStyleBackColor = true;
+            this.bLeft.Click += new System.EventHandler(this.bLeft_Click);
+            // 
+            // bRight
+            // 
+            this.bRight.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bRight.Location = new System.Drawing.Point(538, 3);
+            this.bRight.Name = "bRight";
+            this.bRight.Size = new System.Drawing.Size(40, 358);
+            this.bRight.TabIndex = 2;
+            this.bRight.Text = ">";
+            this.bRight.UseVisualStyleBackColor = true;
+            this.bRight.Click += new System.EventHandler(this.bRight_Click);
+            // 
+            // lTest
+            // 
+            this.lTest.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lTest.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lTest.Location = new System.Drawing.Point(-11, 363);
+            this.lTest.Name = "lTest";
+            this.lTest.Size = new System.Drawing.Size(598, 21);
+            this.lTest.TabIndex = 16;
+            this.lTest.Text = "1";
+            this.lTest.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.Controls.Add(this.lOsszesRendeles);
+            this.groupBox1.Controls.Add(this.lOsszesTetel);
+            this.groupBox1.Controls.Add(this.lBevetel);
+            this.groupBox1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.groupBox1.Location = new System.Drawing.Point(3, 363);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 91);
+            this.groupBox1.TabIndex = 20;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Eddigi adatok";
+            // 
+            // labelDatum
+            // 
+            this.labelDatum.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelDatum.Location = new System.Drawing.Point(139, 8);
+            this.labelDatum.Name = "labelDatum";
+            this.labelDatum.Size = new System.Drawing.Size(83, 33);
+            this.labelDatum.TabIndex = 16;
+            this.labelDatum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tIdo
+            // 
+            this.tIdo.Tick += new System.EventHandler(this.tIdo_Tick);
+            // 
+            // lIdo
+            // 
+            this.lIdo.AutoSize = true;
+            this.lIdo.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lIdo.Location = new System.Drawing.Point(209, 13);
+            this.lIdo.Name = "lIdo";
+            this.lIdo.Size = new System.Drawing.Size(57, 20);
+            this.lIdo.TabIndex = 17;
+            this.lIdo.Text = "00:00:00";
+            this.lIdo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // UI3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(470, 560);
-            this.Controls.Add(this.pFelhasz);
+            this.ClientSize = new System.Drawing.Size(586, 509);
             this.Controls.Add(this.pTermek);
+            this.Controls.Add(this.pFelhasz);
+            this.Controls.Add(this.lIdo);
+            this.Controls.Add(this.labelDatum);
+            this.Controls.Add(this.pStat);
+            this.Controls.Add(this.bBezár);
             this.Controls.Add(this.cbTabla);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "UI3";
             this.Text = "UI3";
             this.Load += new System.EventHandler(this.UI3_Load);
@@ -488,7 +787,16 @@
             this.gbMuvFelhasz.ResumeLayout(false);
             this.gbMuvFelhasz.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
+            this.pStat.ResumeLayout(false);
+            this.gb2.ResumeLayout(false);
+            this.gb2.PerformLayout();
+            this.gb1.ResumeLayout(false);
+            this.gb1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStat)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -528,5 +836,25 @@
         private System.Windows.Forms.DataGridView dgvFelhasznalok;
         private System.Windows.Forms.ComboBox tbUI;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.Button bBezár;
+        private System.Windows.Forms.Panel pStat;
+        private System.Windows.Forms.Button bRight;
+        private System.Windows.Forms.Button bLeft;
+        private System.Windows.Forms.DataGridView dgvStat;
+        private System.Windows.Forms.Button bFrissit;
+        private System.Windows.Forms.GroupBox gb2;
+        private System.Windows.Forms.RadioButton rbFoly;
+        private System.Windows.Forms.RadioButton rbKesz;
+        private System.Windows.Forms.GroupBox gb1;
+        private System.Windows.Forms.RadioButton rbRend;
+        private System.Windows.Forms.RadioButton rbTerm;
+        private System.Windows.Forms.Label lTest;
+        private System.Windows.Forms.Label lBevetel;
+        private System.Windows.Forms.Label lOsszesTetel;
+        private System.Windows.Forms.Label lOsszesRendeles;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label labelDatum;
+        private System.Windows.Forms.Timer tIdo;
+        private System.Windows.Forms.Label lIdo;
     }
 }

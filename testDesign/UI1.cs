@@ -27,7 +27,7 @@ namespace testDesign
         private void UI1_Load(object sender, EventArgs e)
         {
             CultureInfo ci = new CultureInfo("hu-HU");
-            labelDatum.Text = DateTime.Now.ToString("yyyy-MM-dd")+ Environment.NewLine + DateTime.Now.ToString("dddd", ci).ToUpper();
+            labelDatum.Text = DateTime.Now.ToString("yyyy-MM-dd") + Environment.NewLine + DateTime.Now.ToString("dddd", ci).ToUpper();
             tIdo.Enabled = true;
 
 

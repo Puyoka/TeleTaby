@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Linq;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,6 @@ namespace testDesign
 {
 
     //ha ki lett törölve a felhasználó amihez tartozik a termék, legyen piros
-    //lángos miért kék a kijelölés
     //0 val NEM kezdődhet jelszó mert egyszerűen leszarja a llétezését
 
 
@@ -23,12 +23,19 @@ namespace testDesign
         public UI3()
         {
             InitializeComponent();
+
+            CultureInfo ci = new CultureInfo("hu-HU");
+            labelDatum.Text = DateTime.Now.ToString("yyyy-MM-dd") + Environment.NewLine + DateTime.Now.ToString("dddd", ci).ToUpper();
+
+            tIdo.Enabled = true;
+
         }
 
         private void cbTabla_SelectedIndexChanged(object sender, EventArgs e)
         {
             pTermek.Visible = false;
             pFelhasz.Visible = false;
+            pStat.Visible = false;
 
             switch (cbTabla.SelectedIndex)
             {
@@ -45,10 +52,255 @@ namespace testDesign
                     CsopNevekLekerdezes();
                     TvFeltoltes();
                     break;
+                case 2:
+                    Méretez(599, 945);
+                    pStat.Visible = true;
+                    Leker();
+                    OsszegzoStat();
+                    break;
                 default:
                     break;
             }
         }
+
+        //---------
+
+        public int pageNum { get; set; }
+
+
+        private void Leker()
+        {
+            switch (pageNum)
+            {
+                case 1:
+                    using (var teletabyDB = new DataContext(belepes.connectionString))
+                    {
+                        var rendelesTetelT = teletabyDB.GetTable<Rendelés_tételek>();
+                        var termekT = teletabyDB.GetTable<Termék>();
+                        var rendelesT = teletabyDB.GetTable<Rendelés>();
+                        var felhaszT = teletabyDB.GetTable<Felhasználó>();
+
+                        bool b;
+                        if (rbKesz.Checked == true)
+                        {
+                            b = true;
+                        }
+                        else
+                        {
+                            b = false;
+                        }
+
+                        dynamic result;
+                        if (rbTerm.Checked == true)
+                        {
+                            result = from t1 in rendelesTetelT
+                                     join t3 in rendelesT on t1.rendelésID equals t3.ID
+                                     join t2 in termekT on t1.termékID equals t2.ID
+                                     join t4 in felhaszT on t3.felhasználóNév equals t4.név
+                                     where t1.státusz == b
+                                     select new { t3.idő, t3.ID, FelhaszNev = t4.név, TermekNev = t2.név, t2.ár };
+                        }
+                        else
+                        {
+                            result = (from t1 in rendelesTetelT
+                                      join t3 in rendelesT on t1.rendelésID equals t3.ID
+                                      join t4 in felhaszT on t3.felhasználóNév equals t4.név
+                                      where t1.státusz == b
+                                      select new { t3.idő, t3.ID, FelhaszNev = t4.név, t3.összeg }).Distinct();
+                        }
+                        dgvStat.DataSource = result;
+                    }
+                    break;
+                case 2:
+                    using (var teletabyDB = new DataContext(belepes.connectionString))
+                    {
+                        var rendelesTetelT = teletabyDB.GetTable<Rendelés_tételek>();
+                        var termekT = teletabyDB.GetTable<Termék>();
+                        var rendelesT = teletabyDB.GetTable<Rendelés>();
+                        var felhaszT = teletabyDB.GetTable<Felhasználó>();
+
+                        var iq = (from t1 in rendelesTetelT
+                                  join t2 in termekT on t1.termékID equals t2.ID
+                                  select new { t2.név, t2.ár }).Distinct();
+
+                        var x = from t1 in rendelesTetelT
+                                join t2 in termekT on t1.termékID equals t2.ID
+                                select new { t2.név, t1.státusz, t2.ár };
+
+
+
+                        List<Statisztika> keszNemkeszLista = new List<Statisztika>();
+                        foreach (var item in iq)
+                        {
+                            var keszNemkesz = new
+                            {
+                                kesz = x.Count(s => s.státusz == true && s.név == item.név),
+                                nemkesz = x.Count(s => s.státusz == false && s.név == item.név),
+                            };
+                            int osszesen = keszNemkesz.kesz + keszNemkesz.nemkesz;
+                            int osszeg = item.ár * osszesen;
+                            
+
+                            var temp = new Statisztika(item.név,keszNemkesz.kesz, keszNemkesz.nemkesz, osszesen, osszeg);
+                            keszNemkeszLista.Add(temp);
+                        }                        
+                        dgvStat.DataSource = keszNemkeszLista;
+                    }
+                    break;
+                case 3:
+                    using (var teletabyDB = new DataContext(belepes.connectionString))
+                    {
+                        var rendelesTetelT = teletabyDB.GetTable<Rendelés_tételek>();
+                        var termekT = teletabyDB.GetTable<Termék>();
+                        var rendelesT = teletabyDB.GetTable<Rendelés>();
+                        var felhaszT = teletabyDB.GetTable<Felhasználó>();
+
+                        var iq = from t in felhaszT
+                                 where t.UI == 1
+                                 select new { t.név };
+
+                        var x = from t1 in rendelesT
+                                select new { t1.felhasználóNév, t1.státusz, t1.összeg };
+
+
+
+                        List<Statisztika> keszNemkeszLista = new List<Statisztika>();
+                        foreach (var item in iq)
+                        {
+                            var keszNemkesz = new
+                            {
+                                kesz = x.Count(s => s.státusz == true && s.felhasználóNév == item.név),
+                                nemkesz = x.Count(s => s.státusz == false && s.felhasználóNév == item.név),
+                                osszeg = x.Sum(s => s.összeg)
+                            };
+                            int osszesen = keszNemkesz.kesz + keszNemkesz.nemkesz;
+
+                            var temp = new Statisztika(item.név, keszNemkesz.kesz, keszNemkesz.nemkesz, osszesen, keszNemkesz.osszeg);
+                            keszNemkeszLista.Add(temp);
+                        }
+                        dgvStat.DataSource = keszNemkeszLista;
+                    }
+                    break;
+                case 4:
+                    using (var teletabyDB = new DataContext(belepes.connectionString))
+                    {
+                        var rendelesTetelT = teletabyDB.GetTable<Rendelés_tételek>();
+                        var termekT = teletabyDB.GetTable<Termék>();
+                        var rendelesT = teletabyDB.GetTable<Rendelés>();
+                        var felhaszT = teletabyDB.GetTable<Felhasználó>();
+
+                        var iq = from t in felhaszT
+                                 where t.UI == 2
+                                 select new { t.név };
+
+                        var x = from t1 in rendelesTetelT
+                                join t2 in termekT on t1.termékID equals t2.ID
+                                join t3 in felhaszT on t2.felhaszID equals t3.ID
+                                select new { t1.státusz, t2.ár, t3.név };
+
+
+
+                        List<Statisztika> keszNemkeszLista = new List<Statisztika>();
+                        foreach (var item in iq)
+                        {
+                            var keszNemkesz = new
+                            {
+                                kesz = x.Count(s => s.státusz == true && s.név == item.név),
+                                nemkesz = x.Count(s => s.státusz == false && s.név == item.név),
+                            };
+                            int osszesen = keszNemkesz.kesz + keszNemkesz.nemkesz;
+
+
+                            var termekek = from t1 in termekT
+                                           join t2 in felhaszT on t1.felhaszID equals t2.ID
+                                           join t3 in rendelesTetelT on t1.ID equals t3.termékID
+                                           where item.név == t2.név
+                                           select new { t3.termékID, t1.ár };
+
+                            int osszeg = 0;
+                            foreach (var item_ in termekek)
+                            {
+                                osszeg += item_.ár;
+                            }
+
+
+                            var temp = new Statisztika(item.név, keszNemkesz.kesz, keszNemkesz.nemkesz, osszesen, osszeg);
+                            keszNemkeszLista.Add(temp);
+                        }
+                        dgvStat.DataSource = keszNemkeszLista;
+                    }
+                    break;
+            }            
+        }
+
+        private void bFrissit_Click(object sender, EventArgs e)
+        {
+            OsszegzoStat();
+            Leker();
+        }
+
+        private void bRight_Click(object sender, EventArgs e)
+        {
+            pageNum++;
+            if (pageNum > 4)
+            {
+                pageNum = 1;
+            }
+            lTest.Text = pageNum.ToString();
+            Leker();
+            gbRejtes();
+        }
+
+        private void bLeft_Click(object sender, EventArgs e)
+        {
+            pageNum--;
+            if (pageNum < 1)
+            {
+                pageNum = 4;
+            }
+            lTest.Text = pageNum.ToString();
+            Leker();
+            gbRejtes();
+        }
+
+        private void gbRejtes()
+        {
+            if (pageNum != 1)
+            {
+                gb1.Visible = false;
+                gb2.Visible = false;
+            }
+            else
+            {
+                gb1.Visible = true;
+                gb2.Visible = true;
+            }
+        }
+
+        private void OsszegzoStat()
+        {
+            using (var teletabyDB = new DataContext(belepes.connectionString))
+            {
+                var rendelesTetelT = teletabyDB.GetTable<Rendelés_tételek>();
+                var termekT = teletabyDB.GetTable<Termék>();
+                var rendelesT = teletabyDB.GetTable<Rendelés>();
+                var felhaszT = teletabyDB.GetTable<Felhasználó>();
+
+                var osszRendeles = (from t in rendelesT
+                                    select t.ID).Count();
+                var osszTetel = (from t in rendelesTetelT
+                                 select t.sorsz).Count();
+                var osszBevetel = (from t in rendelesT
+                                   select t.összeg).Sum();
+
+                lOsszesRendeles.Text = $"Rendelések: {osszRendeles} db";
+                lOsszesTetel.Text = $"Tételek: {osszTetel} db";
+                lBevetel.Text = $"Bevétel: {osszBevetel} Ft";
+            }
+        }
+
+        //---------
+
 
         private RadioButton SelectedRadianbutton(GroupBox gb)
         {
@@ -59,7 +311,7 @@ namespace testDesign
         {
             this.Height = h;
             this.Width = w;
-        }
+        }        
         #region rbNUm
         private void Rb_CheckedChanged(object sender, EventArgs e)
         {
@@ -115,6 +367,8 @@ namespace testDesign
             b.BackColor = Color.White;
             b.Text = "Végrehajt";
         }
+
+
         private void OnlyNum_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
@@ -122,6 +376,45 @@ namespace testDesign
                 e.Handled = true;
             }
         }
+        private bool ErrorSearch(List<Control> controlsToTest)
+        {
+            bool b = true;
+            foreach (var item in controlsToTest)
+            {
+                if (item.Text == "")
+                {
+                    errorProvider.SetError(item, "Töltse ki a mezőt!");
+                    b = false;
+                }
+            }
+            return b;
+        }
+        private bool Foglalte()
+        {
+            for (int i = 0; i < dgvFelhasznalok.Rows.Count; i++)
+            {
+                if (rbNum == 2)
+                {
+                    var count = 0;
+                    if (dgvFelhasznalok.Rows[i].Cells[0].Value.ToString() == tbFelhsznev.Text)
+                    {
+                        count++;
+                    }
+                    if (count < 2)
+                    {
+                        return false;
+                    }
+                }
+                if (dgvFelhasznalok.Rows[i].Cells[0].Value.ToString() == tbFelhsznev.Text)
+                {
+                    errorProvider.SetError(tbFelhsznev, "Ez a felhasználónév már foglalt.");
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
 
 
         #region case 1:Termékek
@@ -316,7 +609,7 @@ namespace testDesign
         #endregion
 
 
-
+        #region case 2:Felhasználók
         private void DgvFelhaszFeltolt()
         {
             using (var teletabyDB = new DataContext(belepes.connectionString))
@@ -324,50 +617,10 @@ namespace testDesign
                 var table = teletabyDB.GetTable<Felhasználó>();
 
                 var result = from t in table
-                             select new {Felhasználónév = t.név,Jelszó = t.jelszó, t.UI};
+                             select new { Felhasználónév = t.név, Jelszó = t.jelszó, t.UI };
 
                 dgvFelhasznalok.DataSource = result;
             }
-        }
-
-
-        private bool ErrorSearch(List<Control> controlsToTest)
-        {
-            bool b = true;
-            foreach (var item in controlsToTest)
-            {
-                if (item.Text == "")
-                {
-                    errorProvider.SetError(item, "Töltse ki a mezőt!");
-                    b = false;
-                }
-            }
-            return b;
-        }
-
-        private bool Foglalte()
-        {
-            for (int i = 0; i < dgvFelhasznalok.Rows.Count; i++)
-            {
-                if (rbNum == 2)
-                {
-                    var count = 0;
-                    if (dgvFelhasznalok.Rows[i].Cells[0].Value.ToString() == tbFelhsznev.Text)
-                    {
-                        count++;
-                    }
-                    if (count < 2)
-                    {
-                        return false;
-                    }
-                }
-                if (dgvFelhasznalok.Rows[i].Cells[0].Value.ToString() == tbFelhsznev.Text)
-                {
-                    errorProvider.SetError(tbFelhsznev, "Ez a felhasználónév már foglalt.");
-                    return true;
-                }
-            }
-            return false;
         }
         private async void BVegrehajtFelhasz_Click(object sender, EventArgs e)
         {
@@ -383,9 +636,8 @@ namespace testDesign
                 row = dgvFelhasznalok.SelectedRows[0];
                 felhasznev_ = Convert.ToString(row.Cells[0].Value);
                 jelszo_ = Convert.ToString(row.Cells[1].Value);
-                id_ = Convert.ToInt32(row.Cells[2].Value); 
+                id_ = Convert.ToInt32(row.Cells[2].Value);
             }
-
 
             List<Control> controlsToTest;
             switch (rbNum)
@@ -393,14 +645,14 @@ namespace testDesign
                 case 1:
                     controlsToTest = new List<Control>() { tbFelhsznev, tbJelszo, tbUI };
                     if (ErrorSearch(controlsToTest) && !Foglalte())
-                    {                                                
+                    {
                         using (var teletabyDB = new DataContext(belepes.connectionString))
                         {
                             teletabyDB.ExecuteCommand($"INSERT INTO felhasználó VALUES('{tbFelhsznev.Text}','{tbJelszo.Text}','{tbUI.SelectedIndex + 1}')");
                         }
                         await Visszajelzes(bVegrehajtFelhasz);
-                        DgvFelhaszFeltolt();                         
-                    }                                        
+                        DgvFelhaszFeltolt();
+                    }
                     break;
                 case 2:
                     controlsToTest = new List<Control>() { tbFelhsznev, tbJelszo, tbUI };
@@ -413,8 +665,8 @@ namespace testDesign
                                 teletabvDB.ExecuteCommand($"UPDATE felhasználó SET név = '{tbFelhsznev.Text}', jelszó ='{tbJelszo.Text}', UI ='{tbUI.SelectedIndex + 1}' WHERE név = '{felhasznev_}' AND jelszó = '{jelszo_}' AND UI = '{id_}'");
                             }
                             await Visszajelzes(bVegrehajtFelhasz);
-                            DgvFelhaszFeltolt(); 
-                        } 
+                            DgvFelhaszFeltolt();
+                        }
                     }
                     break;
                 case 3:
@@ -451,13 +703,25 @@ namespace testDesign
                     default:
                         break;
                 }
-                
+
             }
-        }
+        } 
+        #endregion
 
         private void UI3_Load(object sender, EventArgs e)
         {
             cbTabla.SelectedIndex = 0;
+            pageNum = 1;
+        }
+
+        private void bBezár_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void tIdo_Tick(object sender, EventArgs e)
+        {
+            lIdo.Text = DateTime.Now.ToString("HH:mm:ss");
         }
     }
 }
