@@ -136,6 +136,7 @@ namespace testDesign
             else if (text == "ENT")
             {
                 this.Width = 334;
+                buttonBejelentkezes_Click(new object(), new EventArgs());
             }
             else if (text != "ENT" && text != "←")
             {
@@ -149,5 +150,22 @@ namespace testDesign
             NumButtonCall((sender as Button).Text);
         }
 
+        private void TextBoxJelszo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            BelepesTriggerIfEnter(e);
+        }
+
+        private void Belepes_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            BelepesTriggerIfEnter(e);
+        }
+
+        private void BelepesTriggerIfEnter(KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                buttonBejelentkezes_Click(new object(), new EventArgs());
+            }
+        }
     }
 }

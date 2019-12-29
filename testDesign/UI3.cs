@@ -448,6 +448,7 @@ namespace testDesign
                 }
 
                 var result2 = from t in table
+                              orderby t.név ascending
                               select new { t.gyűjtőnév, t.név, t.ár,t.mértékegység };
 
                 for (int i = 0; i < tv.Nodes.Count; i++)
@@ -487,7 +488,9 @@ namespace testDesign
                         {
                             MessageBox.Show("kétszer ugyanaz");
                         }
+                        var selectedIndex = cbGyujtonev.SelectedIndex;
                         TvFeltoltes();
+                        cbGyujtonev.SelectedIndex = selectedIndex;
                         await Visszajelzes(bVegrehajtTermek);
                     }
                     break;

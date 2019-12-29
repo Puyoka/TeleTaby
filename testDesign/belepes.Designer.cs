@@ -107,6 +107,7 @@
             this.textBoxJelszo.Size = new System.Drawing.Size(184, 20);
             this.textBoxJelszo.TabIndex = 5;
             this.textBoxJelszo.Enter += new System.EventHandler(this.TextBoxJelszo_Enter);
+            this.textBoxJelszo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxJelszo_KeyPress);
             // 
             // label2
             // 
@@ -318,6 +319,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Belepes_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Belepes_KeyPress);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
