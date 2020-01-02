@@ -41,7 +41,7 @@ namespace testDesign
         }
 
 
-        //!!lekérdezéshes megpróbálni listával hogy sorba legyen
+        //!!lekérdezéshes megpróbálni listával hogy sorba legyen-
         private void ButtonKesz_Click(object sender, EventArgs e)
         {
             if (dgvRendelesek.Rows.Count > 0)
