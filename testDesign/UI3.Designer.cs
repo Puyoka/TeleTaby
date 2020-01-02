@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cbTabla = new System.Windows.Forms.ComboBox();
             this.pTermek = new System.Windows.Forms.Panel();
             this.bVegrehajtTermek = new System.Windows.Forms.Button();
@@ -67,24 +67,30 @@
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.bBezár = new System.Windows.Forms.Button();
             this.pStat = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lOsszesRendeles = new System.Windows.Forms.Label();
+            this.lOsszesTetel = new System.Windows.Forms.Label();
+            this.lBevetel = new System.Windows.Forms.Label();
             this.gb2 = new System.Windows.Forms.GroupBox();
             this.rbFoly = new System.Windows.Forms.RadioButton();
             this.rbKesz = new System.Windows.Forms.RadioButton();
             this.gb1 = new System.Windows.Forms.GroupBox();
             this.rbRend = new System.Windows.Forms.RadioButton();
             this.rbTerm = new System.Windows.Forms.RadioButton();
-            this.lBevetel = new System.Windows.Forms.Label();
-            this.lOsszesTetel = new System.Windows.Forms.Label();
-            this.lOsszesRendeles = new System.Windows.Forms.Label();
             this.bFrissit = new System.Windows.Forms.Button();
             this.dgvStat = new System.Windows.Forms.DataGridView();
             this.bLeft = new System.Windows.Forms.Button();
             this.bRight = new System.Windows.Forms.Button();
             this.lTest = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.labelDatum = new System.Windows.Forms.Label();
             this.tIdo = new System.Windows.Forms.Timer(this.components);
             this.lIdo = new System.Windows.Forms.Label();
+            this.pAdatbazis = new System.Windows.Forms.Panel();
+            this.dgvDT = new System.Windows.Forms.DataGridView();
+            this.cbAdatbazis = new System.Windows.Forms.ComboBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.bMentesUrites = new System.Windows.Forms.Button();
+            this.cBoxMentes = new System.Windows.Forms.CheckBox();
             this.pTermek.SuspendLayout();
             this.gbMezokTermek.SuspendLayout();
             this.gbMuvTermek.SuspendLayout();
@@ -94,10 +100,12 @@
             this.gbMuvFelhasz.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.pStat.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.gb2.SuspendLayout();
             this.gb1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStat)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.pAdatbazis.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDT)).BeginInit();
             this.SuspendLayout();
             // 
             // cbTabla
@@ -107,7 +115,8 @@
             this.cbTabla.Items.AddRange(new object[] {
             "Felhasználók",
             "Termékek",
-            "Rendelések"});
+            "Rendelések",
+            "Adatbázis"});
             this.cbTabla.Location = new System.Drawing.Point(11, 12);
             this.cbTabla.Name = "cbTabla";
             this.cbTabla.Size = new System.Drawing.Size(121, 21);
@@ -124,16 +133,16 @@
             this.pTermek.Controls.Add(this.gbMezokTermek);
             this.pTermek.Controls.Add(this.gbMuvTermek);
             this.pTermek.Controls.Add(this.tv);
-            this.pTermek.Location = new System.Drawing.Point(2, 44);
+            this.pTermek.Location = new System.Drawing.Point(2, 50);
             this.pTermek.Name = "pTermek";
-            this.pTermek.Size = new System.Drawing.Size(581, 462);
+            this.pTermek.Size = new System.Drawing.Size(581, 327);
             this.pTermek.TabIndex = 1;
             this.pTermek.Visible = false;
             // 
             // bVegrehajtTermek
             // 
             this.bVegrehajtTermek.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bVegrehajtTermek.Location = new System.Drawing.Point(267, 412);
+            this.bVegrehajtTermek.Location = new System.Drawing.Point(267, 277);
             this.bVegrehajtTermek.Name = "bVegrehajtTermek";
             this.bVegrehajtTermek.Size = new System.Drawing.Size(305, 41);
             this.bVegrehajtTermek.TabIndex = 12;
@@ -157,7 +166,7 @@
             this.gbMezokTermek.Controls.Add(this.tbAr);
             this.gbMezokTermek.Location = new System.Drawing.Point(267, 73);
             this.gbMezokTermek.Name = "gbMezokTermek";
-            this.gbMezokTermek.Size = new System.Drawing.Size(305, 333);
+            this.gbMezokTermek.Size = new System.Drawing.Size(305, 198);
             this.gbMezokTermek.TabIndex = 11;
             this.gbMezokTermek.TabStop = false;
             this.gbMezokTermek.Text = "Hozzáadás";
@@ -168,7 +177,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Franklin Gothic Medium", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label5.Location = new System.Drawing.Point(6, 151);
+            this.label5.Location = new System.Drawing.Point(6, 83);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(124, 24);
             this.label5.TabIndex = 16;
@@ -180,7 +189,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Franklin Gothic Medium", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label2.Location = new System.Drawing.Point(6, 271);
+            this.label2.Location = new System.Drawing.Point(6, 203);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(78, 24);
             this.label2.TabIndex = 12;
@@ -192,7 +201,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Franklin Gothic Medium", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label4.Location = new System.Drawing.Point(6, 29);
+            this.label4.Location = new System.Drawing.Point(6, -39);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(89, 24);
             this.label4.TabIndex = 14;
@@ -204,7 +213,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Franklin Gothic Medium", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label3.Location = new System.Drawing.Point(6, 211);
+            this.label3.Location = new System.Drawing.Point(6, 143);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(27, 24);
             this.label3.TabIndex = 13;
@@ -213,7 +222,7 @@
             // tbMertekegyseg
             // 
             this.tbMertekegyseg.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbMertekegyseg.Location = new System.Drawing.Point(10, 178);
+            this.tbMertekegyseg.Location = new System.Drawing.Point(10, 110);
             this.tbMertekegyseg.Name = "tbMertekegyseg";
             this.tbMertekegyseg.Size = new System.Drawing.Size(273, 20);
             this.tbMertekegyseg.TabIndex = 9;
@@ -223,7 +232,7 @@
             this.cbCsopNev.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cbCsopNev.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCsopNev.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cbCsopNev.Location = new System.Drawing.Point(10, 298);
+            this.cbCsopNev.Location = new System.Drawing.Point(10, 230);
             this.cbCsopNev.Name = "cbCsopNev";
             this.cbCsopNev.Size = new System.Drawing.Size(273, 21);
             this.cbCsopNev.TabIndex = 11;
@@ -234,7 +243,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Franklin Gothic Medium", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label1.Location = new System.Drawing.Point(6, 90);
+            this.label1.Location = new System.Drawing.Point(6, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 24);
             this.label1.TabIndex = 11;
@@ -244,7 +253,7 @@
             // 
             this.cbGyujtonev.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cbGyujtonev.FormattingEnabled = true;
-            this.cbGyujtonev.Location = new System.Drawing.Point(10, 56);
+            this.cbGyujtonev.Location = new System.Drawing.Point(10, -12);
             this.cbGyujtonev.Name = "cbGyujtonev";
             this.cbGyujtonev.Size = new System.Drawing.Size(273, 21);
             this.cbGyujtonev.TabIndex = 7;
@@ -252,7 +261,7 @@
             // tbNev
             // 
             this.tbNev.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbNev.Location = new System.Drawing.Point(10, 117);
+            this.tbNev.Location = new System.Drawing.Point(10, 49);
             this.tbNev.Name = "tbNev";
             this.tbNev.Size = new System.Drawing.Size(273, 20);
             this.tbNev.TabIndex = 8;
@@ -260,7 +269,7 @@
             // tbAr
             // 
             this.tbAr.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbAr.Location = new System.Drawing.Point(10, 238);
+            this.tbAr.Location = new System.Drawing.Point(10, 170);
             this.tbAr.Name = "tbAr";
             this.tbAr.Size = new System.Drawing.Size(273, 20);
             this.tbAr.TabIndex = 10;
@@ -321,7 +330,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tv.Location = new System.Drawing.Point(9, 3);
             this.tv.Name = "tv";
-            this.tv.Size = new System.Drawing.Size(252, 450);
+            this.tv.Size = new System.Drawing.Size(252, 315);
             this.tv.TabIndex = 2;
             this.tv.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.Tv_AfterSelect);
             // 
@@ -335,9 +344,9 @@
             this.pFelhasz.Controls.Add(this.bVegrehajtFelhasz);
             this.pFelhasz.Controls.Add(this.gbMezokFelhasz);
             this.pFelhasz.Controls.Add(this.gbMuvFelhasz);
-            this.pFelhasz.Location = new System.Drawing.Point(2, 59);
+            this.pFelhasz.Location = new System.Drawing.Point(2, 50);
             this.pFelhasz.Name = "pFelhasz";
-            this.pFelhasz.Size = new System.Drawing.Size(581, 462);
+            this.pFelhasz.Size = new System.Drawing.Size(581, 327);
             this.pFelhasz.TabIndex = 13;
             this.pFelhasz.Visible = false;
             // 
@@ -345,9 +354,9 @@
             // 
             this.dgvFelhasznalok.AllowUserToAddRows = false;
             this.dgvFelhasznalok.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            this.dgvFelhasznalok.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            this.dgvFelhasznalok.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvFelhasznalok.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -360,21 +369,21 @@
             this.dgvFelhasznalok.Name = "dgvFelhasznalok";
             this.dgvFelhasznalok.ReadOnly = true;
             this.dgvFelhasznalok.RowHeadersVisible = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            this.dgvFelhasznalok.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            this.dgvFelhasznalok.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvFelhasznalok.RowTemplate.Height = 36;
             this.dgvFelhasznalok.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvFelhasznalok.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvFelhasznalok.Size = new System.Drawing.Size(569, 166);
+            this.dgvFelhasznalok.Size = new System.Drawing.Size(569, 31);
             this.dgvFelhasznalok.TabIndex = 13;
             this.dgvFelhasznalok.SelectionChanged += new System.EventHandler(this.DgvFelhasznalok_SelectionChanged);
             // 
             // bVegrehajtFelhasz
             // 
             this.bVegrehajtFelhasz.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bVegrehajtFelhasz.Location = new System.Drawing.Point(442, 413);
+            this.bVegrehajtFelhasz.Location = new System.Drawing.Point(442, 278);
             this.bVegrehajtFelhasz.Name = "bVegrehajtFelhasz";
             this.bVegrehajtFelhasz.Size = new System.Drawing.Size(132, 41);
             this.bVegrehajtFelhasz.TabIndex = 12;
@@ -392,7 +401,7 @@
             this.gbMezokFelhasz.Controls.Add(this.label8);
             this.gbMezokFelhasz.Controls.Add(this.label10);
             this.gbMezokFelhasz.Controls.Add(this.tbJelszo);
-            this.gbMezokFelhasz.Location = new System.Drawing.Point(3, 242);
+            this.gbMezokFelhasz.Location = new System.Drawing.Point(3, 107);
             this.gbMezokFelhasz.Name = "gbMezokFelhasz";
             this.gbMezokFelhasz.Size = new System.Drawing.Size(433, 214);
             this.gbMezokFelhasz.TabIndex = 11;
@@ -559,9 +568,53 @@
             this.pStat.Controls.Add(this.lTest);
             this.pStat.Location = new System.Drawing.Point(2, 50);
             this.pStat.Name = "pStat";
-            this.pStat.Size = new System.Drawing.Size(581, 462);
+            this.pStat.Size = new System.Drawing.Size(581, 328);
             this.pStat.TabIndex = 15;
             this.pStat.Visible = false;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.Controls.Add(this.lOsszesRendeles);
+            this.groupBox1.Controls.Add(this.lOsszesTetel);
+            this.groupBox1.Controls.Add(this.lBevetel);
+            this.groupBox1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.groupBox1.Location = new System.Drawing.Point(3, 229);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 91);
+            this.groupBox1.TabIndex = 20;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Eddigi adatok";
+            // 
+            // lOsszesRendeles
+            // 
+            this.lOsszesRendeles.AutoSize = true;
+            this.lOsszesRendeles.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lOsszesRendeles.Location = new System.Drawing.Point(6, 21);
+            this.lOsszesRendeles.Name = "lOsszesRendeles";
+            this.lOsszesRendeles.Size = new System.Drawing.Size(78, 17);
+            this.lOsszesRendeles.TabIndex = 17;
+            this.lOsszesRendeles.Text = "Rendelés: ";
+            // 
+            // lOsszesTetel
+            // 
+            this.lOsszesTetel.AutoSize = true;
+            this.lOsszesTetel.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lOsszesTetel.Location = new System.Drawing.Point(6, 44);
+            this.lOsszesTetel.Name = "lOsszesTetel";
+            this.lOsszesTetel.Size = new System.Drawing.Size(44, 17);
+            this.lOsszesTetel.TabIndex = 18;
+            this.lOsszesTetel.Text = "Tétel:";
+            // 
+            // lBevetel
+            // 
+            this.lBevetel.AutoSize = true;
+            this.lBevetel.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lBevetel.Location = new System.Drawing.Point(6, 68);
+            this.lBevetel.Name = "lBevetel";
+            this.lBevetel.Size = new System.Drawing.Size(60, 17);
+            this.lBevetel.TabIndex = 19;
+            this.lBevetel.Text = "Bevétel:";
             // 
             // gb2
             // 
@@ -569,7 +622,7 @@
             this.gb2.Controls.Add(this.rbFoly);
             this.gb2.Controls.Add(this.rbKesz);
             this.gb2.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.gb2.Location = new System.Drawing.Point(373, 367);
+            this.gb2.Location = new System.Drawing.Point(373, 233);
             this.gb2.Name = "gb2";
             this.gb2.Size = new System.Drawing.Size(120, 81);
             this.gb2.TabIndex = 5;
@@ -604,7 +657,7 @@
             this.gb1.Controls.Add(this.rbRend);
             this.gb1.Controls.Add(this.rbTerm);
             this.gb1.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.gb1.Location = new System.Drawing.Point(247, 367);
+            this.gb1.Location = new System.Drawing.Point(247, 233);
             this.gb1.Name = "gb1";
             this.gb1.Size = new System.Drawing.Size(120, 81);
             this.gb1.TabIndex = 4;
@@ -633,40 +686,10 @@
             this.rbTerm.Text = "Termék";
             this.rbTerm.UseVisualStyleBackColor = true;
             // 
-            // lBevetel
-            // 
-            this.lBevetel.AutoSize = true;
-            this.lBevetel.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lBevetel.Location = new System.Drawing.Point(6, 68);
-            this.lBevetel.Name = "lBevetel";
-            this.lBevetel.Size = new System.Drawing.Size(60, 17);
-            this.lBevetel.TabIndex = 19;
-            this.lBevetel.Text = "Bevétel:";
-            // 
-            // lOsszesTetel
-            // 
-            this.lOsszesTetel.AutoSize = true;
-            this.lOsszesTetel.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lOsszesTetel.Location = new System.Drawing.Point(6, 44);
-            this.lOsszesTetel.Name = "lOsszesTetel";
-            this.lOsszesTetel.Size = new System.Drawing.Size(44, 17);
-            this.lOsszesTetel.TabIndex = 18;
-            this.lOsszesTetel.Text = "Tétel:";
-            // 
-            // lOsszesRendeles
-            // 
-            this.lOsszesRendeles.AutoSize = true;
-            this.lOsszesRendeles.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lOsszesRendeles.Location = new System.Drawing.Point(6, 21);
-            this.lOsszesRendeles.Name = "lOsszesRendeles";
-            this.lOsszesRendeles.Size = new System.Drawing.Size(78, 17);
-            this.lOsszesRendeles.TabIndex = 17;
-            this.lOsszesRendeles.Text = "Rendelés: ";
-            // 
             // bFrissit
             // 
             this.bFrissit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bFrissit.Location = new System.Drawing.Point(499, 367);
+            this.bFrissit.Location = new System.Drawing.Point(499, 233);
             this.bFrissit.Name = "bFrissit";
             this.bFrissit.Size = new System.Drawing.Size(75, 23);
             this.bFrissit.TabIndex = 3;
@@ -682,7 +705,7 @@
             this.dgvStat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvStat.Location = new System.Drawing.Point(40, 3);
             this.dgvStat.Name = "dgvStat";
-            this.dgvStat.Size = new System.Drawing.Size(497, 358);
+            this.dgvStat.Size = new System.Drawing.Size(497, 224);
             this.dgvStat.TabIndex = 0;
             // 
             // bLeft
@@ -691,7 +714,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.bLeft.Location = new System.Drawing.Point(-1, 3);
             this.bLeft.Name = "bLeft";
-            this.bLeft.Size = new System.Drawing.Size(40, 358);
+            this.bLeft.Size = new System.Drawing.Size(40, 224);
             this.bLeft.TabIndex = 1;
             this.bLeft.Text = "<";
             this.bLeft.UseVisualStyleBackColor = true;
@@ -703,7 +726,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.bRight.Location = new System.Drawing.Point(538, 3);
             this.bRight.Name = "bRight";
-            this.bRight.Size = new System.Drawing.Size(40, 358);
+            this.bRight.Size = new System.Drawing.Size(40, 224);
             this.bRight.TabIndex = 2;
             this.bRight.Text = ">";
             this.bRight.UseVisualStyleBackColor = true;
@@ -714,26 +737,12 @@
             this.lTest.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lTest.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lTest.Location = new System.Drawing.Point(-11, 363);
+            this.lTest.Location = new System.Drawing.Point(-11, 229);
             this.lTest.Name = "lTest";
             this.lTest.Size = new System.Drawing.Size(598, 21);
             this.lTest.TabIndex = 16;
             this.lTest.Text = "1";
             this.lTest.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox1.Controls.Add(this.lOsszesRendeles);
-            this.groupBox1.Controls.Add(this.lOsszesTetel);
-            this.groupBox1.Controls.Add(this.lBevetel);
-            this.groupBox1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupBox1.Location = new System.Drawing.Point(3, 363);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 91);
-            this.groupBox1.TabIndex = 20;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Eddigi adatok";
             // 
             // labelDatum
             // 
@@ -752,18 +761,85 @@
             // 
             this.lIdo.AutoSize = true;
             this.lIdo.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lIdo.Location = new System.Drawing.Point(209, 13);
+            this.lIdo.Location = new System.Drawing.Point(228, 13);
             this.lIdo.Name = "lIdo";
             this.lIdo.Size = new System.Drawing.Size(57, 20);
             this.lIdo.TabIndex = 17;
             this.lIdo.Text = "00:00:00";
             this.lIdo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // pAdatbazis
+            // 
+            this.pAdatbazis.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pAdatbazis.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pAdatbazis.Controls.Add(this.dgvDT);
+            this.pAdatbazis.Controls.Add(this.cbAdatbazis);
+            this.pAdatbazis.Controls.Add(this.label14);
+            this.pAdatbazis.Controls.Add(this.bMentesUrites);
+            this.pAdatbazis.Controls.Add(this.cBoxMentes);
+            this.pAdatbazis.Location = new System.Drawing.Point(2, 50);
+            this.pAdatbazis.Name = "pAdatbazis";
+            this.pAdatbazis.Size = new System.Drawing.Size(581, 327);
+            this.pAdatbazis.TabIndex = 18;
+            // 
+            // dgvDT
+            // 
+            this.dgvDT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDT.Location = new System.Drawing.Point(137, 8);
+            this.dgvDT.Name = "dgvDT";
+            this.dgvDT.Size = new System.Drawing.Size(437, 312);
+            this.dgvDT.TabIndex = 9;
+            // 
+            // cbAdatbazis
+            // 
+            this.cbAdatbazis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbAdatbazis.FormattingEnabled = true;
+            this.cbAdatbazis.Items.AddRange(new object[] {
+            "Rendelések",
+            "Rendelés tételek"});
+            this.cbAdatbazis.Location = new System.Drawing.Point(6, 16);
+            this.cbAdatbazis.Name = "cbAdatbazis";
+            this.cbAdatbazis.Size = new System.Drawing.Size(121, 21);
+            this.cbAdatbazis.TabIndex = 8;
+            this.cbAdatbazis.SelectedIndexChanged += new System.EventHandler(this.cbAdatbazis_SelectedIndexChanged);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(7, 249);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(106, 13);
+            this.label14.TabIndex = 7;
+            this.label14.Text = "Az adatbázis ürítése:";
+            // 
+            // bMentesUrites
+            // 
+            this.bMentesUrites.Location = new System.Drawing.Point(10, 289);
+            this.bMentesUrites.Name = "bMentesUrites";
+            this.bMentesUrites.Size = new System.Drawing.Size(103, 23);
+            this.bMentesUrites.TabIndex = 6;
+            this.bMentesUrites.Text = "Végrehajt";
+            this.bMentesUrites.UseVisualStyleBackColor = true;
+            this.bMentesUrites.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // cBoxMentes
+            // 
+            this.cBoxMentes.AutoSize = true;
+            this.cBoxMentes.Location = new System.Drawing.Point(9, 266);
+            this.cBoxMentes.Name = "cBoxMentes";
+            this.cBoxMentes.Size = new System.Drawing.Size(74, 17);
+            this.cBoxMentes.TabIndex = 5;
+            this.cBoxMentes.Text = "Mentéssel";
+            this.cBoxMentes.UseVisualStyleBackColor = true;
+            // 
             // UI3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(586, 509);
+            this.ClientSize = new System.Drawing.Size(586, 381);
+            this.Controls.Add(this.pAdatbazis);
             this.Controls.Add(this.pTermek);
             this.Controls.Add(this.pFelhasz);
             this.Controls.Add(this.lIdo);
@@ -788,13 +864,16 @@
             this.gbMuvFelhasz.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.pStat.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.gb2.ResumeLayout(false);
             this.gb2.PerformLayout();
             this.gb1.ResumeLayout(false);
             this.gb1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStat)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.pAdatbazis.ResumeLayout(false);
+            this.pAdatbazis.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDT)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -856,5 +935,11 @@
         private System.Windows.Forms.Label labelDatum;
         private System.Windows.Forms.Timer tIdo;
         private System.Windows.Forms.Label lIdo;
+        private System.Windows.Forms.Panel pAdatbazis;
+        private System.Windows.Forms.DataGridView dgvDT;
+        private System.Windows.Forms.ComboBox cbAdatbazis;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button bMentesUrites;
+        private System.Windows.Forms.CheckBox cBoxMentes;
     }
 }

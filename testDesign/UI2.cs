@@ -149,9 +149,10 @@ namespace testDesign
 
             TimeSpan kulonbseg = DateTime.Parse(most) - DateTime.Parse(rendeles);
             int kulonbsegPercekben = kulonbseg.Minutes;
+            int kulonbsegOrakban = kulonbseg.Hours;
 
             dgvRendelesek.EnableHeadersVisualStyles = false;
-            if (kulonbsegPercekben >= 30)
+            if (kulonbsegPercekben >= 30 || kulonbsegOrakban > 0)
             {
                 sor.HeaderCell.Style.BackColor = Color.Red;
                 sor.HeaderCell.Style.SelectionBackColor = Color.Red;
@@ -165,7 +166,7 @@ namespace testDesign
 
 
 
-BindingList<Lekérdezés> rendelesek = new BindingList<Lekérdezés>();        
+        BindingList<Lekérdezés> rendelesek = new BindingList<Lekérdezés>();        
         private void lekerdezRendelesek(bool b)
         {
             rendelesek.Clear();
@@ -186,6 +187,14 @@ BindingList<Lekérdezés> rendelesek = new BindingList<Lekérdezés>();
                 dgvRendelesek.DataSource = rendelesek;
             }
             rowColoring(dgvRendelesek);
+
+            if (b)
+            {
+                for (int i = 0; i < dgvRendelesek.Rows.Count; i++)
+                {
+                    elapsedTime(dgvRendelesek.Rows[i].Cells[1].Value.ToString(), dgvRendelesek.Rows[i]);
+                }
+            }
 
             rowSelect();
         }
@@ -210,30 +219,23 @@ BindingList<Lekérdezés> rendelesek = new BindingList<Lekérdezés>();
         }
 
 
-
+        //TIMEREK
         private void TimerLekerdez_Tick(object sender, EventArgs e)
         {
-            lekerdezRendelesek(mitKerdezLe);
-
-            if (mitKerdezLe == true)
-            {
-                for (int i = 0; i < dgvRendelesek.Rows.Count; i++)
-                {
-                    elapsedTime(dgvRendelesek.Rows[i].Cells[1].Value.ToString(), dgvRendelesek.Rows[i]);
-                }
-            }
+            lekerdezRendelesek(mitKerdezLe);            
         }
         private void TimerIdo_Tick(object sender, EventArgs e)
         {
             labelIdo.Text = DateTime.Now.ToString("HH:mm:ss");
         }
 
-
+        //KILÉP
         private void ButtonKilep_Click(object sender, EventArgs e)
         {
              Application.Exit();
         }
 
+        //SELECTIONBACKCOLOR JÓ LEGYEN
         int lastSelectedRowIndex = 0;
         private void DataGridViewRendelesek_SelectionChanged(object sender, EventArgs e)
         {
@@ -275,9 +277,6 @@ BindingList<Lekérdezés> rendelesek = new BindingList<Lekérdezés>();
             }
         }        
     }
-
-
-
     static class Extension
     {
         public static BindingList<T> ToBindingList<T>(this IList<T> source)

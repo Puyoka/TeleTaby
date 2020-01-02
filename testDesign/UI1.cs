@@ -67,6 +67,8 @@ namespace testDesign
 
         }
 
+
+
         bill bill = new bill();
         public static string megjegyzes { get; set; }
         public int termekSorIndex { get; set; }
@@ -88,6 +90,8 @@ namespace testDesign
         {
             await Task.Delay(500);
         }
+
+
 
         public void BPlus_Click(object sender, EventArgs e)
         {            
@@ -200,6 +204,7 @@ namespace testDesign
 
                 dgvRendelesek.DataSource = result;
             }
+            
         }
         public void LeadottRendelesTetelekBeolvasas()
         {
@@ -317,9 +322,11 @@ namespace testDesign
             }
         }
 
+        //AZ ÉPPEN LÁTHATÓ TETELEK FRISSÜLJENEK
         private void Timer1_Tick(object sender, EventArgs e)
         {
             LeadottRendelesTetelekBeolvasas();
         }
+        
     }
 }
