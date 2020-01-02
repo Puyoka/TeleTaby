@@ -33,7 +33,8 @@ namespace testDesign
             labelCounter.Text = $"{keszCount}";
             label3.Width = this.Width;
 
-            
+            dgvRendelesek.RowHeadersDefaultCellStyle.Padding = new Padding(100);//ne legyen nyil
+            dgvRendelesek.RowHeadersDefaultCellStyle.SelectionBackColor = Color.White;
 
             timerIdo.Start();
             timerLekerdez.Start();
@@ -43,19 +44,19 @@ namespace testDesign
         //!!lekérdezéshes megpróbálni listával hogy sorba legyen
         private void ButtonKesz_Click(object sender, EventArgs e)
         {
-            if (dataGridViewRendelesek.Rows.Count > 0)
+            if (dgvRendelesek.Rows.Count > 0)
             {
                 using (var teletabyDB = new DataContext(belepes.connectionString))
                 {
-                    var row = dataGridViewRendelesek.Rows[dataGridViewRendelesek.SelectedRows[0].Index];
+                    var row = dgvRendelesek.Rows[dgvRendelesek.SelectedRows[0].Index];
                     teletabyDB.ExecuteCommand($"UPDATE TOP(1) rendelés_tételek SET státusz='true' WHERE rendelésID = '{row.Cells[0].Value}' AND termékID = (SELECT ID FROM termék WHERE név = '{row.Cells[2].Value}') AND megjegyzés ='{row.Cells[3].Value}'   AND státusz = '0'");
                 }
-                dataGridViewRendelesek.Rows.RemoveAt(dataGridViewRendelesek.SelectedRows[0].Index);
+                dgvRendelesek.Rows.RemoveAt(dgvRendelesek.SelectedRows[0].Index);
                 //colors.RemoveAt(dataGridViewRendelesek.SelectedRows[0].Index);
 
                 keszCount++;
                 labelCounter.Text = $"{keszCount}";
-                rowColoring(dataGridViewRendelesek);
+                rowColoring(dgvRendelesek);
                 rowSelect();
             }
         }
@@ -139,9 +140,32 @@ namespace testDesign
             }
         }
         #endregion
+        private void elapsedTime(string ido, DataGridViewRow sor)
+        {
+            ido = ido.Substring(0, 5);
 
-        
-        BindingList<Lekérdezés> rendelesek = new BindingList<Lekérdezés>();        
+            var rendeles = Convert.ToDateTime(ido).ToShortTimeString();
+            var most = DateTime.Now.ToShortTimeString();
+
+            TimeSpan kulonbseg = DateTime.Parse(most) - DateTime.Parse(rendeles);
+            int kulonbsegPercekben = kulonbseg.Minutes;
+
+            dgvRendelesek.EnableHeadersVisualStyles = false;
+            if (kulonbsegPercekben >= 30)
+            {
+                sor.HeaderCell.Style.BackColor = Color.Red;
+                sor.HeaderCell.Style.SelectionBackColor = Color.Red;
+            }
+            else if (kulonbsegPercekben >= 15)
+            {
+                sor.HeaderCell.Style.BackColor = Color.Yellow;
+                sor.HeaderCell.Style.SelectionBackColor = Color.Yellow;
+            }
+        }
+
+
+
+BindingList<Lekérdezés> rendelesek = new BindingList<Lekérdezés>();        
         private void lekerdezRendelesek(bool b)
         {
             rendelesek.Clear();
@@ -159,9 +183,9 @@ namespace testDesign
                               select new Lekérdezés(t1.rendelésID, t3.idő, t2.név, t1.megjegyzés)).ToList<Lekérdezés>();
 
                 rendelesek = result.ToBindingList<Lekérdezés>();
-                dataGridViewRendelesek.DataSource = rendelesek;
+                dgvRendelesek.DataSource = rendelesek;
             }
-            rowColoring(dataGridViewRendelesek);
+            rowColoring(dgvRendelesek);
 
             rowSelect();
         }
@@ -169,14 +193,14 @@ namespace testDesign
 
         private void rowSelect()
         {
-            if (lastSelectedRowIndex+1 > dataGridViewRendelesek.Rows.Count)
+            if (lastSelectedRowIndex+1 > dgvRendelesek.Rows.Count)
             {
-                lastSelectedRowIndex = dataGridViewRendelesek.Rows.Count-1;
+                lastSelectedRowIndex = dgvRendelesek.Rows.Count-1;
             }
             try
             {
-                dataGridViewRendelesek.Rows[0].Selected = false;
-                dataGridViewRendelesek.Rows[lastSelectedRowIndex].Selected = true;
+                dgvRendelesek.Rows[0].Selected = false;
+                dgvRendelesek.Rows[lastSelectedRowIndex].Selected = true;
             }
             catch (Exception)
             {
@@ -190,6 +214,14 @@ namespace testDesign
         private void TimerLekerdez_Tick(object sender, EventArgs e)
         {
             lekerdezRendelesek(mitKerdezLe);
+
+            if (mitKerdezLe == true)
+            {
+                for (int i = 0; i < dgvRendelesek.Rows.Count; i++)
+                {
+                    elapsedTime(dgvRendelesek.Rows[i].Cells[1].Value.ToString(), dgvRendelesek.Rows[i]);
+                }
+            }
         }
         private void TimerIdo_Tick(object sender, EventArgs e)
         {
@@ -206,19 +238,19 @@ namespace testDesign
         private void DataGridViewRendelesek_SelectionChanged(object sender, EventArgs e)
         {
 
-            if (dataGridViewRendelesek.Rows.Count>1 && dataGridViewRendelesek.SelectedCells.Count != 0)
+            if (dgvRendelesek.Rows.Count>1 && dgvRendelesek.SelectedCells.Count != 0)
             {
-                lastSelectedRowIndex = dataGridViewRendelesek.SelectedRows[0].Index;
+                lastSelectedRowIndex = dgvRendelesek.SelectedRows[0].Index;
 
-                if (dataGridViewRendelesek.SelectedRows[0].DefaultCellStyle.BackColor.Name == "Yellow")
+                if (dgvRendelesek.SelectedRows[0].DefaultCellStyle.BackColor.Name == "Yellow")
                 {
-                    dataGridViewRendelesek.DefaultCellStyle.SelectionBackColor = Color.Yellow;
+                    dgvRendelesek.DefaultCellStyle.SelectionBackColor = Color.Yellow;
                 }
                 else
                 {
-                    dataGridViewRendelesek.DefaultCellStyle.SelectionBackColor = Color.White;
+                    dgvRendelesek.DefaultCellStyle.SelectionBackColor = Color.White;
                 }
-                dataGridViewRendelesek.DefaultCellStyle.SelectionForeColor = Color.Black;                
+                dgvRendelesek.DefaultCellStyle.SelectionForeColor = Color.Black;                
             }
             
         }
@@ -226,9 +258,9 @@ namespace testDesign
         //sor keret szin
         private void DataGridViewRendelesek_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            if (dataGridViewRendelesek.SelectedCells.Count > 0)
+            if (dgvRendelesek.SelectedCells.Count > 0)
             {
-                if (e.RowIndex == dataGridViewRendelesek.SelectedCells[0].RowIndex)
+                if (e.RowIndex == dgvRendelesek.SelectedCells[0].RowIndex)
                 {
                     e.PaintCells(e.RowBounds, DataGridViewPaintParts.Border);
                     using (Pen p = new Pen(Color.Blue, 3))
