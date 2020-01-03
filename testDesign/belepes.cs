@@ -45,8 +45,8 @@ namespace testDesign
             if (comboBoxFelhaszn.Text == "1")
             {
                 this.Hide();
-                UI3 ui = new UI3();
-                ui.Show();                
+                Email ui = new Email();
+                ui.Show();               
             }
 
             errorProvider1.Clear();

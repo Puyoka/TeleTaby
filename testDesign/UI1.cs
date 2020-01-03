@@ -69,12 +69,18 @@ namespace testDesign
 
 
 
-        bill bill = new bill();
+
         public static string megjegyzes { get; set; }
         public int termekSorIndex { get; set; }
 
+        private void bElfogyott_Click(object sender, EventArgs e)
+        {
+            bill bill = new bill(2);            
+            bill.Show();
+        }
         private async void BMegjegyzes_Click(object sender, EventArgs e)
         {
+            bill bill = new bill(1);
             termekSorIndex = dgvTermékek.SelectedRows[0].Index;
             bill.Show();
             while (bill.Visible == true)
@@ -327,6 +333,7 @@ namespace testDesign
         {
             LeadottRendelesTetelekBeolvasas();
         }
-        
+
+
     }
 }

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cbTabla = new System.Windows.Forms.ComboBox();
             this.pTermek = new System.Windows.Forms.Panel();
             this.bVegrehajtTermek = new System.Windows.Forms.Button();
@@ -354,9 +354,9 @@
             // 
             this.dgvFelhasznalok.AllowUserToAddRows = false;
             this.dgvFelhasznalok.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            this.dgvFelhasznalok.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            this.dgvFelhasznalok.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvFelhasznalok.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -369,10 +369,10 @@
             this.dgvFelhasznalok.Name = "dgvFelhasznalok";
             this.dgvFelhasznalok.ReadOnly = true;
             this.dgvFelhasznalok.RowHeadersVisible = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            this.dgvFelhasznalok.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            this.dgvFelhasznalok.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvFelhasznalok.RowTemplate.Height = 36;
             this.dgvFelhasznalok.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvFelhasznalok.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -786,6 +786,9 @@
             // 
             // dgvDT
             // 
+            this.dgvDT.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvDT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDT.Location = new System.Drawing.Point(137, 8);
             this.dgvDT.Name = "dgvDT";
@@ -807,6 +810,7 @@
             // 
             // label14
             // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(7, 249);
             this.label14.Name = "label14";
@@ -816,6 +820,7 @@
             // 
             // bMentesUrites
             // 
+            this.bMentesUrites.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.bMentesUrites.Location = new System.Drawing.Point(10, 289);
             this.bMentesUrites.Name = "bMentesUrites";
             this.bMentesUrites.Size = new System.Drawing.Size(103, 23);
@@ -826,6 +831,7 @@
             // 
             // cBoxMentes
             // 
+            this.cBoxMentes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cBoxMentes.AutoSize = true;
             this.cBoxMentes.Location = new System.Drawing.Point(9, 266);
             this.cBoxMentes.Name = "cBoxMentes";

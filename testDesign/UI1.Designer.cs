@@ -560,6 +560,7 @@
             this.bElfogyott.TabIndex = 15;
             this.bElfogyott.Text = "R";
             this.bElfogyott.UseVisualStyleBackColor = false;
+            this.bElfogyott.Click += new System.EventHandler(this.bElfogyott_Click);
             // 
             // label3
             // 

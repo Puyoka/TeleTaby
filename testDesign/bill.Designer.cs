@@ -86,10 +86,13 @@
             this.bSpace = new System.Windows.Forms.Button();
             this.tbMegjegyzes = new System.Windows.Forms.TextBox();
             this.bKilep = new System.Windows.Forms.Button();
+            this.Border = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // b0
             // 
+            this.b0.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.b0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.b0.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.b0.Location = new System.Drawing.Point(3, 51);
@@ -102,6 +105,8 @@
             // 
             // b1
             // 
+            this.b1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.b1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.b1.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.b1.Location = new System.Drawing.Point(54, 51);
@@ -114,6 +119,8 @@
             // 
             // b2
             // 
+            this.b2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.b2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.b2.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.b2.Location = new System.Drawing.Point(105, 51);
@@ -126,6 +133,8 @@
             // 
             // b3
             // 
+            this.b3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.b3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.b3.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.b3.Location = new System.Drawing.Point(156, 51);
@@ -138,6 +147,8 @@
             // 
             // b4
             // 
+            this.b4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.b4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.b4.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.b4.Location = new System.Drawing.Point(207, 51);
@@ -150,6 +161,8 @@
             // 
             // b5
             // 
+            this.b5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.b5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.b5.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.b5.Location = new System.Drawing.Point(258, 51);
@@ -162,6 +175,8 @@
             // 
             // b6
             // 
+            this.b6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.b6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.b6.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.b6.Location = new System.Drawing.Point(309, 51);
@@ -174,6 +189,8 @@
             // 
             // b7
             // 
+            this.b7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.b7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.b7.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.b7.Location = new System.Drawing.Point(360, 51);
@@ -186,6 +203,8 @@
             // 
             // b8
             // 
+            this.b8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.b8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.b8.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.b8.Location = new System.Drawing.Point(411, 51);
@@ -198,6 +217,8 @@
             // 
             // b9
             // 
+            this.b9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.b9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.b9.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.b9.Location = new System.Drawing.Point(462, 51);
@@ -210,6 +231,8 @@
             // 
             // bö
             // 
+            this.bö.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bö.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bö.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bö.Location = new System.Drawing.Point(513, 51);
@@ -222,6 +245,8 @@
             // 
             // bü
             // 
+            this.bü.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bü.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bü.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bü.Location = new System.Drawing.Point(564, 51);
@@ -234,6 +259,8 @@
             // 
             // bó
             // 
+            this.bó.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bó.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bó.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bó.Location = new System.Drawing.Point(615, 51);
@@ -246,6 +273,8 @@
             // 
             // bNoFunc0
             // 
+            this.bNoFunc0.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bNoFunc0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bNoFunc0.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bNoFunc0.Location = new System.Drawing.Point(3, 102);
@@ -257,6 +286,8 @@
             // 
             // bNoFunc1
             // 
+            this.bNoFunc1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bNoFunc1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bNoFunc1.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bNoFunc1.Location = new System.Drawing.Point(3, 153);
@@ -268,6 +299,8 @@
             // 
             // bú
             // 
+            this.bú.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bú.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bú.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bú.Location = new System.Drawing.Point(634, 102);
@@ -280,6 +313,8 @@
             // 
             // bő
             // 
+            this.bő.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bő.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bő.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bő.Location = new System.Drawing.Point(583, 102);
@@ -292,6 +327,8 @@
             // 
             // bp
             // 
+            this.bp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bp.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bp.Location = new System.Drawing.Point(532, 102);
@@ -304,6 +341,8 @@
             // 
             // bo
             // 
+            this.bo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bo.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bo.Location = new System.Drawing.Point(481, 102);
@@ -316,6 +355,8 @@
             // 
             // bi
             // 
+            this.bi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bi.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bi.Location = new System.Drawing.Point(430, 102);
@@ -328,6 +369,8 @@
             // 
             // bu
             // 
+            this.bu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bu.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bu.Location = new System.Drawing.Point(379, 102);
@@ -340,6 +383,8 @@
             // 
             // bz
             // 
+            this.bz.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bz.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bz.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bz.Location = new System.Drawing.Point(328, 102);
@@ -352,6 +397,8 @@
             // 
             // bt
             // 
+            this.bt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bt.Location = new System.Drawing.Point(277, 102);
@@ -364,6 +411,8 @@
             // 
             // br
             // 
+            this.br.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.br.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.br.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.br.Location = new System.Drawing.Point(226, 102);
@@ -376,6 +425,8 @@
             // 
             // be
             // 
+            this.be.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.be.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.be.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.be.Location = new System.Drawing.Point(175, 102);
@@ -388,6 +439,8 @@
             // 
             // bw
             // 
+            this.bw.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bw.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bw.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bw.Location = new System.Drawing.Point(124, 102);
@@ -400,6 +453,8 @@
             // 
             // bq
             // 
+            this.bq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bq.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bq.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bq.Location = new System.Drawing.Point(73, 102);
@@ -412,6 +467,8 @@
             // 
             // bű
             // 
+            this.bű.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bű.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bű.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bű.Location = new System.Drawing.Point(646, 153);
@@ -424,6 +481,8 @@
             // 
             // bá
             // 
+            this.bá.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bá.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bá.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bá.Location = new System.Drawing.Point(595, 153);
@@ -436,6 +495,8 @@
             // 
             // bé
             // 
+            this.bé.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bé.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bé.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bé.Location = new System.Drawing.Point(544, 153);
@@ -448,6 +509,8 @@
             // 
             // bl
             // 
+            this.bl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bl.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bl.Location = new System.Drawing.Point(493, 153);
@@ -460,6 +523,8 @@
             // 
             // bk
             // 
+            this.bk.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bk.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bk.Location = new System.Drawing.Point(442, 153);
@@ -472,6 +537,8 @@
             // 
             // bj
             // 
+            this.bj.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bj.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bj.Location = new System.Drawing.Point(391, 153);
@@ -484,6 +551,8 @@
             // 
             // bh
             // 
+            this.bh.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bh.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bh.Location = new System.Drawing.Point(340, 153);
@@ -496,6 +565,8 @@
             // 
             // bg
             // 
+            this.bg.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bg.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bg.Location = new System.Drawing.Point(289, 153);
@@ -508,6 +579,8 @@
             // 
             // bf
             // 
+            this.bf.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bf.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bf.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bf.Location = new System.Drawing.Point(238, 153);
@@ -520,6 +593,8 @@
             // 
             // bd
             // 
+            this.bd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bd.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bd.Location = new System.Drawing.Point(187, 153);
@@ -532,6 +607,8 @@
             // 
             // bs
             // 
+            this.bs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bs.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bs.Location = new System.Drawing.Point(136, 153);
@@ -544,6 +621,8 @@
             // 
             // ba
             // 
+            this.ba.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ba.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ba.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.ba.Location = new System.Drawing.Point(85, 153);
@@ -556,6 +635,8 @@
             // 
             // bBackspace
             // 
+            this.bBackspace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bBackspace.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bBackspace.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bBackspace.Location = new System.Drawing.Point(666, 51);
@@ -568,6 +649,8 @@
             // 
             // bEnter
             // 
+            this.bEnter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bEnter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bEnter.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bEnter.Location = new System.Drawing.Point(697, 102);
@@ -580,6 +663,8 @@
             // 
             // bNoFunc2
             // 
+            this.bNoFunc2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bNoFunc2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bNoFunc2.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bNoFunc2.Location = new System.Drawing.Point(3, 204);
@@ -591,6 +676,8 @@
             // 
             // bPlus
             // 
+            this.bPlus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bPlus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bPlus.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bPlus.Location = new System.Drawing.Point(629, 204);
@@ -603,6 +690,8 @@
             // 
             // bMinus
             // 
+            this.bMinus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bMinus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bMinus.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bMinus.Location = new System.Drawing.Point(578, 204);
@@ -615,6 +704,8 @@
             // 
             // bPont
             // 
+            this.bPont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bPont.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bPont.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bPont.Location = new System.Drawing.Point(527, 204);
@@ -627,6 +718,8 @@
             // 
             // bVesszo
             // 
+            this.bVesszo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bVesszo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bVesszo.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bVesszo.Location = new System.Drawing.Point(476, 204);
@@ -639,6 +732,8 @@
             // 
             // bm
             // 
+            this.bm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bm.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bm.Location = new System.Drawing.Point(425, 204);
@@ -651,6 +746,8 @@
             // 
             // bn
             // 
+            this.bn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bn.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bn.Location = new System.Drawing.Point(374, 204);
@@ -663,6 +760,8 @@
             // 
             // bb
             // 
+            this.bb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bb.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bb.Location = new System.Drawing.Point(323, 204);
@@ -675,6 +774,8 @@
             // 
             // bv
             // 
+            this.bv.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bv.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bv.Location = new System.Drawing.Point(272, 204);
@@ -687,6 +788,8 @@
             // 
             // bc
             // 
+            this.bc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bc.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bc.Location = new System.Drawing.Point(221, 204);
@@ -699,6 +802,8 @@
             // 
             // bx
             // 
+            this.bx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bx.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bx.Location = new System.Drawing.Point(170, 204);
@@ -711,6 +816,8 @@
             // 
             // by
             // 
+            this.by.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.by.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.by.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.by.Location = new System.Drawing.Point(119, 204);
@@ -723,6 +830,8 @@
             // 
             // bí
             // 
+            this.bí.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bí.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bí.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bí.Location = new System.Drawing.Point(68, 204);
@@ -735,6 +844,8 @@
             // 
             // bFelkialt
             // 
+            this.bFelkialt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bFelkialt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bFelkialt.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bFelkialt.Location = new System.Drawing.Point(680, 204);
@@ -747,6 +858,8 @@
             // 
             // bSpace
             // 
+            this.bSpace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bSpace.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bSpace.Font = new System.Drawing.Font("Franklin Gothic Demi", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bSpace.Location = new System.Drawing.Point(3, 255);
@@ -761,7 +874,7 @@
             // 
             this.tbMegjegyzes.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbMegjegyzes.Font = new System.Drawing.Font("Franklin Gothic Heavy", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.tbMegjegyzes.Location = new System.Drawing.Point(-1, 0);
+            this.tbMegjegyzes.Location = new System.Drawing.Point(0, 1);
             this.tbMegjegyzes.Multiline = true;
             this.tbMegjegyzes.Name = "tbMegjegyzes";
             this.tbMegjegyzes.Size = new System.Drawing.Size(711, 45);
@@ -773,7 +886,7 @@
             this.bKilep.BackColor = System.Drawing.Color.Red;
             this.bKilep.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bKilep.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bKilep.Location = new System.Drawing.Point(716, 0);
+            this.bKilep.Location = new System.Drawing.Point(714, 1);
             this.bKilep.Name = "bKilep";
             this.bKilep.Size = new System.Drawing.Size(45, 45);
             this.bKilep.TabIndex = 61;
@@ -781,12 +894,21 @@
             this.bKilep.UseVisualStyleBackColor = false;
             this.bKilep.Click += new System.EventHandler(this.bKilep_Click);
             // 
+            // Border
+            // 
+            this.Border.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Border.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Border.Location = new System.Drawing.Point(0, 0);
+            this.Border.Name = "Border";
+            this.Border.Size = new System.Drawing.Size(765, 307);
+            this.Border.TabIndex = 62;
+            // 
             // bill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(767, 308);
+            this.ClientSize = new System.Drawing.Size(765, 307);
             this.Controls.Add(this.bKilep);
             this.Controls.Add(this.tbMegjegyzes);
             this.Controls.Add(this.bSpace);
@@ -845,10 +967,12 @@
             this.Controls.Add(this.b2);
             this.Controls.Add(this.b1);
             this.Controls.Add(this.b0);
+            this.Controls.Add(this.Border);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "bill";
             this.Text = "bill";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.bill_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -914,5 +1038,6 @@
         private System.Windows.Forms.Button bSpace;
         private System.Windows.Forms.TextBox tbMegjegyzes;
         private System.Windows.Forms.Button bKilep;
+        private System.Windows.Forms.Panel Border;
     }
 }

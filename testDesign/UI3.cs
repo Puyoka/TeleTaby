@@ -85,129 +85,9 @@ namespace testDesign
 
 
         //---------
-        void AdatbázisLekér()
-        {
-            switch (cbAdatbazis.SelectedIndex)
-            {
-                case 0:
-                    using (var teletabyDB = new DataContext(belepes.connectionString))
-                    {
-                        var rendelesT = teletabyDB.GetTable<Rendelés>();                                                
 
-                        var resultRend = (from t in rendelesT
-                                          select new MentesRendeles(t.ID, t.idő, t.összeg)).AsEnumerable<MentesRendeles>();
+       
 
-                        dgvDT.DataSource = resultRend;
-                    }
-                    break;
-                case 1:
-                    using (var teletabyDB = new DataContext(belepes.connectionString))
-                    {
-
-                        var tetelT = teletabyDB.GetTable<Rendelés_tételek>();
-                        var termekT = teletabyDB.GetTable<Termék>();
-
-                        var resultTetel = (from t1 in tetelT
-                                           join t2 in termekT on t1.termékID equals t2.ID
-                                           select new MentesRendelesTetel(t1.rendelésID, t2.név, t2.mértékegység, t2.ár, t1.megjegyzés)).AsEnumerable<MentesRendelesTetel>();
-
-                        dgvDT.DataSource = resultTetel;
-                    }
-                    break;
-            }
-        }
-
-
-
-        private void cbAdatbazis_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            AdatbázisLekér();
-        }
-
-        private async void button2_Click(object sender, EventArgs e)
-        {
-            DialogResult valasz;
-            if (cBoxMentes.Checked)
-            {
-                valasz = MessageBox.Show("Biztos benne, hogy véglegesen üríti a táblákat?", "Ürítés", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            }
-            else
-            {
-                valasz = MessageBox.Show("Biztos benne, hogy mentés nélkül, véglegesen üríti a táblákat?", "Ürítés", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            }
-
-            if (valasz == DialogResult.Yes)
-            {
-                using (var teletabyDB = new DataContext(belepes.connectionString))
-                {
-                    var rendelesT = teletabyDB.GetTable<Rendelés>();
-                    var tetelT = teletabyDB.GetTable<Rendelés_tételek>();
-                    var termekT = teletabyDB.GetTable<Termék>();
-
-
-                    var resultRend = (from t in rendelesT
-                                      select new MentesRendeles(t.ID, t.idő, t.összeg)).AsEnumerable<MentesRendeles>();
-                    var resultTetel = (from t1 in tetelT
-                                       join t2 in termekT on t1.termékID equals t2.ID
-                                       select new MentesRendelesTetel(t1.rendelésID, t2.név, t2.mértékegység, t2.ár, t1.megjegyzés)).AsEnumerable<MentesRendelesTetel>();
-
-                    switch (cbAdatbazis.SelectedIndex)
-                    {
-                        case 0:
-                            dgvDT.DataSource = resultRend;
-                            break;
-                        case 1:
-                            dgvDT.DataSource = resultTetel;
-                            break;
-                    }
-
-                    if (cBoxMentes.Checked)
-                    {
-                        Excel(resultRend, resultTetel);
-                    }
-
-                    teletabyDB.ExecuteCommand("TRUNCATE TABLE rendelés");
-                    teletabyDB.ExecuteCommand("TRUNCATE TABLE rendelés_tételek");
-                }
-                await Visszajelzes(bMentesUrites);
-
-                AdatbázisLekér();
-            }
-        }
-
-        void Excel(IEnumerable<MentesRendeles> dtRendeles, IEnumerable<MentesRendelesTetel> dtTetelek)
-        {             
-            using (ExcelPackage excel = new ExcelPackage())
-            {
-                excel.Workbook.Worksheets.Add("Rendelések");
-                excel.Workbook.Worksheets.Add("Tételek");
-
-
-                var dataArray = new List<object[]>();
-                foreach (var item in dtRendeles)
-                {
-                    dataArray.Add(new object[] { item.ID,item.Idő.ToString(),item.Összeg});
-                }                   
-                var excelWorksheet = excel.Workbook.Worksheets["Rendelések"];
-                excelWorksheet.Cells[1,1].LoadFromArrays(dataArray);
-
-
-                dataArray = new List<object[]>();
-                foreach (var item in dtTetelek)
-                {
-                    dataArray.Add(new object[] { item.RendelésID , item.Név , item.Mértékegység, item.Megjegyzés, item.Ár });
-                }
-                excelWorksheet = excel.Workbook.Worksheets["Tételek"];
-                excelWorksheet.Cells[1, 1].LoadFromArrays(dataArray);
-
-
-
-                FileInfo excelFile = new FileInfo(filePath + $"{DateTime.Now.ToShortDateString()}"+".xlsx");
-                excel.SaveAs(excelFile);                
-            }
-        }
-
-        
         //---------
 
 
@@ -269,7 +149,7 @@ namespace testDesign
             return num;
         }
         #endregion
-        private async Task Visszajelzes(Button b)
+        static async Task Visszajelzes(Button b)
         {
             b.BackColor = Color.Green;
             b.Text = "✓";
@@ -721,18 +601,29 @@ namespace testDesign
 
 
                         List<Statisztika> keszNemkeszLista = new List<Statisztika>();
-                        foreach (var item in iq)
+                        if (x.FirstOrDefault() != null)
                         {
-                            var keszNemkesz = new
+                            foreach (var item in iq)
                             {
-                                kesz = x.Count(s => s.státusz == true && s.felhasználóNév == item.név),
-                                nemkesz = x.Count(s => s.státusz == false && s.felhasználóNév == item.név),
-                                osszeg = x.Sum(s => s.összeg)
-                            };
-                            int osszesen = keszNemkesz.kesz + keszNemkesz.nemkesz;
+                                var keszNemkesz = new
+                                {
+                                    kesz = x.Count(s => s.státusz == true && s.felhasználóNév == item.név),
+                                    nemkesz = x.Count(s => s.státusz == false && s.felhasználóNév == item.név),
+                                    osszeg = x.Sum(s => s.összeg)
+                                };
+                                int osszesen = keszNemkesz.kesz + keszNemkesz.nemkesz;
 
-                            var temp = new Statisztika(item.név, keszNemkesz.kesz, keszNemkesz.nemkesz, osszesen, keszNemkesz.osszeg);
-                            keszNemkeszLista.Add(temp);
+                                var temp = new Statisztika(item.név, keszNemkesz.kesz, keszNemkesz.nemkesz, osszesen, keszNemkesz.osszeg);
+                                keszNemkeszLista.Add(temp);
+                            }
+                        }
+                        else
+                        {
+                            foreach (var item in iq)
+                            {
+                                var temp = new Statisztika(item.név, 0, 0, 0, 0);
+                                keszNemkeszLista.Add(temp);
+                            }                            
                         }
                         dgvStat.DataSource = keszNemkeszLista;
                     }
@@ -846,9 +737,13 @@ namespace testDesign
                                     select t.ID).Count();
                 var osszTetel = (from t in rendelesTetelT
                                  select t.sorsz).Count();
-                var osszBevetel = (from t in rendelesT
-                                   select t.összeg).Sum();
 
+                var osszBevetel = 0;
+                if (osszRendeles + osszTetel > 0)
+                {
+                    osszBevetel = (from t in rendelesT
+                                       select t.összeg).Sum();
+                }
                 lOsszesRendeles.Text = $"Rendelések: {osszRendeles} db";
                 lOsszesTetel.Text = $"Tételek: {osszTetel} db";
                 lBevetel.Text = $"Bevétel: {osszBevetel} Ft";
@@ -856,6 +751,129 @@ namespace testDesign
         }
 
         #endregion
+        #region case 4:Adatbázis
+        void AdatbázisLekér()
+        {
+            switch (cbAdatbazis.SelectedIndex)
+            {
+                case 0:
+                    using (var teletabyDB = new DataContext(belepes.connectionString))
+                    {
+                        var rendelesT = teletabyDB.GetTable<Rendelés>();
+
+                        var resultRend = (from t in rendelesT
+                                          select new MentesRendeles(t.ID, t.idő, t.összeg)).AsEnumerable<MentesRendeles>();
+
+                        dgvDT.DataSource = resultRend;
+                    }
+                    break;
+                case 1:
+                    using (var teletabyDB = new DataContext(belepes.connectionString))
+                    {
+
+                        var tetelT = teletabyDB.GetTable<Rendelés_tételek>();
+                        var termekT = teletabyDB.GetTable<Termék>();
+
+                        var resultTetel = (from t1 in tetelT
+                                           join t2 in termekT on t1.termékID equals t2.ID
+                                           select new MentesRendelesTetel(t1.rendelésID, t2.név, t2.mértékegység, t2.ár, t1.megjegyzés)).AsEnumerable<MentesRendelesTetel>();
+
+                        dgvDT.DataSource = resultTetel;
+                    }
+                    break;
+            }
+        }
+
+        private void cbAdatbazis_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AdatbázisLekér();
+        }
+
+        private async void button2_Click(object sender, EventArgs e)
+        {
+            DialogResult valasz;
+            if (cBoxMentes.Checked)
+            {
+                valasz = MessageBox.Show("Biztos benne, hogy véglegesen üríti a táblákat?", "Ürítés", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                valasz = MessageBox.Show("Biztos benne, hogy mentés nélkül, véglegesen üríti a táblákat?", "Ürítés", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            }
+
+            if (valasz == DialogResult.Yes)
+            {
+                using (var teletabyDB = new DataContext(belepes.connectionString))
+                {
+                    var rendelesT = teletabyDB.GetTable<Rendelés>();
+                    var tetelT = teletabyDB.GetTable<Rendelés_tételek>();
+                    var termekT = teletabyDB.GetTable<Termék>();
+
+
+                    var resultRend = (from t in rendelesT
+                                      select new MentesRendeles(t.ID, t.idő, t.összeg)).AsEnumerable<MentesRendeles>();
+                    var resultTetel = (from t1 in tetelT
+                                       join t2 in termekT on t1.termékID equals t2.ID
+                                       select new MentesRendelesTetel(t1.rendelésID, t2.név, t2.mértékegység, t2.ár, t1.megjegyzés)).AsEnumerable<MentesRendelesTetel>();
+
+                    switch (cbAdatbazis.SelectedIndex)
+                    {
+                        case 0:
+                            dgvDT.DataSource = resultRend;
+                            break;
+                        case 1:
+                            dgvDT.DataSource = resultTetel;
+                            break;
+                    }
+
+                    if (cBoxMentes.Checked && resultRend.FirstOrDefault() != null && resultTetel.FirstOrDefault() != null)
+                    {
+                        Excel(resultRend, resultTetel);
+                    }
+
+                    teletabyDB.ExecuteCommand("TRUNCATE TABLE rendelés");
+                    teletabyDB.ExecuteCommand("TRUNCATE TABLE rendelés_tételek");
+                }
+                await Visszajelzes(bMentesUrites);
+
+                AdatbázisLekér();
+            }
+        }
+
+        void Excel(IEnumerable<MentesRendeles> dtRendeles, IEnumerable<MentesRendelesTetel> dtTetelek)
+        {
+            using (ExcelPackage excel = new ExcelPackage())
+            {
+                excel.Workbook.Worksheets.Add("Rendelések");
+                excel.Workbook.Worksheets.Add("Tételek");
+
+
+                var dataArray = new List<object[]>();
+                foreach (var item in dtRendeles)
+                {
+                    dataArray.Add(new object[] { item.ID, item.Idő.ToString(), item.Összeg });
+                }
+                var excelWorksheet = excel.Workbook.Worksheets["Rendelések"];
+                excelWorksheet.Cells[1, 1].LoadFromArrays(dataArray);
+
+
+                dataArray = new List<object[]>();
+                foreach (var item in dtTetelek)
+                {
+                    dataArray.Add(new object[] { item.RendelésID, item.Név, item.Mértékegység, item.Megjegyzés, item.Ár });
+                }
+                excelWorksheet = excel.Workbook.Worksheets["Tételek"];
+                excelWorksheet.Cells[1, 1].LoadFromArrays(dataArray);
+
+
+
+                FileInfo excelFile = new FileInfo(filePath + $"{DateTime.Now.ToShortDateString()}" + ".xlsx");
+                excel.SaveAs(excelFile);
+            }
+        }
+        #endregion
+
+
 
         private void UI3_Load(object sender, EventArgs e)
         {
@@ -872,8 +890,6 @@ namespace testDesign
         {
             lIdo.Text = DateTime.Now.ToString("HH:mm:ss");
         }
-
-
     }
     
 }

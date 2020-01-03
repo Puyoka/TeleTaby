@@ -57,3 +57,9 @@ C:\Users\puyok\Source\Repos\Puyoka\TeleTaby\testDesign\obj\Debug\testDesign.pdb
 C:\Users\puyok\Source\Repos\Puyoka\TeleTaby\testDesign\bin\Debug\EPPlus.dll
 C:\Users\puyok\Source\Repos\Puyoka\TeleTaby\testDesign\bin\Debug\EPPlus.xml
 C:\Users\puyok\Source\Repos\Puyoka\TeleTaby\testDesign\obj\Debug\TeleTaby.csproj.CopyComplete
+C:\Users\puyok\Source\Repos\Puyoka\TeleTaby\testDesign\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\puyok\Source\Repos\Puyoka\TeleTaby\testDesign\bin\Debug\MailKit.dll
+C:\Users\puyok\Source\Repos\Puyoka\TeleTaby\testDesign\bin\Debug\MimeKit.dll
+C:\Users\puyok\Source\Repos\Puyoka\TeleTaby\testDesign\bin\Debug\MailKit.xml
+C:\Users\puyok\Source\Repos\Puyoka\TeleTaby\testDesign\bin\Debug\MimeKit.xml
+C:\Users\puyok\Source\Repos\Puyoka\TeleTaby\testDesign\obj\Debug\testDesign.Email.resources
