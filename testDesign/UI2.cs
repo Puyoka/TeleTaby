@@ -132,7 +132,7 @@ namespace testDesign
         {
             if (currColor == Color.White)
             {
-                currColor = Color.Yellow;
+                currColor = Color.Gray;
             }
             else
             {
@@ -244,9 +244,9 @@ namespace testDesign
             {
                 lastSelectedRowIndex = dgvRendelesek.SelectedRows[0].Index;
 
-                if (dgvRendelesek.SelectedRows[0].DefaultCellStyle.BackColor.Name == "Yellow")
+                if (dgvRendelesek.SelectedRows[0].DefaultCellStyle.BackColor.Name == "Gray")
                 {
-                    dgvRendelesek.DefaultCellStyle.SelectionBackColor = Color.Yellow;
+                    dgvRendelesek.DefaultCellStyle.SelectionBackColor = Color.Gray;
                 }
                 else
                 {

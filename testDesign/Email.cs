@@ -34,6 +34,8 @@ namespace testDesign
         {
             var screenHeight = Screen.PrimaryScreen.Bounds.Height;
             this.Location = new Point(0, screenHeight - this.Height);
+
+            tbTargy.Text = belepes.felhaszNev + " - ";
         }
 
         private void bKuldes_Click(object sender, EventArgs e)
