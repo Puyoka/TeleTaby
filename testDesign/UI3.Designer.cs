@@ -142,9 +142,9 @@
             // bVegrehajtTermek
             // 
             this.bVegrehajtTermek.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bVegrehajtTermek.Location = new System.Drawing.Point(267, 277);
+            this.bVegrehajtTermek.Location = new System.Drawing.Point(294, 276);
             this.bVegrehajtTermek.Name = "bVegrehajtTermek";
-            this.bVegrehajtTermek.Size = new System.Drawing.Size(305, 41);
+            this.bVegrehajtTermek.Size = new System.Drawing.Size(243, 41);
             this.bVegrehajtTermek.TabIndex = 12;
             this.bVegrehajtTermek.Text = "Végrehajt";
             this.bVegrehajtTermek.UseVisualStyleBackColor = true;
@@ -846,11 +846,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(586, 381);
             this.Controls.Add(this.pAdatbazis);
+            this.Controls.Add(this.pStat);
             this.Controls.Add(this.pTermek);
             this.Controls.Add(this.pFelhasz);
             this.Controls.Add(this.lIdo);
             this.Controls.Add(this.labelDatum);
-            this.Controls.Add(this.pStat);
             this.Controls.Add(this.bBezár);
             this.Controls.Add(this.cbTabla);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;

@@ -106,6 +106,7 @@ namespace testDesign
         private void Rb_CheckedChanged(object sender, EventArgs e)
         {
             rbNum = CurrRadButt(sender as RadioButton);
+            errorProvider.Clear();
         }
         int rbNum = 1;
         private int CurrRadButt(RadioButton rb)
@@ -169,53 +170,98 @@ namespace testDesign
         }
         private bool Urese(List<Control> controlsToTest)
         {
-            bool b = true;
+            bool b = false;
             foreach (var item in controlsToTest)
             {
-                if (item.Text == "")
+                if (item.Text.Trim() == "")
                 {
                     errorProvider.SetError(item, "Töltse ki a mezőt!");
-                    b = false;
+                    b = true;
                 }
             }
             return b;
         }
-        private bool Foglalte()
+        private bool FoglalteAFelhasz(string selectedFelhasznev)
         {
+            var count = 0;
             for (int i = 0; i < dgvFelhasznalok.Rows.Count; i++)
             {
-                if (rbNum == 2)
-                {
-                    var count = 0;
-                    if (dgvFelhasznalok.Rows[i].Cells[0].Value.ToString() == tbFelhsznev.Text)
+                if (rbNum == 2 && dgvFelhasznalok.Rows[i].Cells[0].Value.ToString() == tbFelhsznev.Text)//HA SZERKESZTÜNK
+                {                    
+                    count++;
+                    if (dgvFelhasznalok.Rows[i].Cells[0].Value.ToString() == selectedFelhasznev)
                     {
-                        count++;
-                    }
-                    if (count < 2)
-                    {
-                        return false;
+                        count--;
                     }
                 }
-                if (dgvFelhasznalok.Rows[i].Cells[0].Value.ToString() == tbFelhsznev.Text)
+                else if (rbNum ==1 && dgvFelhasznalok.Rows[i].Cells[0].Value.ToString() == tbFelhsznev.Text)//HA LÉTREHOZUNK
                 {
                     errorProvider.SetError(tbFelhsznev, "Ez a felhasználónév már foglalt.");
                     return true;
                 }
             }
-            return false;
+
+            if (count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                errorProvider.SetError(tbFelhsznev, "Ez a felhasználónév már foglalt.");
+                return true;
+            }
+        }
+        private bool FoglalteATermek(string selectedNev,string selectedMertekegyseg)
+        {
+            var count = 0;
+            using (var teletabyDB = new DataContext(belepes.connectionString))
+            {
+                var termekT = teletabyDB.GetTable<Termék>();
+
+                var result = from t in termekT
+                             select new { t.mértékegység, t.név};
+
+                foreach (var item in result)
+                {
+                    if (rbNum ==2 && item.név == tbNev.Text && item.mértékegység == tbMertekegyseg.Text)//HA SZERKESZTÜNK ÉS TB ADATOK EGYEZNEK AZ ÉPP VIZSGÁLT TERMÉK ADATAIVAL   ++
+                    {
+                        count++;
+                        if (item.név ==  selectedNev && item.mértékegység == selectedMertekegyseg)//DE HA AZ ÉPPEN SZERKESZTETT TERMÉK == AZ ÉPPEN VIZSGÁLTTAL --
+                        {
+                            count--;
+                        }
+                    }
+                    else if (rbNum == 1 && item.név == tbNev.Text && item.mértékegység == tbMertekegyseg.Text)
+                    {
+                        errorProvider.SetError(bVegrehajtTermek, "Már létezik termék ilyen névvel és mértékegységgel!");
+                        return true;
+                    }
+                }
+            }
+            if (count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                errorProvider.SetError(bVegrehajtTermek, "Már létezik termék ilyen névvel és mértékegységgel!");
+                return true;
+            }
+
         }
 
 
 
 
         #region case 1:Termékek
-        private void CsopNevekLekerdezes()
+        private void CsopNevekLekerdezes()//KIVÉVE ADMIN
         {
             using (var teletabyDB = new DataContext(belepes.connectionString))
             {
                 var table = teletabyDB.GetTable<Felhasználó>();
 
                 var result = (from t in table
+                              where t.UI != 3
                               select t.név).ToList();
                 result.Add("");
 
@@ -232,12 +278,13 @@ namespace testDesign
                 var result = (from t in table
                               orderby t.gyűjtőnév ascending
                               select t.gyűjtőnév).ToHashSet();
-                cbGyujtonev.DataSource = result.ToList();
+                cbGyujtonev.DataSource = result.ToList();//PARENT NODEOK (GYŰJTŐNEVEK)
 
                 foreach (var item in result)
                 {
                     tv.Nodes.Add(item);
                 }
+
 
                 var result2 = from t in table
                               orderby t.név ascending
@@ -246,7 +293,7 @@ namespace testDesign
                 for (int i = 0; i < tv.Nodes.Count; i++)
                 {
                     string gyujtonev = tv.Nodes[i].Text;
-                    foreach (var item in result2)
+                    foreach (var item in result2)//MEGFELELŐ NODEHOZ MEGFELELŐ NEVEK HOZZÁADÁSA
                     {
                         if (item.gyűjtőnév == gyujtonev)
                         {
@@ -261,43 +308,49 @@ namespace testDesign
 
         private async void BVegrehajtTermek_Click(object sender, EventArgs e)
         {
+            errorProvider.Clear();
+            List<Control> controlsToTest;
+
             switch (rbNum)
             {
                 case 1:
-                    using (var teletabyDB = new DataContext(belepes.connectionString))
-                    {
-                        var table = teletabyDB.GetTable<Felhasználó>();
-
-                        var result = from t in table
-                                     where t.név == cbCsopNev.Text
-                                     select t.ID;
-
-                        try
-                        {
-                            teletabyDB.ExecuteCommand($"INSERT INTO termék VALUES ('{tbNev.Text}', '{tbMertekegyseg.Text}', '{Convert.ToInt32(tbAr.Text)}', '{cbGyujtonev.Text}', '{result.FirstOrDefault()}')");
-                        }
-                        catch (System.Data.SqlClient.SqlException)
-                        {
-                            MessageBox.Show("kétszer ugyanaz");
-                        }
-                        var selectedIndex = cbGyujtonev.SelectedIndex;
-                        TvFeltoltes();
-                        cbGyujtonev.SelectedIndex = selectedIndex;
-                        await Visszajelzes(bVegrehajtTermek);
-                    }
-                    break;
-                case 2:
-                    try
+                    controlsToTest = new List<Control>() { tbNev, tbAr, cbGyujtonev };
+                    if (!Urese(controlsToTest))
                     {
                         using (var teletabyDB = new DataContext(belepes.connectionString))
                         {
+                            var table = teletabyDB.GetTable<Felhasználó>();
+
+                            var result = from t in table
+                                         where t.név == cbCsopNev.Text
+                                         select t.ID;
+
+                            if (!FoglalteATermek("",""))
+                            {
+                                teletabyDB.ExecuteCommand($"INSERT INTO termék VALUES ('{tbNev.Text}', '{tbMertekegyseg.Text}', '{Convert.ToInt32(tbAr.Text)}', '{cbGyujtonev.Text}', '{result.FirstOrDefault()}')");
+                                var selectedIndex = cbGyujtonev.SelectedIndex;
+                                TvFeltoltes();
+                                cbGyujtonev.SelectedIndex = selectedIndex;
+                                await Visszajelzes(bVegrehajtTermek);
+                            }                              
+                        }
+                    }
+                    break;
+                case 2:
+                    controlsToTest = new List<Control>() { tbNev, tbAr, cbGyujtonev };
+                    if (tv.SelectedNode != null)
+                    {
+                        using (var teletabyDB = new DataContext(belepes.connectionString))
+                        {
+                            bool succes = false;
                             string termekNev = tv.SelectedNode.Text.Split('➔')[0].Trim().Split('_')[0];
                             string mertekegyseg = tv.SelectedNode.Text.Split('➔')[0].Trim().Split('_')[1];
-                            if (tv.SelectedNode.Parent == null)
+                            if (tv.SelectedNode.Parent == null && !Urese(new List<Control>() { cbGyujtonev }))
                             {
                                 teletabyDB.ExecuteCommand($"UPDATE termék SET gyűjtőnév = '{cbGyujtonev.Text}' WHERE gyűjtőnév = '{termekNev}'");
+                                succes = true;
                             }
-                            else
+                            else if (!Urese(controlsToTest) && !FoglalteATermek(termekNev,mertekegyseg))
                             {
                                 var table = teletabyDB.GetTable<Felhasználó>();
                                 var result = from t in table
@@ -305,14 +358,19 @@ namespace testDesign
                                              select t.ID;
 
                                 teletabyDB.ExecuteCommand($"UPDATE TOP(1) termék SET név = '{tbNev.Text}',  mértékegység = '{tbMertekegyseg.Text}',  ár = '{Convert.ToInt32(tbAr.Text)}',  gyűjtőnév = '{cbGyujtonev.Text}',  felhaszID = '{result.FirstOrDefault()}' WHERE név = '{termekNev}' AND mértékegység = '{mertekegyseg}'");
+                                succes = true;
+
                             }
-                            TvFeltoltes();
-                            await Visszajelzes(bVegrehajtTermek);
-                        }
+                            if (succes)
+                            {
+                                TvFeltoltes();
+                                await Visszajelzes(bVegrehajtTermek);
+                            }
+                        } 
                     }
-                    catch (NullReferenceException)
+                    else
                     {
-                        MessageBox.Show($"nincs semmi kiválasztava");
+                        errorProvider.SetError(bVegrehajtTermek, "Szerkesztéshez válasszon terméket!");
                     }
                     break;
                 case 3:
@@ -343,16 +401,14 @@ namespace testDesign
                         MessageBox.Show($"nincs semmi kiválasztava");
                     }
                     break;
-                default:
-                    break;
             }
         }      
 
-        private void Tv_AfterSelect(object sender, TreeViewEventArgs e)
+        private void Tv_AfterSelect(object sender, TreeViewEventArgs e)//SZERKESZTÉSNÉL TB-OK KITÖLTÉSE
         {
             if (rbNum == 2)
             {
-                if (tv.SelectedNode.Parent != null)
+                if (tv.SelectedNode.Parent != null)//HA VAN PARENT NODE VAGYIS NEM GYŰJTŐNÉV VAN SELECTELVE
                 {
                     using (var teleetabyDB = new DataContext(belepes.connectionString))
                     {
@@ -387,11 +443,10 @@ namespace testDesign
                                 cbCsopNev.Text = ressult2.FirstOrDefault().ToString();
                             }
                             cbCsopNev.Text = "---";
-                        }
-                        
+                        }                        
                     } 
                 }
-                else
+                else//PARENT NODE SELECTED
                 {
                     cbGyujtonev.SelectedItem = tv.SelectedNode.Text;
                     tbNev.Text = "";
@@ -423,8 +478,8 @@ namespace testDesign
             string felhasznev_ = "";
             string jelszo_ = "";
             int id_ = 0;
-
-            if (rbNum != 1)
+            
+            if (rbNum != 1)//HA NEM LÉTREHOZUNK HANEM SZERKESZTÜNK VAGY MÓDOSÍTUNK
             {
                 row = dgvFelhasznalok.SelectedRows[0];
                 felhasznev_ = Convert.ToString(row.Cells[0].Value);
@@ -437,7 +492,7 @@ namespace testDesign
             {
                 case 1:
                     controlsToTest = new List<Control>() { tbFelhsznev, tbJelszo, tbUI };
-                    if (Urese(controlsToTest) && !Foglalte())
+                    if (!Urese(controlsToTest) && !FoglalteAFelhasz(""))
                     {
                         using (var teletabyDB = new DataContext(belepes.connectionString))
                         {
@@ -449,9 +504,9 @@ namespace testDesign
                     break;
                 case 2:
                     controlsToTest = new List<Control>() { tbFelhsznev, tbJelszo, tbUI };
-                    if (Urese(controlsToTest))
+                    if (!Urese(controlsToTest))
                     {
-                        if (!Foglalte())
+                        if (!FoglalteAFelhasz(felhasznev_))
                         {
                             using (var teletabvDB = new DataContext(belepes.connectionString))
                             {
@@ -466,16 +521,15 @@ namespace testDesign
                     using (var teletabyDB = new DataContext(belepes.connectionString))
                     {
                         teletabyDB.ExecuteCommand($"DELETE FROM felhasználó WHERE név = '{felhasznev_}' AND jelszó = '{jelszo_}' AND UI = '{id_}'");
+                        await Visszajelzes(bVegrehajtFelhasz);
+                        DgvFelhaszFeltolt();
                     }
-                    await Visszajelzes(bVegrehajtFelhasz);
-                    DgvFelhaszFeltolt();
-                    break;
-                default:
                     break;
             }
+
         }
 
-        private void DgvFelhasznalok_SelectionChanged(object sender, EventArgs e)
+        private void DgvFelhasznalok_SelectionChanged(object sender, EventArgs e)//SZERKESZTÉSNÉL KITÖLTSE A TB-KAT
         {
             if (dgvFelhasznalok.Rows.Count > 0 && dgvFelhasznalok.SelectedRows.Count > 0 && rbNum == 2)
             {
@@ -493,10 +547,7 @@ namespace testDesign
                     case "3":
                         tbUI.SelectedItem = "Admin";
                         break;
-                    default:
-                        break;
                 }
-
             }
         }
         #endregion
@@ -890,6 +941,7 @@ namespace testDesign
         {
             lIdo.Text = DateTime.Now.ToString("HH:mm:ss");
         }
+
     }
     
 }
