@@ -314,7 +314,7 @@ namespace testDesign
                 LeadottRendelesTetelekBeolvasas();
             }
         }
-
+         
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
