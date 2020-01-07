@@ -113,7 +113,7 @@
             this.Border.Location = new System.Drawing.Point(0, 0);
             this.Border.Name = "Border";
             this.Border.Size = new System.Drawing.Size(227, 411);
-            this.Border.TabIndex = 6;
+            this.Border.TabIndex = 6;            
             // 
             // Email
             // 

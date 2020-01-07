@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+
 
 
 
@@ -42,9 +44,15 @@ namespace testDesign
         {            
             try
             {
+                var fromEmail = ConfigurationManager.AppSettings["fromEmail"];
+                var fromEmailPW = ConfigurationManager.AppSettings["fromEmailPW"];
+                var toEmail = ConfigurationManager.AppSettings["toEmail"];
+
+
                 var message = new MimeMessage();
-                message.From.Add(new MailboxAddress("rendelesleadas123@gmail.com"));
-                message.To.Add(new MailboxAddress("nagysa1121@gmail.com"));
+                
+                message.From.Add(new MailboxAddress(fromEmail));
+                message.To.Add(new MailboxAddress(toEmail));
                 message.Subject = tbTargy.Text;
 
                 message.Body = new TextPart("plain")
@@ -56,7 +64,7 @@ namespace testDesign
                 {
                     client.Connect("smtp.gmail.com", 587);
                     client.AuthenticationMechanisms.Remove("XOAUTH2");
-                    client.Authenticate("rendelesleadas123@gmail.com", "JelszoJelszo123");
+                    client.Authenticate(fromEmail, fromEmailPW);
                     client.Send(message);
                     client.Disconnect(true);
                 }
@@ -86,6 +94,5 @@ namespace testDesign
             TextBox tb = sender as TextBox;
             currFocus = tb.Name;
         }
-
     }
 }

@@ -30,6 +30,7 @@ namespace testDesign
             labelDatum.Text = DateTime.Now.ToString("yyyy-MM-dd") + Environment.NewLine + DateTime.Now.ToString("dddd", ci).ToUpper();
             tIdo.Enabled = true;
 
+            dgvTetelek.RowHeadersDefaultCellStyle.Padding = new Padding(100);
 
             CsoportokFeltoltes();
             LeadottRendelesekBeolvasasa();
@@ -69,10 +70,8 @@ namespace testDesign
 
 
 
-
         public static string megjegyzes { get; set; }
         public int termekSorIndex { get; set; }
-
         private void bElfogyott_Click(object sender, EventArgs e)
         {
             bill bill = new bill(2);            
@@ -98,14 +97,12 @@ namespace testDesign
         }
 
 
-
         public void BPlus_Click(object sender, EventArgs e)
         {            
             if (megjegyzes == null)
             {
                 megjegyzes = "";
             }
-            //\\{dgvTermékek.SelectedCells[1].Value} !!!!!!!!!
             if (dgvTermékek.Rows[termekSorIndex].Cells[1].Value.ToString() != "")
             {
                 dgvRendelesLista.Rows.Add($"{dgvTermékek.SelectedCells[0].Value}\\{dgvTermékek.SelectedCells[1].Value}", megjegyzes, dgvTermékek.SelectedCells[2].Value);
@@ -126,9 +123,8 @@ namespace testDesign
                 OsszegUpdate();                
             }            
         }
-
+       
         
-        //LEAD
         private void BLead_Click(object sender, EventArgs e)//ha lesz megjegyzés, igazítani kell
         {
             RendelesFeltolt();
@@ -140,14 +136,12 @@ namespace testDesign
             LeadottRendelesekBeolvasasa();
         }        
 
-        //SELECTION CHANGE
         private void DgvRendelesek_SelectionChanged(object sender, EventArgs e)
         {
             LeadottRendelesTetelekBeolvasas();
         }
 
 
-        //LEKÉRDEZÉSEK
         public void OsszegUpdate()
         {
             osszeg = 0;
@@ -157,10 +151,10 @@ namespace testDesign
             }
             labelOsszeg.Text = osszeg.ToString();
         }
+        #region LE/FEL
         public void RendelesFeltolt()
         {
             var ido = DateTime.Now.ToString("yyyy - MM - dd HH: mm:ss");
-            //var temp = DateTime.Now.ToString("s");
             using (var teletabyDB = new DataContext(belepes.connectionString))
             {
                 teletabyDB.ExecuteCommand($"INSERT INTO rendelés VALUES ('{ido}', '{belepes.felhaszNev}', '{osszeg}', '{0}')");
@@ -192,12 +186,12 @@ namespace testDesign
                         termek = termekMertekegyseg;
                         mertekegyseg = "";
                     }
-                                        
+
                     string megjegy = dgvRendelesLista.Rows[i].Cells[1].Value.ToString();
                     teletabyDB.ExecuteCommand($"INSERT INTO rendelés_tételek VALUES ('{currRendelesID}',(SELECT ID FROM termék WHERE név = '{termek}' AND mértékegység = '{mertekegyseg}'),'{megjegy}','false')");
                 }
             }
-        }        
+        }
         public void LeadottRendelesekBeolvasasa()
         {
             using (var teletabyDB = new DataContext(belepes.connectionString))
@@ -210,7 +204,7 @@ namespace testDesign
 
                 dgvRendelesek.DataSource = result;
             }
-            
+
         }
         public void LeadottRendelesTetelekBeolvasas()
         {
@@ -244,17 +238,16 @@ namespace testDesign
                                     select new { t1.státusz };
 
                     int i = 0;
+                    dgvTetelek.EnableHeadersVisualStyles = false;
                     foreach (var item in statuszok)
                     {
                         if (item.státusz == false)
                         {
-                            dgvTetelek.EnableHeadersVisualStyles = false;
                             dgvTetelek.Rows[i].HeaderCell.Style.BackColor = Color.Yellow;
                             dgvTetelek.Rows[i].HeaderCell.Style.SelectionBackColor = Color.Yellow;
                         }
                         else
                         {
-                            dgvTetelek.EnableHeadersVisualStyles = false;
                             dgvTetelek.Rows[i].HeaderCell.Style.BackColor = Color.Green;
                             dgvTetelek.Rows[i].HeaderCell.Style.SelectionBackColor = Color.Green;
                         }
@@ -264,17 +257,13 @@ namespace testDesign
             }
         }
 
-        //TIMER & BEZÁR GOMB
-        private void TIdo_Tick(object sender, EventArgs e)
-        {
-            labelIdo.Text = DateTime.Now.ToString("HH:mm:ss");
-        }
+        #endregion
+
+
         private void BKilep_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
-        //RENDELÉS LEZÁRÁSA
         private void BLezar_Click(object sender, EventArgs e)
         {
             using (var teletabyDB = new DataContext(belepes.connectionString))
@@ -304,9 +293,7 @@ namespace testDesign
             }
             LeadottRendelesTetelekBeolvasas();
         }
-
-        //SAJÁT MAGA KÉSZ
-        private void BKesz_Click(object sender, EventArgs e)
+        private void BKesz_Click(object sender, EventArgs e)//SAJÁT MAGA
         {
             if (dgvTetelek.Rows.Count > 0)
             {
@@ -328,10 +315,14 @@ namespace testDesign
             }
         }
 
-        //AZ ÉPPEN LÁTHATÓ TETELEK FRISSÜLJENEK
+
         private void Timer1_Tick(object sender, EventArgs e)
         {
             LeadottRendelesTetelekBeolvasas();
+        }
+        private void TIdo_Tick(object sender, EventArgs e)
+        {
+            labelIdo.Text = DateTime.Now.ToString("HH:mm:ss");
         }
 
 

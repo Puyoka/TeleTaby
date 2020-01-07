@@ -13,6 +13,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using OfficeOpenXml;
+using System.Configuration;
+
 
 
 
@@ -26,7 +28,7 @@ namespace testDesign
 
     public partial class UI3 : Form
     {
-        public string  filePath { get; set; }
+        public string filePath = System.Configuration.ConfigurationManager.AppSettings["archiveFilePath"];
 
         public UI3()
         {
@@ -35,7 +37,6 @@ namespace testDesign
             CultureInfo ci = new CultureInfo("hu-HU");
             labelDatum.Text = DateTime.Now.ToString("yyyy-MM-dd") + Environment.NewLine + DateTime.Now.ToString("dddd", ci).ToUpper();
 
-            filePath = @"C:\Users\puyok\Desktop\testtest\";
 
             tIdo.Enabled = true;
         }
@@ -941,7 +942,5 @@ namespace testDesign
         {
             lIdo.Text = DateTime.Now.ToString("HH:mm:ss");
         }
-
-    }
-    
+    }    
 }

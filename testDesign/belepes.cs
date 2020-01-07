@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using testDesign;
+using System.Configuration;
 
 namespace testDesign
 {
@@ -18,7 +19,7 @@ namespace testDesign
         {
             InitializeComponent();
         }
-        public static string connectionString = "Data Source=localhost;Initial Catalog=teletabyDB;Integrated Security=True";
+        public static string connectionString = ConfigurationManager.ConnectionStrings["teletabyDB"].ToString();
 
 
         private void Belepes_Load(object sender, EventArgs e)
