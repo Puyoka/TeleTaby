@@ -16,6 +16,7 @@ namespace testDesign
 {
     public partial class UI1 : Form
     {        
+        //delete, select drop, exec
         public UI1()
         {
             InitializeComponent();
@@ -34,6 +35,9 @@ namespace testDesign
 
             CsoportokFeltoltes();
             LeadottRendelesekBeolvasasa();
+
+
+
         }
         private void CsoportokFeltoltes()
         {
@@ -157,13 +161,24 @@ namespace testDesign
             var ido = DateTime.Now.ToString("yyyy - MM - dd HH: mm:ss");
             using (var teletabyDB = new DataContext(belepes.connectionString))
             {
-                teletabyDB.ExecuteCommand($"INSERT INTO rendelés VALUES ('{ido}', '{belepes.felhaszNev}', '{osszeg}', '{0}')");
+                var rendeles = new Rendelés();
+                rendeles.idő = Convert.ToDateTime(ido);
+                rendeles.felhasználóNév = belepes.felhaszNev;
+                rendeles.összeg = osszeg;
+                rendeles.státusz = false;                
+                //teletabyDB.ExecuteCommand($"INSERT INTO rendelés VALUES ('{ido}', '{belepes.felhaszNev}', '{osszeg}', '{0}')"); torol                
+
+                teletabyDB.GetTable<Rendelés>().InsertOnSubmit(rendeles);
+                teletabyDB.SubmitChanges();
 
                 var table_ = teletabyDB.GetTable<Rendelés>();
                 currRendelesID = (from table in table_
-                                  where table.felhasználóNév == belepes.felhaszNev
                                   orderby table.ID descending
-                                  select table.ID).First();
+                                  select table.ID).FirstOrDefault();
+                if (currRendelesID == default)
+                {
+                    currRendelesID = 1;
+                }
             }
         }
         public void RendelesTetelekFeltolt()
@@ -173,22 +188,34 @@ namespace testDesign
                 for (int i = 0; i < dgvRendelesLista.Rows.Count; i++)
                 {
                     var termekMertekegyseg = dgvRendelesLista.Rows[i].Cells[0].Value.ToString();
-                    string termek = "";
+                    string termekNev = "";
                     string mertekegyseg = "";
                     if (termekMertekegyseg.Contains('\\'))
                     {
                         var temp = dgvRendelesLista.Rows[i].Cells[0].Value.ToString().Split('\\');
-                        termek = temp[0];
+                        termekNev = temp[0];
                         mertekegyseg = temp[1];
                     }
                     else
                     {
-                        termek = termekMertekegyseg;
+                        termekNev = termekMertekegyseg;
                         mertekegyseg = "";
                     }
 
                     string megjegy = dgvRendelesLista.Rows[i].Cells[1].Value.ToString();
-                    teletabyDB.ExecuteCommand($"INSERT INTO rendelés_tételek VALUES ('{currRendelesID}',(SELECT ID FROM termék WHERE név = '{termek}' AND mértékegység = '{mertekegyseg}'),'{megjegy}','false')");
+
+
+                    var termek = teletabyDB.GetTable<Termék>().FirstOrDefault(t => t.név == termekNev && t.mértékegység == mertekegyseg);
+
+                    var tetel = new Rendelés_tételek();
+                    tetel.rendelésID = currRendelesID;
+                    tetel.termékID = termek.ID;
+                    tetel.megjegyzés = megjegy;
+                    tetel.státusz = false;
+                    teletabyDB.GetTable<Rendelés_tételek>().InsertOnSubmit(tetel);
+                    teletabyDB.SubmitChanges();
+
+                    //teletabyDB.ExecuteCommand($"INSERT INTO rendelés_tételek VALUES ('{currRendelesID}',(SELECT ID FROM termék WHERE név = '{termekNev}' AND mértékegység = '{mertekegyseg}'),'{megjegy}','false')");  torol
                 }
             }
         }
@@ -286,7 +313,11 @@ namespace testDesign
 
                 if (b)
                 {
-                    teletabyDB.ExecuteCommand($"UPDATE TOP(1) rendelés SET státusz='{1}' WHERE ID = '{selectedRendelID}'");
+                    var rendeles = teletabyDB.GetTable<Rendelés>().FirstOrDefault(rend => rend.ID == selectedRendelID);
+                    rendeles.státusz = true;
+                    teletabyDB.SubmitChanges();
+
+                    //teletabyDB.ExecuteCommand($"UPDATE TOP(1) rendelés SET státusz='{1}' WHERE ID = '{selectedRendelID}'");
                     dgvRendelesek.Rows.RemoveAt(dgvRendelesek.SelectedRows[0].Index);
                     dgvTetelek.Rows.Clear();
                 }
@@ -303,12 +334,24 @@ namespace testDesign
                     var Rrow = dgvRendelesek.Rows[dgvRendelesek.SelectedRows[0].Index];
                     var nev = Trow.Cells[0].Value.ToString();
                     var mertekegyseg = Trow.Cells[1].Value.ToString();
-                    teletabyDB.ExecuteCommand($"UPDATE TOP(1) rendelés_tételek " +
-                        $"SET státusz='true' " +
-                        $"WHERE rendelésID = '{Rrow.Cells[0].Value}' AND " +
-                        $"(SELECT felhaszID FROM termék WHERE név = '{nev}' AND mértékegység = '{mertekegyseg}') = '0'" +
-                        $"AND termékID = (SELECT ID FROM termék WHERE név = '{nev}' AND mértékegység = '{mertekegyseg}') " +
-                        $"AND megjegyzés ='{Trow.Cells[1].Value}' AND státusz = '0'");
+
+
+                    var termek = teletabyDB.GetTable<Termék>().FirstOrDefault(term => term.név == nev && term.mértékegység == mertekegyseg);
+
+                    var rendelesTetel = teletabyDB.GetTable<Rendelés_tételek>().FirstOrDefault(rend => rend.rendelésID == (int)Rrow.Cells[0].Value &&
+                                                                                                       termek.felhaszID == 0 &&
+                                                                                                       rend.termékID == termek.ID &&
+                                                                                                       rend.megjegyzés == (string)Trow.Cells[1].Value &&
+                                                                                                       rend.státusz == false);
+                    rendelesTetel.státusz = true;
+                    teletabyDB.SubmitChanges();
+
+                    //teletabyDB.ExecuteCommand($"UPDATE TOP(1) rendelés_tételek " +
+                    //    $"SET státusz='true' " +
+                    //    $"WHERE rendelésID = '{Rrow.Cells[0].Value}' AND " +
+                    //    $"(SELECT felhaszID FROM termék WHERE név = '{nev}' AND mértékegység = '{mertekegyseg}') = '0'" +
+                    //    $"AND termékID = (SELECT ID FROM termék WHERE név = '{nev}' AND mértékegység = '{mertekegyseg}') " +
+                    //    $"AND megjegyzés ='{Trow.Cells[1].Value}' AND státusz = '0'");
 
                 }
                 LeadottRendelesTetelekBeolvasas();
