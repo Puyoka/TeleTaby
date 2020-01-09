@@ -22,5 +22,12 @@ namespace testDesign
         public Felhasználó()
         {
         }
+
+        public Felhasználó(string név, string jelszó, int uI)
+        {
+            this.név = név;
+            this.jelszó = jelszó;
+            UI = uI;
+        }
     }
 }

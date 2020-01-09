@@ -175,10 +175,10 @@ namespace testDesign
                 currRendelesID = (from table in table_
                                   orderby table.ID descending
                                   select table.ID).FirstOrDefault();
-                if (currRendelesID == default)
-                {
-                    currRendelesID = 1;
-                }
+                ////////////////////////////////////////if (currRendelesID == default)
+                ////////////////////////////////////////{
+                ////////////////////////////////////////    currRendelesID = 1;
+                ////////////////////////////////////////}
             }
         }
         public void RendelesTetelekFeltolt()

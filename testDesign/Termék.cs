@@ -23,6 +23,17 @@ namespace testDesign
         [Column]
         public int felhaszID { get; set; }
 
+        public Termék()
+        {
+        }
 
+        public Termék(string név, string mértékegység, int ár, string gyűjtőnév, int felhaszID)
+        {
+            this.név = név;
+            this.mértékegység = mértékegység;
+            this.ár = ár;
+            this.gyűjtőnév = gyűjtőnév;
+            this.felhaszID = felhaszID;
+        }
     }
 }

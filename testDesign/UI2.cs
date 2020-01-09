@@ -49,7 +49,16 @@ namespace testDesign
                 using (var teletabyDB = new DataContext(belepes.connectionString))
                 {
                     var row = dgvRendelesek.Rows[dgvRendelesek.SelectedRows[0].Index];
-                    teletabyDB.ExecuteCommand($"UPDATE TOP(1) rendelés_tételek SET státusz='true' WHERE rendelésID = '{row.Cells[0].Value}' AND termékID = (SELECT ID FROM termék WHERE név = '{row.Cells[2].Value}') AND megjegyzés ='{row.Cells[3].Value}'   AND státusz = '0'");
+
+                    var termek = teletabyDB.GetTable<Termék>().FirstOrDefault(term => term.név == (string)row.Cells[2].Value && term.mértékegység == (string)row.Cells[3].Value);
+                    var rendelesTetel = teletabyDB.GetTable<Rendelés_tételek>().FirstOrDefault(tetel => tetel.rendelésID == (int)row.Cells[0].Value &&
+                                                                                               tetel.termékID == termek.ID &&
+                                                                                               tetel.státusz == false);
+
+                    rendelesTetel.státusz = true;
+                    teletabyDB.SubmitChanges();
+
+                    //teletabyDB.ExecuteCommand($"UPDATE TOP(1) rendelés_tételek SET státusz='true' WHERE rendelésID = '{row.Cells[0].Value}' AND termékID = (SELECT ID FROM termék WHERE név = '{row.Cells[2].Value}') AND megjegyzés ='{row.Cells[3].Value}'   AND státusz = '0'");
                 }
                 dgvRendelesek.Rows.RemoveAt(dgvRendelesek.SelectedRows[0].Index);
                 //colors.RemoveAt(dataGridViewRendelesek.SelectedRows[0].Index);

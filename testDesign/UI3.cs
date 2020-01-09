@@ -234,7 +234,7 @@ namespace testDesign
                     }
                     else if (rbNum == 1 && item.név == tbNev.Text && item.mértékegység == tbMertekegyseg.Text)
                     {
-                        errorProvider.SetError(bVegrehajtTermek, "Már létezik termék ilyen névvel és mértékegységgel!");
+                        errorProvider.SetError(bVegrehajtTermek, "Már létezik termék ilyen névvel és/vagy mértékegységgel!");
                         return true;
                     }
                 }
@@ -245,7 +245,7 @@ namespace testDesign
             }
             else
             {
-                errorProvider.SetError(bVegrehajtTermek, "Már létezik termék ilyen névvel és mértékegységgel!");
+                errorProvider.SetError(bVegrehajtTermek, "Már létezik termék ilyen névvel és/vagy mértékegységgel!");
                 return true;
             }
 
@@ -312,6 +312,9 @@ namespace testDesign
             errorProvider.Clear();
             List<Control> controlsToTest;
 
+            string termekNev;
+            string mertekegyseg;
+
             switch (rbNum)
             {
                 case 1:
@@ -328,7 +331,10 @@ namespace testDesign
 
                             if (!FoglalteATermek("",""))
                             {
-                                teletabyDB.ExecuteCommand($"INSERT INTO termék VALUES ('{tbNev.Text}', '{tbMertekegyseg.Text}', '{Convert.ToInt32(tbAr.Text)}', '{cbGyujtonev.Text}', '{result.FirstOrDefault()}')");
+                                var termek = new Termék(tbNev.Text, tbMertekegyseg.Text, Convert.ToInt32(tbAr.Text), cbGyujtonev.Text, result.FirstOrDefault());
+                                teletabyDB.GetTable<Termék>().InsertOnSubmit(termek);
+                                teletabyDB.SubmitChanges();
+
                                 var selectedIndex = cbGyujtonev.SelectedIndex;
                                 TvFeltoltes();
                                 cbGyujtonev.SelectedIndex = selectedIndex;
@@ -344,11 +350,30 @@ namespace testDesign
                         using (var teletabyDB = new DataContext(belepes.connectionString))
                         {
                             bool succes = false;
-                            string termekNev = tv.SelectedNode.Text.Split('➔')[0].Trim().Split('_')[0];
-                            string mertekegyseg = tv.SelectedNode.Text.Split('➔')[0].Trim().Split('_')[1];
+                            termekNev = tv.SelectedNode.Text.Split('➔')[0].Trim().Split('_')[0];
+                            if (tv.SelectedNode.Parent != null)
+                            {
+                                mertekegyseg = tv.SelectedNode.Text.Split('➔')[0].Trim().Split('_')[1]; 
+                            }
+                            else
+                            {
+                                mertekegyseg = "";
+                            }
                             if (tv.SelectedNode.Parent == null && !Urese(new List<Control>() { cbGyujtonev }))
                             {
-                                teletabyDB.ExecuteCommand($"UPDATE termék SET gyűjtőnév = '{cbGyujtonev.Text}' WHERE gyűjtőnév = '{termekNev}'");
+                                var termekT = teletabyDB.GetTable<Termék>();
+                                var termekek = from t in termekT
+                                               select t;
+
+                                foreach (var item in termekek)
+                                {
+                                    var termek = teletabyDB.GetTable<Termék>().FirstOrDefault(term => term.gyűjtőnév == termekNev);
+                                    if (termek != null)
+                                    {
+                                        termek.gyűjtőnév = cbGyujtonev.Text;
+                                        teletabyDB.SubmitChanges(); 
+                                    }
+                                }
                                 succes = true;
                             }
                             else if (!Urese(controlsToTest) && !FoglalteATermek(termekNev,mertekegyseg))
@@ -358,7 +383,14 @@ namespace testDesign
                                              where t.név == cbCsopNev.Text
                                              select t.ID;
 
-                                teletabyDB.ExecuteCommand($"UPDATE TOP(1) termék SET név = '{tbNev.Text}',  mértékegység = '{tbMertekegyseg.Text}',  ár = '{Convert.ToInt32(tbAr.Text)}',  gyűjtőnév = '{cbGyujtonev.Text}',  felhaszID = '{result.FirstOrDefault()}' WHERE név = '{termekNev}' AND mértékegység = '{mertekegyseg}'");
+                                var termek = teletabyDB.GetTable<Termék>().FirstOrDefault(term => term.név == termekNev && term.mértékegység == mertekegyseg);
+                                termek.név = tbNev.Text;
+                                termek.mértékegység = tbMertekegyseg.Text;
+                                termek.ár = Convert.ToInt32(tbAr.Text);
+                                termek.gyűjtőnév = cbGyujtonev.Text;
+                                termek.felhaszID = result.FirstOrDefault();
+                                teletabyDB.SubmitChanges();
+
                                 succes = true;
 
                             }
@@ -374,33 +406,36 @@ namespace testDesign
                         errorProvider.SetError(bVegrehajtTermek, "Szerkesztéshez válasszon terméket!");
                     }
                     break;
-                case 3:
-                    try
+                case 3:                                        
+                    using (var teletabyDB = new DataContext(belepes.connectionString))
                     {
-                        string termekNev = tv.SelectedNode.Text.Split('➔')[0].Trim().Split('_')[0];
-                        string mertekegyseg = tv.SelectedNode.Text.Split('➔')[0].Trim().Split('_')[1];
-                        using (var teletabyDB = new DataContext(belepes.connectionString))
+                        if (tv.SelectedNode != null)
                         {
-                            if (!(tv.SelectedNode.Parent == null))
+                            if (tv.SelectedNode.Parent != null)
                             {
-                                var respond = MessageBox.Show($"Biztosan tölörlni szeretné a(z) {termekNev} tételt?", "Törlés", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                                if (respond == DialogResult.Yes)
+                                termekNev = tv.SelectedNode.Text.Split('➔')[0].Trim().Split('_')[0];
+                                mertekegyseg = tv.SelectedNode.Text.Split('➔')[0].Trim().Split('_')[1];
+
+                                if (MessageBox.Show($"Biztosan tölörlni szeretné a(z) {termekNev} tételt?", "Törlés", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                                 {
-                                    teletabyDB.ExecuteCommand($"DELETE FROM termék WHERE név = '{termekNev}' AND mértékegység = '{mertekegyseg}'");
+                                    var termek = teletabyDB.GetTable<Termék>().FirstOrDefault(term => term.név == termekNev && term.mértékegység == mertekegyseg);
+                                    teletabyDB.GetTable<Termék>().DeleteOnSubmit(termek);
+                                    teletabyDB.SubmitChanges();
+
                                     TvFeltoltes();
                                     await Visszajelzes(bVegrehajtTermek);
                                 }
                             }
                             else
                             {
-                                MessageBox.Show("nem ehet csoportot törölni");
-                            }
+                                MessageBox.Show("Nem lehet csoportot törölni!");
+                            } 
                         }
-                    }
-                    catch (NullReferenceException)
-                    {
-                        MessageBox.Show($"nincs semmi kiválasztava");
-                    }
+                        else
+                        {
+                            MessageBox.Show("Válasszon ki tételt!");
+                        }
+                    }                    
                     break;
             }
         }      
@@ -478,14 +513,14 @@ namespace testDesign
             DataGridViewRow row = null;
             string felhasznev_ = "";
             string jelszo_ = "";
-            int id_ = 0;
+            int UIid_ = 0;
             
-            if (rbNum != 1)//HA NEM LÉTREHOZUNK HANEM SZERKESZTÜNK VAGY MÓDOSÍTUNK
+            if (rbNum != 1)//SZERKESZTÜNK VAGY MÓDOSÍTUNK
             {
                 row = dgvFelhasznalok.SelectedRows[0];
                 felhasznev_ = Convert.ToString(row.Cells[0].Value);
                 jelszo_ = Convert.ToString(row.Cells[1].Value);
-                id_ = Convert.ToInt32(row.Cells[2].Value);
+                UIid_ = Convert.ToInt32(row.Cells[2].Value);
             }
 
             List<Control> controlsToTest;
@@ -497,7 +532,9 @@ namespace testDesign
                     {
                         using (var teletabyDB = new DataContext(belepes.connectionString))
                         {
-                            teletabyDB.ExecuteCommand($"INSERT INTO felhasználó VALUES('{tbFelhsznev.Text}','{tbJelszo.Text}','{tbUI.SelectedIndex + 1}')");
+                            var felhasznalo = new Felhasználó(tbFelhsznev.Text, tbJelszo.Text, tbUI.SelectedIndex + 1);
+                            teletabyDB.GetTable<Felhasználó>().InsertOnSubmit(felhasznalo);
+                            teletabyDB.SubmitChanges();                            
                         }
                         await Visszajelzes(bVegrehajtFelhasz);
                         DgvFelhaszFeltolt();
@@ -509,9 +546,18 @@ namespace testDesign
                     {
                         if (!FoglalteAFelhasz(felhasznev_))
                         {
-                            using (var teletabvDB = new DataContext(belepes.connectionString))
+                            using (var teletabyDB = new DataContext(belepes.connectionString))
                             {
-                                teletabvDB.ExecuteCommand($"UPDATE felhasználó SET név = '{tbFelhsznev.Text}', jelszó ='{tbJelszo.Text}', UI ='{tbUI.SelectedIndex + 1}' WHERE név = '{felhasznev_}' AND jelszó = '{jelszo_}' AND UI = '{id_}'");
+                                var regiFelhasznalo = teletabyDB.GetTable<Felhasználó>().FirstOrDefault(felhasz => felhasz.név == felhasznev_ &&
+                                                                                                    felhasz.jelszó == jelszo_ &&
+                                                                                                    felhasz.UI == UIid_);
+                                
+                                var ujFelhasznalo = new Felhasználó(tbFelhsznev.Text, tbJelszo.Text, tbUI.SelectedIndex + 1);
+
+                                teletabyDB.GetTable<Felhasználó>().InsertOnSubmit(ujFelhasznalo);
+                                teletabyDB.GetTable<Felhasználó>().DeleteOnSubmit(regiFelhasznalo);
+
+                                teletabyDB.SubmitChanges();
                             }
                             await Visszajelzes(bVegrehajtFelhasz);
                             DgvFelhaszFeltolt();
@@ -520,10 +566,18 @@ namespace testDesign
                     break;
                 case 3:
                     using (var teletabyDB = new DataContext(belepes.connectionString))
-                    {
-                        teletabyDB.ExecuteCommand($"DELETE FROM felhasználó WHERE név = '{felhasznev_}' AND jelszó = '{jelszo_}' AND UI = '{id_}'");
-                        await Visszajelzes(bVegrehajtFelhasz);
-                        DgvFelhaszFeltolt();
+                    {                        
+                        if (MessageBox.Show($"Biztosan tölörlni szeretné a(z) felhasználót?", "Törlés", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                        {
+                            var felhasznalo = teletabyDB.GetTable<Felhasználó>().FirstOrDefault(felhasz => felhasz.név == felhasznev_ &&
+                                                                                                    felhasz.jelszó == jelszo_ &&
+                                                                                                    felhasz.UI == UIid_);
+                            teletabyDB.GetTable<Felhasználó>().DeleteOnSubmit(felhasznalo);
+                            teletabyDB.SubmitChanges();
+
+                            await Visszajelzes(bVegrehajtFelhasz);
+                            DgvFelhaszFeltolt();
+                        }                        
                     }
                     break;
             }
@@ -920,6 +974,10 @@ namespace testDesign
 
 
                 FileInfo excelFile = new FileInfo(filePath + $"{DateTime.Now.ToShortDateString()}" + ".xlsx");
+                if (!Directory.Exists(filePath))
+                {
+                    DirectoryInfo di = Directory.CreateDirectory(filePath);
+                }
                 excel.SaveAs(excelFile);
             }
         }
