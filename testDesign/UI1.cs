@@ -25,7 +25,7 @@ namespace testDesign
         //BELÉPÉSKOR
         int osszeg = 0;
         int currRendelesID;
-        private void UI1_Load(object sender, EventArgs e)
+        private void UI1_Load(object sender, EventArgs e)  
         {
             CultureInfo ci = new CultureInfo("hu-HU");
             labelDatum.Text = DateTime.Now.ToString("yyyy-MM-dd") + Environment.NewLine + DateTime.Now.ToString("dddd", ci).ToUpper();
