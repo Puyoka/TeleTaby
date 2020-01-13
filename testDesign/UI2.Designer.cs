@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UI2));
             this.buttonKilep = new System.Windows.Forms.Button();
             this.timerIdo = new System.Windows.Forms.Timer(this.components);
             this.labelIdo = new System.Windows.Forms.Label();
@@ -41,10 +42,11 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buttonElozmeny_Rendeles = new System.Windows.Forms.Button();
             this.buttonKesz = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lRendEl = new System.Windows.Forms.Label();
             this.labelCounter = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.timerLekerdez = new System.Windows.Forms.Timer(this.components);
+            this.lFelhaszNev = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRendelesek)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -179,15 +181,15 @@
             this.buttonKesz.UseVisualStyleBackColor = true;
             this.buttonKesz.Click += new System.EventHandler(this.ButtonKesz_Click);
             // 
-            // label3
+            // lRendEl
             // 
-            this.label3.Font = new System.Drawing.Font("Franklin Gothic Medium", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(2, 59);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(1106, 27);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Rendelések";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lRendEl.Font = new System.Drawing.Font("Franklin Gothic Medium", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lRendEl.Location = new System.Drawing.Point(2, 59);
+            this.lRendEl.Name = "lRendEl";
+            this.lRendEl.Size = new System.Drawing.Size(1106, 27);
+            this.lRendEl.TabIndex = 7;
+            this.lRendEl.Text = "Rendelések";
+            this.lRendEl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // labelCounter
             // 
@@ -220,20 +222,32 @@
             this.timerLekerdez.Interval = 10000;
             this.timerLekerdez.Tick += new System.EventHandler(this.TimerLekerdez_Tick);
             // 
+            // lFelhaszNev
+            // 
+            this.lFelhaszNev.AutoSize = true;
+            this.lFelhaszNev.Font = new System.Drawing.Font("Franklin Gothic Demi", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lFelhaszNev.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lFelhaszNev.Location = new System.Drawing.Point(68, 63);
+            this.lFelhaszNev.Name = "lFelhaszNev";
+            this.lFelhaszNev.Size = new System.Drawing.Size(0, 16);
+            this.lFelhaszNev.TabIndex = 17;
+            // 
             // UI2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1106, 542);
+            this.Controls.Add(this.lFelhaszNev);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.labelCounter);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.labelNap);
             this.Controls.Add(this.labelIdo);
             this.Controls.Add(this.buttonKilep);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lRendEl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UI2";
             this.Text = "UI2";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -252,11 +266,12 @@
         private System.Windows.Forms.DataGridView dgvRendelesek;
         private System.Windows.Forms.Label labelNap;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lRendEl;
         private System.Windows.Forms.Button buttonElozmeny_Rendeles;
         private System.Windows.Forms.Button buttonKesz;
         private System.Windows.Forms.Label labelCounter;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Timer timerLekerdez;
+        private System.Windows.Forms.Label lFelhaszNev;
     }
 }

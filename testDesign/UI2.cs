@@ -6,8 +6,6 @@ using System.Data.Linq;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace testDesign
@@ -31,7 +29,8 @@ namespace testDesign
             lekerdezRendelesek(mitKerdezLe);
             keszCount = keszCounter();
             labelCounter.Text = $"{keszCount}";
-            label3.Width = this.Width;
+            lFelhaszNev.Text = belepes.felhaszNev;
+            lRendEl.Width = this.Width;
 
             dgvRendelesek.RowHeadersDefaultCellStyle.Padding = new Padding(100);//ne legyen nyil
             dgvRendelesek.RowHeadersDefaultCellStyle.SelectionBackColor = Color.White;
@@ -41,7 +40,6 @@ namespace testDesign
         }
 
 
-        //!!lekérdezéshes megpróbálni listával hogy sorba legyen-
         private void ButtonKesz_Click(object sender, EventArgs e)
         {
             if (dgvRendelesek.Rows.Count > 0)
@@ -58,7 +56,6 @@ namespace testDesign
                     rendelesTetel.státusz = true;
                     teletabyDB.SubmitChanges();
 
-                    //teletabyDB.ExecuteCommand($"UPDATE TOP(1) rendelés_tételek SET státusz='true' WHERE rendelésID = '{row.Cells[0].Value}' AND termékID = (SELECT ID FROM termék WHERE név = '{row.Cells[2].Value}') AND megjegyzés ='{row.Cells[3].Value}'   AND státusz = '0'");
                 }
                 dgvRendelesek.Rows.RemoveAt(dgvRendelesek.SelectedRows[0].Index);
                 //colors.RemoveAt(dataGridViewRendelesek.SelectedRows[0].Index);
@@ -77,11 +74,11 @@ namespace testDesign
             mitKerdezLe = !mitKerdezLe;
             if (mitKerdezLe == true)
             {
-                label3.Text = "Rendelések";
+                lRendEl.Text = "Rendelések";
             }
             else
             {
-                label3.Text = "Előzmények";
+                lRendEl.Text = "Előzmények";
             }
             lekerdezRendelesek(mitKerdezLe);
             buttonKesz.Visible = !buttonKesz.Visible;

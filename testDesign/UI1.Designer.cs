@@ -47,6 +47,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UI1));
             this.bKilep = new System.Windows.Forms.Button();
             this.labelIdo = new System.Windows.Forms.Label();
             this.tIdo = new System.Windows.Forms.Timer(this.components);
@@ -59,7 +60,7 @@
             this.bMegjegyzes = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.labelOsszeg = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lFizetendo = new System.Windows.Forms.Label();
             this.bLead = new System.Windows.Forms.Button();
             this.bMinus = new System.Windows.Forms.Button();
             this.bPlus = new System.Windows.Forms.Button();
@@ -76,7 +77,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.tFrissit = new System.Windows.Forms.Timer(this.components);
+            this.lFelhaszNev = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -148,7 +150,7 @@
             this.splitContainer1.Panel1.Controls.Add(this.dgvRendelesLista);
             this.splitContainer1.Panel1.Controls.Add(this.bMegjegyzes);
             this.splitContainer1.Panel1.Controls.Add(this.groupBox1);
-            this.splitContainer1.Panel1.Controls.Add(this.label7);
+            this.splitContainer1.Panel1.Controls.Add(this.lFizetendo);
             this.splitContainer1.Panel1.Controls.Add(this.bLead);
             this.splitContainer1.Panel1.Controls.Add(this.bMinus);
             this.splitContainer1.Panel1.Controls.Add(this.bPlus);
@@ -194,7 +196,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvRendelesLista.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvRendelesLista.Location = new System.Drawing.Point(479, 4);
+            this.dgvRendelesLista.Location = new System.Drawing.Point(479, 3);
             this.dgvRendelesLista.Name = "dgvRendelesLista";
             this.dgvRendelesLista.ReadOnly = true;
             this.dgvRendelesLista.RowHeadersVisible = false;
@@ -240,7 +242,7 @@
             this.bMegjegyzes.BackColor = System.Drawing.Color.White;
             this.bMegjegyzes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bMegjegyzes.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bMegjegyzes.Location = new System.Drawing.Point(425, 59);
+            this.bMegjegyzes.Location = new System.Drawing.Point(425, 102);
             this.bMegjegyzes.Name = "bMegjegyzes";
             this.bMegjegyzes.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.bMegjegyzes.Size = new System.Drawing.Size(48, 45);
@@ -253,7 +255,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.labelOsszeg);
-            this.groupBox1.Location = new System.Drawing.Point(607, 239);
+            this.groupBox1.Location = new System.Drawing.Point(667, 236);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(162, 41);
             this.groupBox1.TabIndex = 13;
@@ -271,17 +273,17 @@
             this.labelOsszeg.Text = "0 Ft";
             this.labelOsszeg.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label7
+            // lFizetendo
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Franklin Gothic Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label7.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label7.Location = new System.Drawing.Point(517, 251);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(84, 21);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "Fizetendő: ";
+            this.lFizetendo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lFizetendo.AutoSize = true;
+            this.lFizetendo.Font = new System.Drawing.Font("Franklin Gothic Medium", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lFizetendo.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lFizetendo.Location = new System.Drawing.Point(555, 246);
+            this.lFizetendo.Name = "lFizetendo";
+            this.lFizetendo.Size = new System.Drawing.Size(109, 26);
+            this.lFizetendo.TabIndex = 11;
+            this.lFizetendo.Text = "Fizetendő: ";
             // 
             // bLead
             // 
@@ -289,7 +291,7 @@
             this.bLead.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.bLead.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bLead.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bLead.Location = new System.Drawing.Point(425, 235);
+            this.bLead.Location = new System.Drawing.Point(479, 236);
             this.bLead.Name = "bLead";
             this.bLead.Size = new System.Drawing.Size(48, 45);
             this.bLead.TabIndex = 12;
@@ -303,7 +305,7 @@
             this.bMinus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.bMinus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bMinus.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bMinus.Location = new System.Drawing.Point(425, 110);
+            this.bMinus.Location = new System.Drawing.Point(425, 156);
             this.bMinus.Name = "bMinus";
             this.bMinus.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.bMinus.Size = new System.Drawing.Size(48, 45);
@@ -318,10 +320,10 @@
             this.bPlus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.bPlus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bPlus.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bPlus.Location = new System.Drawing.Point(425, 8);
+            this.bPlus.Location = new System.Drawing.Point(425, 3);
             this.bPlus.Name = "bPlus";
             this.bPlus.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.bPlus.Size = new System.Drawing.Size(48, 45);
+            this.bPlus.Size = new System.Drawing.Size(48, 90);
             this.bPlus.TabIndex = 8;
             this.bPlus.Text = "+";
             this.bPlus.UseVisualStyleBackColor = false;
@@ -624,11 +626,21 @@
             this.label9.TabIndex = 12;
             this.label9.Text = "Rendelés tételek";
             // 
-            // timer1
+            // tFrissit
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 5000;
-            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            this.tFrissit.Enabled = true;
+            this.tFrissit.Interval = 5000;
+            this.tFrissit.Tick += new System.EventHandler(this.TFrissit_Tick);
+            // 
+            // lFelhaszNev
+            // 
+            this.lFelhaszNev.AutoSize = true;
+            this.lFelhaszNev.Font = new System.Drawing.Font("Franklin Gothic Demi", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lFelhaszNev.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lFelhaszNev.Location = new System.Drawing.Point(12, 1);
+            this.lFelhaszNev.Name = "lFelhaszNev";
+            this.lFelhaszNev.Size = new System.Drawing.Size(0, 16);
+            this.lFelhaszNev.TabIndex = 16;
             // 
             // UI1
             // 
@@ -636,6 +648,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(858, 529);
+            this.Controls.Add(this.lFelhaszNev);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.bElfogyott);
             this.Controls.Add(this.label8);
@@ -647,6 +660,7 @@
             this.Controls.Add(this.labelIdo);
             this.Controls.Add(this.bKilep);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UI1";
             this.Text = "UI1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -680,7 +694,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button bPlus;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lFizetendo;
         private System.Windows.Forms.Button bLead;
         private System.Windows.Forms.Button bMinus;
         private System.Windows.Forms.DataGridView dgvTetelek;
@@ -697,6 +711,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer tFrissit;
+        private System.Windows.Forms.Label lFelhaszNev;
     }
 }

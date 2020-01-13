@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.Linq;
 using System.Drawing;
 using System.Globalization;
-using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,71 +11,54 @@ namespace testDesign
 {
     public partial class UI1 : Form
     {        
-        //delete, select drop, exec
         public UI1()
         {
             InitializeComponent();
         }
 
-        //BELÉPÉSKOR
         int osszeg = 0;
         int currRendelesID;
         private void UI1_Load(object sender, EventArgs e)  
         {
             CultureInfo ci = new CultureInfo("hu-HU");
             labelDatum.Text = DateTime.Now.ToString("yyyy-MM-dd") + Environment.NewLine + DateTime.Now.ToString("dddd", ci).ToUpper();
-            tIdo.Enabled = true;
 
-            dgvTetelek.RowHeadersDefaultCellStyle.Padding = new Padding(100);
+            lFelhaszNev.Text = belepes.felhaszNev;
+            tIdo.Enabled = true;
+            tFrissit.Enabled = true;
+
+            dgvTetelek.RowHeadersDefaultCellStyle.Padding = new Padding(100);//DGV RowHeader nyil
 
             CsoportokFeltoltes();
             LeadottRendelesekBeolvasasa();
-
-
-
         }
         private void CsoportokFeltoltes()
         {
             using (var teletabyDB = new DataContext(belepes.connectionString))
             {
-                var table = teletabyDB.GetTable<Termék>();
+                var termekT = teletabyDB.GetTable<Termék>();
 
-                var result = (from t in table
+                var result = (from t in termekT
                               orderby t.gyűjtőnév ascending
                               select t.gyűjtőnév).ToHashSet();
 
                 foreach (var item in result)
                 {
                     dgvCsoportok.Rows.Add(item);
-                }                
+                }
             }
         }
-        private void DgvCsoportok_SelectionChanged(object sender, EventArgs e)
-        {
-            dgvTermékek.Rows.Clear();
-            using (var teletabyDB = new DataContext(belepes.connectionString))
-            {
-                var table = teletabyDB.GetTable<Termék>();
+        
 
-                string gyujtonev = Convert.ToString(dgvCsoportok.SelectedRows[0].Cells[0].Value);
-                var result = from t in table
-                              where t.gyűjtőnév == gyujtonev
-                              select new { t.név, t.mértékegység, t.ár };
-
-                dgvTermékek.DataSource = result;                
-            }
-
-        }
-
-
-
-        public static string megjegyzes { get; set; }
-        public int termekSorIndex { get; set; }
-        private void bElfogyott_Click(object sender, EventArgs e)
-        {
-            bill bill = new bill(2);            
+        private void bElfogyott_Click(object sender, EventArgs e)                                               //new bill(1) --> megjegyzés
+        {                                                                                                       //new bill(2) --> elfogyott
+            bill bill = new bill(2);
             bill.Show();
         }
+
+        #region Megjegyzes iras
+        public static string megjegyzes { get; set; }
+        public int termekSorIndex { get; set; }
         private async void BMegjegyzes_Click(object sender, EventArgs e)
         {
             bill bill = new bill(1);
@@ -92,13 +70,14 @@ namespace testDesign
             }
             if (megjegyzes != "")
             {
-                BPlus_Click(new object(), new EventArgs()); 
+                BPlus_Click(new object(), new EventArgs());
             }
         }
         static async Task wait()
         {
             await Task.Delay(500);
         }
+        #endregion
 
 
         public void BPlus_Click(object sender, EventArgs e)
@@ -127,9 +106,8 @@ namespace testDesign
                 OsszegUpdate();                
             }            
         }
-       
-        
-        private void BLead_Click(object sender, EventArgs e)//ha lesz megjegyzés, igazítani kell
+               
+        private void BLead_Click(object sender, EventArgs e)
         {
             RendelesFeltolt();
             RendelesTetelekFeltolt();
@@ -138,13 +116,30 @@ namespace testDesign
             OsszegUpdate();            
 
             LeadottRendelesekBeolvasasa();
-        }        
+        }
 
+        #region SelectionChanged
         private void DgvRendelesek_SelectionChanged(object sender, EventArgs e)
         {
             LeadottRendelesTetelekBeolvasas();
         }
+        private void DgvCsoportok_SelectionChanged(object sender, EventArgs e)
+        {
+            dgvTermékek.Rows.Clear();
 
+            using (var teletabyDB = new DataContext(belepes.connectionString))
+            {
+                var termekT = teletabyDB.GetTable<Termék>();
+
+                string gyujtonev = Convert.ToString(dgvCsoportok.SelectedRows[0].Cells[0].Value);
+                var result = from t in termekT
+                             where t.gyűjtőnév == gyujtonev
+                             select new { t.név, t.mértékegység, t.ár };
+
+                dgvTermékek.DataSource = result;
+            }
+        }
+        #endregion
 
         public void OsszegUpdate()
         {
@@ -155,6 +150,7 @@ namespace testDesign
             }
             labelOsszeg.Text = osszeg.ToString();
         }
+
         #region LE/FEL
         public void RendelesFeltolt()
         {
@@ -166,19 +162,18 @@ namespace testDesign
                 rendeles.felhasználóNév = belepes.felhaszNev;
                 rendeles.összeg = osszeg;
                 rendeles.státusz = false;                
-                //teletabyDB.ExecuteCommand($"INSERT INTO rendelés VALUES ('{ido}', '{belepes.felhaszNev}', '{osszeg}', '{0}')"); torol                
 
                 teletabyDB.GetTable<Rendelés>().InsertOnSubmit(rendeles);
                 teletabyDB.SubmitChanges();
 
-                var table_ = teletabyDB.GetTable<Rendelés>();
-                currRendelesID = (from table in table_
+                var rendelesT = teletabyDB.GetTable<Rendelés>();
+                currRendelesID = (from table in rendelesT
                                   orderby table.ID descending
                                   select table.ID).FirstOrDefault();
-                ////////////////////////////////////////if (currRendelesID == default)
-                ////////////////////////////////////////{
-                ////////////////////////////////////////    currRendelesID = 1;
-                ////////////////////////////////////////}
+                if (currRendelesID == default)
+                {
+                    currRendelesID = 1;
+                }
             }
         }
         public void RendelesTetelekFeltolt()
@@ -214,8 +209,6 @@ namespace testDesign
                     tetel.státusz = false;
                     teletabyDB.GetTable<Rendelés_tételek>().InsertOnSubmit(tetel);
                     teletabyDB.SubmitChanges();
-
-                    //teletabyDB.ExecuteCommand($"INSERT INTO rendelés_tételek VALUES ('{currRendelesID}',(SELECT ID FROM termék WHERE név = '{termekNev}' AND mértékegység = '{mertekegyseg}'),'{megjegy}','false')");  torol
                 }
             }
         }
@@ -287,10 +280,6 @@ namespace testDesign
         #endregion
 
 
-        private void BKilep_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
         private void BLezar_Click(object sender, EventArgs e)
         {
             using (var teletabyDB = new DataContext(belepes.connectionString))
@@ -344,22 +333,14 @@ namespace testDesign
                                                                                                        rend.megjegyzés == (string)Trow.Cells[1].Value &&
                                                                                                        rend.státusz == false);
                     rendelesTetel.státusz = true;
-                    teletabyDB.SubmitChanges();
-
-                    //teletabyDB.ExecuteCommand($"UPDATE TOP(1) rendelés_tételek " +
-                    //    $"SET státusz='true' " +
-                    //    $"WHERE rendelésID = '{Rrow.Cells[0].Value}' AND " +
-                    //    $"(SELECT felhaszID FROM termék WHERE név = '{nev}' AND mértékegység = '{mertekegyseg}') = '0'" +
-                    //    $"AND termékID = (SELECT ID FROM termék WHERE név = '{nev}' AND mértékegység = '{mertekegyseg}') " +
-                    //    $"AND megjegyzés ='{Trow.Cells[1].Value}' AND státusz = '0'");
-
+                    teletabyDB.SubmitChanges();                    
                 }
                 LeadottRendelesTetelekBeolvasas();
             }
         }
          
 
-        private void Timer1_Tick(object sender, EventArgs e)
+        private void TFrissit_Tick(object sender, EventArgs e)
         {
             LeadottRendelesTetelekBeolvasas();
         }
@@ -368,6 +349,9 @@ namespace testDesign
             labelIdo.Text = DateTime.Now.ToString("HH:mm:ss");
         }
 
-
+        private void BKilep_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

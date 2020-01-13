@@ -20,12 +20,6 @@ using System.Configuration;
 
 namespace testDesign
 {
-
-    //ha ki lett törölve a felhasználó amihez tartozik a termék, legyen piros
-    //0 val NEM kezdődhet jelszó mert egyszerűen leszarja a llétezését
-
-
-
     public partial class UI3 : Form
     {
         public string filePath = System.Configuration.ConfigurationManager.AppSettings["archiveFilePath"];
@@ -79,18 +73,6 @@ namespace testDesign
                     break;
             }
         }
-
-
-
-
-
-
-        //---------
-
-       
-
-        //---------
-
 
 
         private RadioButton SelectedRadianbutton(GroupBox gb)
