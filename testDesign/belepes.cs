@@ -97,21 +97,12 @@ namespace testDesign
             }
         }
 
-        
-        private void TextBoxJelszo_Enter(object sender, EventArgs e)
-        {
-            this.Width = 588;
-        }
-        private void ComboBoxFelhaszn_Enter(object sender, EventArgs e)
-        {
-            this.Width = 334;
-        }
 
-        
-        private void NumButton_Click(object sender, EventArgs e)
-        {
-            NumButtonCall((sender as Button).Text);
-        }
+        private void TextBoxJelszo_Enter(object sender, EventArgs e) => Width = 588;
+        private void ComboBoxFelhaszn_Enter(object sender, EventArgs e) => Width = 334;
+
+
+
         public void NumButtonCall(string text)
         {
             if (text == "←" && textBoxJelszo.Text.Length > 0)
@@ -128,16 +119,10 @@ namespace testDesign
                 textBoxJelszo.Text += text;
             }
         }
+        private void NumButton_Click(object sender, EventArgs e) => NumButtonCall((sender as Button).Text);
 
 
-        private void TextBoxJelszo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            BelepesTriggerIfEnter(e);
-        }
-        private void Belepes_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            BelepesTriggerIfEnter(e);
-        }
+
         private void BelepesTriggerIfEnter(KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
@@ -145,11 +130,10 @@ namespace testDesign
                 buttonBejelentkezes_Click(new object(), new EventArgs());
             }
         }
+        private void TextBoxJelszo_KeyPress(object sender, KeyPressEventArgs e) => BelepesTriggerIfEnter(e);
+        private void Belepes_KeyPress(object sender, KeyPressEventArgs e) => BelepesTriggerIfEnter(e);
 
 
-        private void buttonKilep_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+        private void buttonKilep_Click(object sender, EventArgs e) => Application.Exit();
     }
 }

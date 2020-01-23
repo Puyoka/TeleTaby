@@ -84,7 +84,7 @@
       <DependentUpon>Email.cs</DependentUpon>
     </Compile>
     <Compile Include="Felhasználó.cs" />
-    <Compile Include="Lekérdezés.cs" />
+    <Compile Include="RendelésLekér.cs" />
     <Compile Include="MentesRendeles.cs" />
     <Compile Include="MentesRendelesTetel.cs" />
     <Compile Include="Program.cs" />

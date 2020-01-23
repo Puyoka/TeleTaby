@@ -6,6 +6,7 @@ using System.Data.Linq;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace testDesign
@@ -17,9 +18,6 @@ namespace testDesign
             InitializeComponent();
         }
 
-
-
-        public int keszCount = 0;
         private void UI2_Load(object sender, EventArgs e)
         {
             CultureInfo ci = new CultureInfo("hu-HU");
@@ -57,8 +55,9 @@ namespace testDesign
                     teletabyDB.SubmitChanges();
 
                 }
-                dgvRendelesek.Rows.RemoveAt(dgvRendelesek.SelectedRows[0].Index);
-                //colors.RemoveAt(dataGridViewRendelesek.SelectedRows[0].Index);
+                int index = dgvRendelesek.SelectedRows[0].Index;
+                dgvRendelesek.Rows.RemoveAt(index);
+                colors.RemoveAt(index);
 
                 keszCount++;
                 labelCounter.Text = $"{keszCount}";
@@ -84,9 +83,7 @@ namespace testDesign
             buttonKesz.Visible = !buttonKesz.Visible;
         }       
         
-
-
-
+        public int keszCount = 0;
         static int keszCounter()
         {
             using (var teletabyDB = new DataContext(belepes.connectionString))
@@ -107,11 +104,12 @@ namespace testDesign
         public Color currColor = Color.White;
         List<Color> colors = new List<Color>() { Color.White };
 
-        private void rowColoring(DataGridView dgv)//Sárga kezdés??
+        private void rowColoring(DataGridView dgv)
         {
             int currID;
             int prevID;
             currColor = colors[0];
+            colors.Clear();
 
             for (int i = 0; i < dgv.Rows.Count ; i++)
             {
@@ -138,7 +136,7 @@ namespace testDesign
         {
             if (currColor == Color.White)
             {
-                currColor = Color.Gray;
+                currColor = Color.LightGray;
             }
             else
             {
@@ -171,9 +169,9 @@ namespace testDesign
         }
 
 
-
-        BindingList<Lekérdezés> rendelesek = new BindingList<Lekérdezés>();        
-        private void lekerdezRendelesek(bool b)
+        List<int> idList = new List<int>();
+        BindingList<RendelésLekér> rendelesek = new BindingList<RendelésLekér>();        
+        private async void lekerdezRendelesek(bool keresettStatusz)
         {
             rendelesek.Clear();
             using (var teletabyDB = new DataContext(belepes.connectionString))
@@ -186,62 +184,56 @@ namespace testDesign
                               join t2 in table2
                               on t1.termékID equals t2.ID
                               join t3 in table3 on t1.rendelésID equals t3.ID
-                              where belepes.felhaszID == t2.felhaszID && t1.státusz == !b
-                              select new Lekérdezés(t1.rendelésID, t3.idő, t2.név, t1.megjegyzés)).ToList<Lekérdezés>();
+                              where belepes.felhaszID == t2.felhaszID && t1.státusz == !keresettStatusz
+                              select new RendelésLekér(t1.rendelésID, t3.idő, t2.név, t1.megjegyzés,t3.felhasználóNév)).ToList<RendelésLekér>();
 
-                rendelesek = result.ToBindingList<Lekérdezés>();
-                dgvRendelesek.DataSource = rendelesek;
+                rendelesek = result.ToBindingList<RendelésLekér>();
+                dgvRendelesek.DataSource = rendelesek;                
             }
             rowColoring(dgvRendelesek);
 
-            if (b)
+            if (keresettStatusz)
             {
                 for (int i = 0; i < dgvRendelesek.Rows.Count; i++)
                 {
                     elapsedTime(dgvRendelesek.Rows[i].Cells[1].Value.ToString(), dgvRendelesek.Rows[i]);
                 }
+                await soundPlayer(rendelesek.OfType<RendelésLekér>().Select(l => l.ID).ToList());                
             }
-
-            rowSelect();
-        }
-        
-
+            rowSelect();            
+        }        
         private void rowSelect()
         {
             if (lastSelectedRowIndex+1 > dgvRendelesek.Rows.Count)
             {
                 lastSelectedRowIndex = dgvRendelesek.Rows.Count-1;
             }
-            try
+
+            if (dgvRendelesek.SelectedRows.Count > 0)
             {
                 dgvRendelesek.Rows[0].Selected = false;
-                dgvRendelesek.Rows[lastSelectedRowIndex].Selected = true;
+                dgvRendelesek.Rows[lastSelectedRowIndex].Selected = true; 
             }
-            catch (Exception)
-            {
-            }
-
-            
+                    
         }
-
-
-        //TIMEREK
-        private void TimerLekerdez_Tick(object sender, EventArgs e)
+        private async Task soundPlayer(List<int> ujIdList)
         {
-            lekerdezRendelesek(mitKerdezLe);            
-        }
-        private void TimerIdo_Tick(object sender, EventArgs e)
-        {
-            labelIdo.Text = DateTime.Now.ToString("HH:mm:ss");
+            if (idList != default)
+	        {
+                var tempList = ujIdList.Except(idList).ToList();
+                if (tempList.Count != 0)
+	            {
+                    var player = new System.Media.SoundPlayer();
+                    player.SoundLocation = "sound.wav";
+                    player.Play();
+	            } 
+	        }
+            idList = ujIdList;
+            await Task.Yield();  
         }
 
-        //KILÉP
-        private void ButtonKilep_Click(object sender, EventArgs e)
-        {
-             Application.Exit();
-        }
 
-        //SELECTIONBACKCOLOR JÓ LEGYEN
+        //SELECTIONBACKCOLOR
         int lastSelectedRowIndex = 0;
         private void DataGridViewRendelesek_SelectionChanged(object sender, EventArgs e)
         {
@@ -250,9 +242,9 @@ namespace testDesign
             {
                 lastSelectedRowIndex = dgvRendelesek.SelectedRows[0].Index;
 
-                if (dgvRendelesek.SelectedRows[0].DefaultCellStyle.BackColor.Name == "Gray")
+                if (dgvRendelesek.SelectedRows[0].DefaultCellStyle.BackColor.Name == "LightGray")
                 {
-                    dgvRendelesek.DefaultCellStyle.SelectionBackColor = Color.Gray;
+                    dgvRendelesek.DefaultCellStyle.SelectionBackColor = Color.LightGray;
                 }
                 else
                 {
@@ -281,13 +273,19 @@ namespace testDesign
                     }               
                 }
             }
-        }        
+        }
+
+
+
+        //TIMEREK
+        private void TimerLekerdez_Tick(object sender, EventArgs e) => lekerdezRendelesek(mitKerdezLe);
+        private void TimerIdo_Tick(object sender, EventArgs e) => labelIdo.Text = DateTime.Now.ToString("HH:mm:ss");
+
+        //KILÉP
+        private void ButtonKilep_Click(object sender, EventArgs e) => Application.Exit();
     }
     static class Extension
     {
-        public static BindingList<T> ToBindingList<T>(this IList<T> source)
-        {
-            return new BindingList<T>(source);
-        }
+        public static BindingList<T> ToBindingList<T>(this IList<T> source) => new BindingList<T>(source);
     }
 }

@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.Linq;
-using System.Data.Sql;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using OfficeOpenXml;
-using System.Configuration;
 
 
 
@@ -230,7 +225,6 @@ namespace testDesign
                 errorProvider.SetError(bVegrehajtTermek, "Már létezik termék ilyen névvel és/vagy mértékegységgel!");
                 return true;
             }
-
         }
 
 
@@ -533,13 +527,29 @@ namespace testDesign
                                 var regiFelhasznalo = teletabyDB.GetTable<Felhasználó>().FirstOrDefault(felhasz => felhasz.név == felhasznev_ &&
                                                                                                     felhasz.jelszó == jelszo_ &&
                                                                                                     felhasz.UI == UIid_);
+                                int regiId = regiFelhasznalo.ID;
                                 
                                 var ujFelhasznalo = new Felhasználó(tbFelhsznev.Text, tbJelszo.Text, tbUI.SelectedIndex + 1);
 
                                 teletabyDB.GetTable<Felhasználó>().InsertOnSubmit(ujFelhasznalo);
                                 teletabyDB.GetTable<Felhasználó>().DeleteOnSubmit(regiFelhasznalo);
-
+                                
                                 teletabyDB.SubmitChanges();
+
+
+                                var termekT = teletabyDB.GetTable<Termék>();
+
+                                var all = from t in termekT
+                                          where t.felhaszID == regiId
+                                          select t;
+                                foreach (var item in all)
+                                {
+                                    item.felhaszID = teletabyDB.GetTable<Felhasználó>().FirstOrDefault(felhasz => felhasz.név == tbFelhsznev.Text &&
+                                                                                                       felhasz.jelszó == tbJelszo.Text &&
+                                                                                                       felhasz.UI == tbUI.SelectedIndex + 1).ID;
+                                }
+                                teletabyDB.SubmitChanges();
+
                             }
                             await Visszajelzes(bVegrehajtFelhasz);
                             DgvFelhaszFeltolt();
@@ -622,7 +632,7 @@ namespace testDesign
                                      join t2 in termekT on t1.termékID equals t2.ID
                                      join t4 in felhaszT on t3.felhasználóNév equals t4.név
                                      where t1.státusz == b
-                                     select new { t3.idő, t3.ID, FelhaszNev = t4.név, TermekNev = t2.név, t2.ár };
+                                     select new {Időpopnt = t3.idő, t3.ID,Felhasználó = t4.név, Terméknév = t2.név,Ár = t2.ár };
                         }
                         else
                         {
@@ -630,7 +640,7 @@ namespace testDesign
                                       join t3 in rendelesT on t1.rendelésID equals t3.ID
                                       join t4 in felhaszT on t3.felhasználóNév equals t4.név
                                       where t1.státusz == b
-                                      select new { t3.idő, t3.ID, FelhaszNev = t4.név, t3.összeg }).Distinct();
+                                      select new {Időpont = t3.idő, t3.ID, Felhasználó = t4.név, Végösszeg = t3.összeg }).Distinct();
                         }
                         dgvStat.DataSource = result;
                     }
@@ -973,14 +983,8 @@ namespace testDesign
             pageNum = 1;
         }
 
-        private void bBezár_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+        private void bBezár_Click(object sender, EventArgs e) => Application.Exit();
 
-        private void tIdo_Tick(object sender, EventArgs e)
-        {
-            lIdo.Text = DateTime.Now.ToString("HH:mm:ss");
-        }
+        private void tIdo_Tick(object sender, EventArgs e) => lIdo.Text = DateTime.Now.ToString("HH:mm:ss");
     }    
 }

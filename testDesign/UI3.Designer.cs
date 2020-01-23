@@ -791,8 +791,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvDT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDT.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvDT.Location = new System.Drawing.Point(137, 8);
             this.dgvDT.Name = "dgvDT";
+            this.dgvDT.ReadOnly = true;
+            this.dgvDT.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDT.Size = new System.Drawing.Size(437, 312);
             this.dgvDT.TabIndex = 9;
             // 

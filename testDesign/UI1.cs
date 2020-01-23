@@ -118,6 +118,7 @@ namespace testDesign
             LeadottRendelesekBeolvasasa();
         }
 
+
         #region SelectionChanged
         private void DgvRendelesek_SelectionChanged(object sender, EventArgs e)
         {
@@ -141,17 +142,9 @@ namespace testDesign
         }
         #endregion
 
-        public void OsszegUpdate()
-        {
-            osszeg = 0;
-            for (int i = 0; i < dgvRendelesLista.Rows.Count; i++)
-            {
-                osszeg += Convert.ToInt32(dgvRendelesLista.Rows[i].Cells[2].Value);
-            }
-            labelOsszeg.Text = osszeg.ToString();
-        }
+        
 
-        #region LE/FEL
+        #region LE/FEL DB
         public void RendelesFeltolt()
         {
             var ido = DateTime.Now.ToString("yyyy - MM - dd HH: mm:ss");
@@ -212,6 +205,8 @@ namespace testDesign
                 }
             }
         }
+
+
         public void LeadottRendelesekBeolvasasa()
         {
             using (var teletabyDB = new DataContext(belepes.connectionString))
@@ -276,8 +271,16 @@ namespace testDesign
                 }
             }
         }
-
         #endregion
+        public void OsszegUpdate()
+        {
+            osszeg = 0;
+            for (int i = 0; i < dgvRendelesLista.Rows.Count; i++)
+            {
+                osszeg += Convert.ToInt32(dgvRendelesLista.Rows[i].Cells[2].Value);
+            }
+            labelOsszeg.Text = osszeg.ToString();
+        }
 
 
         private void BLezar_Click(object sender, EventArgs e)
@@ -338,20 +341,12 @@ namespace testDesign
                 LeadottRendelesTetelekBeolvasas();
             }
         }
-         
 
-        private void TFrissit_Tick(object sender, EventArgs e)
-        {
-            LeadottRendelesTetelekBeolvasas();
-        }
-        private void TIdo_Tick(object sender, EventArgs e)
-        {
-            labelIdo.Text = DateTime.Now.ToString("HH:mm:ss");
-        }
 
-        private void BKilep_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+        private void TFrissit_Tick(object sender, EventArgs e) => LeadottRendelesTetelekBeolvasas();
+        private void TIdo_Tick(object sender, EventArgs e) => labelIdo.Text = DateTime.Now.ToString("HH:mm:ss");
+
+
+        private void BKilep_Click(object sender, EventArgs e) => Application.Exit();
     }
 }
