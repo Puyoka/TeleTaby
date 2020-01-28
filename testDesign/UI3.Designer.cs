@@ -860,7 +860,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UI3";
-            this.Text = "UI3";
+            this.Text = "Admin";
             this.Load += new System.EventHandler(this.UI3_Load);
             this.pTermek.ResumeLayout(false);
             this.gbMezokTermek.ResumeLayout(false);
