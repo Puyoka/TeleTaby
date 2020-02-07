@@ -23,7 +23,6 @@ C:\Users\puyok\Source\Repos\TeleTaby\testDesign\obj\Debug\testDesign.UI1.resourc
 C:\Users\puyok\Source\Repos\TeleTaby\testDesign\obj\Debug\testDesign.UI2.resources
 C:\Users\puyok\Source\Repos\TeleTaby\testDesign\obj\Debug\testDesign.UI3.resources
 C:\Users\puyok\Source\Repos\TeleTaby\testDesign\obj\Debug\TeleTaby.csproj.GenerateResource.cache
-C:\Users\puyok\Source\Repos\TeleTaby\testDesign\obj\Debug\TeleTaby.csproj.CoreCompileInputs.cache
 C:\Users\puyok\Source\Repos\TeleTaby\testDesign\obj\Debug\testDesign.exe
 C:\Users\puyok\Source\Repos\TeleTaby\testDesign\obj\Debug\testDesign.pdb
 C:\Users\user\Source\Repos\TeleTaby\testDesign\obj\Debug\TeleTaby.csprojAssemblyReference.cache
@@ -72,3 +71,12 @@ C:\Users\user\Source\Repos\TeleTaby\testDesign\bin\Debug\EPPlus.xml
 C:\Users\user\Source\Repos\TeleTaby\testDesign\bin\Debug\MailKit.xml
 C:\Users\user\Source\Repos\TeleTaby\testDesign\bin\Debug\MimeKit.xml
 C:\Users\user\Source\Repos\TeleTaby\testDesign\obj\Debug\TeleTaby.csproj.CopyComplete
+C:\Users\puyok\source\repos\TeleTaby\testDesign\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\puyok\source\repos\TeleTaby\testDesign\bin\Debug\EPPlus.dll
+C:\Users\puyok\source\repos\TeleTaby\testDesign\bin\Debug\MailKit.dll
+C:\Users\puyok\source\repos\TeleTaby\testDesign\bin\Debug\MimeKit.dll
+C:\Users\puyok\source\repos\TeleTaby\testDesign\bin\Debug\EPPlus.xml
+C:\Users\puyok\source\repos\TeleTaby\testDesign\bin\Debug\MailKit.xml
+C:\Users\puyok\source\repos\TeleTaby\testDesign\bin\Debug\MimeKit.xml
+C:\Users\puyok\source\repos\TeleTaby\testDesign\obj\Debug\testDesign.Email.resources
+C:\Users\puyok\source\repos\TeleTaby\testDesign\obj\Debug\TeleTaby.csproj.CopyComplete

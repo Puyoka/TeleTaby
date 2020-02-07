@@ -703,7 +703,9 @@
             this.dgvStat.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvStat.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvStat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStat.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvStat.Location = new System.Drawing.Point(40, 3);
             this.dgvStat.Name = "dgvStat";
             this.dgvStat.Size = new System.Drawing.Size(497, 224);
@@ -790,6 +792,7 @@
             this.dgvDT.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvDT.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDT.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvDT.Location = new System.Drawing.Point(137, 8);
@@ -849,14 +852,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(586, 381);
-            this.Controls.Add(this.pAdatbazis);
-            this.Controls.Add(this.pStat);
-            this.Controls.Add(this.pTermek);
-            this.Controls.Add(this.pFelhasz);
             this.Controls.Add(this.lIdo);
             this.Controls.Add(this.labelDatum);
             this.Controls.Add(this.bBezár);
             this.Controls.Add(this.cbTabla);
+            this.Controls.Add(this.pAdatbazis);
+            this.Controls.Add(this.pStat);
+            this.Controls.Add(this.pTermek);
+            this.Controls.Add(this.pFelhasz);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UI3";
