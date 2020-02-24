@@ -668,8 +668,8 @@ namespace testDesign
                         {
                             var keszNemkesz = new
                             {
-                                kesz = x.Count(s => s.státusz == true && s.név == item.név),
-                                nemkesz = x.Count(s => s.státusz == false && s.név == item.név),
+                                kesz = x.Count(s => s.státusz == false && s.név == item.név),
+                                nemkesz = x.Count(s => s.státusz == true && s.név == item.név),
                             };
                             int osszesen = keszNemkesz.kesz + keszNemkesz.nemkesz;
                             int osszeg = item.ár * osszesen;
@@ -705,8 +705,8 @@ namespace testDesign
                             {
                                 var keszNemkesz = new
                                 {
-                                    kesz = x.Count(s => s.státusz == true && s.felhasználóNév == item.név),
-                                    nemkesz = x.Count(s => s.státusz == false && s.felhasználóNév == item.név),
+                                    kesz = x.Count(s => s.státusz == false && s.felhasználóNév == item.név),
+                                    nemkesz = x.Count(s => s.státusz == true && s.felhasználóNév == item.név),
                                     osszeg = x.Sum(s => s.összeg)
                                 };
                                 int osszesen = keszNemkesz.kesz + keszNemkesz.nemkesz;
@@ -750,8 +750,8 @@ namespace testDesign
                         {
                             var keszNemkesz = new
                             {
-                                kesz = x.Count(s => s.státusz == true && s.név == item.név),
-                                nemkesz = x.Count(s => s.státusz == false && s.név == item.név),
+                                kesz = x.Count(s => s.státusz == false && s.név == item.név),
+                                nemkesz = x.Count(s => s.státusz == true && s.név == item.név),
                             };
                             int osszesen = keszNemkesz.kesz + keszNemkesz.nemkesz;
 
