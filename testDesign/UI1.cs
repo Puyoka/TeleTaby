@@ -329,14 +329,17 @@ namespace testDesign
 
 
                     var termek = teletabyDB.GetTable<Termék>().FirstOrDefault(term => term.név == nev && term.mértékegység == mertekegyseg);
-
-                    var rendelesTetel = teletabyDB.GetTable<Rendelés_tételek>().FirstOrDefault(rend => rend.rendelésID == (int)Rrow.Cells[0].Value &&
-                                                                                                       termek.felhaszID == 0 &&
-                                                                                                       rend.termékID == termek.ID &&
-                                                                                                       rend.megjegyzés == (string)Trow.Cells[1].Value &&
-                                                                                                       rend.státusz == false);
-                    rendelesTetel.státusz = true;
-                    teletabyDB.SubmitChanges();                    
+                    if (termek.felhaszID == 0)
+                    {
+                        var rendelesTetel = teletabyDB.GetTable<Rendelés_tételek>().FirstOrDefault(rend => rend.rendelésID == (int)Rrow.Cells[0].Value &&
+                                                                                                           termek.felhaszID == 0 &&
+                                                                                                           rend.termékID == termek.ID &&
+                                                                                                           rend.megjegyzés == (string)Trow.Cells[2].Value &&
+                                                                                                           termek.mértékegység == (string)Trow.Cells[1].Value &&
+                                                                                                           rend.státusz == false);
+                        rendelesTetel.státusz = true;
+                        teletabyDB.SubmitChanges();                     
+                    }
                 }
                 LeadottRendelesTetelekBeolvasas();
             }

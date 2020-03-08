@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace testDesign
 {
     public partial class UI2 : Form
@@ -47,21 +48,24 @@ namespace testDesign
                     using (var teletabyDB = new DataContext(belepes.connectionString))
                     {
                         var row = dgvRendelesek.Rows[dgvRendelesek.SelectedRows[0].Index];
-
-                        var termek = teletabyDB.GetTable<Termék>().FirstOrDefault(term => term.név == (string)row.Cells[2].Value && term.mértékegység == (string)row.Cells[3].Value);
-                        try
+                        var nev = row.Cells[2].Value.ToString().Split('/')[0];
+                        string mertekegyseg = "";
+                        if (row.Cells[2].Value.ToString().Split('/').Length > 1)
                         {
-                            var rendelesTetel = teletabyDB.GetTable<Rendelés_tételek>().FirstOrDefault(tetel => tetel.rendelésID == (int)row.Cells[0].Value &&
-                                                                                                                       tetel.termékID == termek.ID &&
-                                                                                                                       tetel.státusz == false);
-                                                    rendelesTetel.státusz = true;
-
-                        }
-                        catch (Exception)
-                        {
-
+                            mertekegyseg = row.Cells[2].Value.ToString().Split('/')[1];
                         }
 
+
+
+                        var termek = teletabyDB.GetTable<Termék>().FirstOrDefault(term => term.név == nev && term.mértékegység == mertekegyseg);
+                      
+
+
+
+                        var rendelesTetel = teletabyDB.GetTable<Rendelés_tételek>().FirstOrDefault(tetel => tetel.rendelésID == (int)row.Cells[0].Value &&
+                                                                                                                    tetel.termékID == termek.ID &&
+                                                                                                                    tetel.státusz == false);
+                        rendelesTetel.státusz = true;
                         teletabyDB.SubmitChanges();
 
                     }
@@ -205,7 +209,10 @@ namespace testDesign
                               on t1.termékID equals t2.ID
                               join t3 in table3 on t1.rendelésID equals t3.ID
                               where belepes.felhaszID == t2.felhaszID && t1.státusz == !keresettStatusz
-                              select new RendelésLekér(t1.rendelésID, t3.idő, t2.név, t1.megjegyzés,t3.felhasználóNév)).ToList<RendelésLekér>();
+                              select new RendelésLekér(t1.rendelésID, t3.idő, t2.név + "/" + t2.mértékegység, t1.megjegyzés,t3.felhasználóNév)).ToList<RendelésLekér>();
+
+
+
 
                 rendelesek = result.ToBindingList<RendelésLekér>();
                 dgvRendelesek.DataSource = rendelesek;                
@@ -218,7 +225,7 @@ namespace testDesign
                 {
                     elapsedTime(dgvRendelesek.Rows[i].Cells[1].Value.ToString(), dgvRendelesek.Rows[i]);
                 }
-                await soundPlayer(rendelesek.OfType<RendelésLekér>().Select(l => l.ID).ToList());                
+                //await soundPlayer(rendelesek.OfType<RendelésLekér>().Select(l => l.ID).ToList());                
             }
             rowSelect();            
         }        
