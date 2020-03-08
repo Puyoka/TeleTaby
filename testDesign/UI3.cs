@@ -632,7 +632,7 @@ namespace testDesign
                                      join t2 in termekT on t1.termékID equals t2.ID
                                      join t4 in felhaszT on t3.felhasználóNév equals t4.név
                                      where t1.státusz == b
-                                     select new {Időpopnt = t3.idő, t3.ID,Felhasználó = t4.név, Terméknév = t2.név,Ár = t2.ár };
+                                     select new {Időpont = t3.idő, t3.ID,Felhasználó = t4.név, Terméknév = t2.név,Ár = t2.ár };
                         }
                         else
                         {

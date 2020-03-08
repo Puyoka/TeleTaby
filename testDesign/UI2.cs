@@ -40,19 +40,34 @@ namespace testDesign
 
         private void ButtonKesz_Click(object sender, EventArgs e)
         {
-            if (dgvRendelesek.Rows.Count > 0)
+            if (dgvRendelesek.Rows.Count > 0 && dgvRendelesek.SelectedRows.Count>0 )//ha van kijelölve
             {
-                using (var teletabyDB = new DataContext(belepes.connectionString))
+                try
                 {
-                    var row = dgvRendelesek.Rows[dgvRendelesek.SelectedRows[0].Index];
+                    using (var teletabyDB = new DataContext(belepes.connectionString))
+                    {
+                        var row = dgvRendelesek.Rows[dgvRendelesek.SelectedRows[0].Index];
 
-                    var termek = teletabyDB.GetTable<Termék>().FirstOrDefault(term => term.név == (string)row.Cells[2].Value && term.mértékegység == (string)row.Cells[3].Value);
-                    var rendelesTetel = teletabyDB.GetTable<Rendelés_tételek>().FirstOrDefault(tetel => tetel.rendelésID == (int)row.Cells[0].Value &&
-                                                                                               tetel.termékID == termek.ID &&
-                                                                                               tetel.státusz == false);
+                        var termek = teletabyDB.GetTable<Termék>().FirstOrDefault(term => term.név == (string)row.Cells[2].Value && term.mértékegység == (string)row.Cells[3].Value);
+                        try
+                        {
+                            var rendelesTetel = teletabyDB.GetTable<Rendelés_tételek>().FirstOrDefault(tetel => tetel.rendelésID == (int)row.Cells[0].Value &&
+                                                                                                                       tetel.termékID == termek.ID &&
+                                                                                                                       tetel.státusz == false);
+                                                    rendelesTetel.státusz = true;
 
-                    rendelesTetel.státusz = true;
-                    teletabyDB.SubmitChanges();
+                        }
+                        catch (Exception)
+                        {
+
+                        }
+
+                        teletabyDB.SubmitChanges();
+
+                    }
+                }
+                catch (NullReferenceException)
+                {
 
                 }
                 int index = dgvRendelesek.SelectedRows[0].Index;
@@ -106,6 +121,11 @@ namespace testDesign
 
         private void rowColoring(DataGridView dgv)
         {
+            if (colors.Count == 0)          //COLORS HIBA
+            {
+                colors.Add(Color.White);
+            }
+
             int currID;
             int prevID;
             currColor = colors[0];
@@ -212,6 +232,11 @@ namespace testDesign
             if (dgvRendelesek.SelectedRows.Count > 0)
             {
                 dgvRendelesek.Rows[0].Selected = false;
+                if (lastSelectedRowIndex < 0)
+                {
+                    lastSelectedRowIndex = 0;
+                }
+
                 dgvRendelesek.Rows[lastSelectedRowIndex].Selected = true; 
             }
                     
