@@ -225,7 +225,7 @@ namespace testDesign
                 {
                     elapsedTime(dgvRendelesek.Rows[i].Cells[1].Value.ToString(), dgvRendelesek.Rows[i]);
                 }
-                //await soundPlayer(rendelesek.OfType<RendelésLekér>().Select(l => l.ID).ToList());                
+                await soundPlayer(rendelesek.OfType<RendelésLekér>().Select(l => l.ID).ToList());                
             }
             rowSelect();            
         }        
